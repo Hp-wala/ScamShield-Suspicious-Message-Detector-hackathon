@@ -11,64 +11,52 @@ This project started from the AI-KOS repository. Reused patterns include the con
 ### 11.2 Text Architecture Diagram
 
 ```text
-+------------------------------ USER INTERFACE ------------------------------+
-|  Plain HTML + CSS + Vanilla JavaScript                                      |
-|  [SMS] [WhatsApp] [Email] [Link] -> Analyze -> Compact risk/safe card       |
-|  Dashboard: reports, timeline, heatmap, model metrics, awareness quiz       |
-+--------------------------------+---------------------------------------------+
-                                 |
-                                 | HTTPS / JSON (no CDN, no external JS)
-                                 v
-+---------------------------- FLASK APPLICATION -----------------------------+
-|  app.py                                                                      |
-|  Input validation | security headers | rate limit | image upload limit       |
-|  /api/analyze | /api/analyze-chat | /api/analyze-image | /api/report         |
-|  /api/feedback | /api/timeline | /api/heatmap | /api/voice | /api/breach     |
-+--------------------------------+---------------------------------------------+
-                                 |
-                                 v
-+-------------------------- CHANNEL ADAPTER LAYER ---------------------------+
-|  SMSAdapter -> WhatsAppAdapter -> EmailAdapter -> UrlAdapter               |
-|  Pasted text | WhatsApp export | raw .eml-style email | URL-only input      |
-+--------------------------------+---------------------------------------------+
-                                 |
-                                 v
-+------------------------------- NLP / CLEANING -----------------------------+
-|  Unicode NFKC -> lowercase -> whitespace cleanup -> URL/phone/number       |
-|  placeholders -> sentence/word tokenization -> optional stopwords/stems    |
-|  Hinglish detection | shortform expansion | emoji/obfuscation/mixed-script |
-+--------------------------------+---------------------------------------------+
-                                 |
-                                 v
-+------------------------------ SCORING PIPELINE ----------------------------+
-|  Rule engine: urgency, KYC, UPI, delivery, government, prize, job,        |
-|  digital arrest, credentials, utility, investment, impersonation           |
-|  + URL engine: shortener, IP, risky TLD, brand lookalike, HTTPS, SSL       |
-|  + known-scam patterns + lightweight TF-IDF Naive Bayes assist             |
-|  + report reputation and optional deep scan signals                        |
-+--------------------------------+---------------------------------------------+
-                                 |
-                                 v
-+----------------------------- EXPLAINABLE RESULT ---------------------------+
-|  0-100 score | Safe/Suspicious/Likely Scam | category | confidence         |
-|  Highlighted signals | URL findings | explanation | safety advice          |
-+--------------------------------+---------------------------------------------+
-                                 |
-                                 v
-+---------------------------- PRIVACY-SAFE STORAGE --------------------------+
-|  SQLite: channel | category | risk_score | SHA-256(normalized text)        |
-|         created_at | state-level category counts | hashed number/domain    |
-|  Raw message text and passwords are never stored or logged                 |
-+--------------------------------+---------------------------------------------+
-                                 |
-                       Optional deep-scan keys
-                                 |
-                                 v
-+--------------------------- OPTIONAL LOOKUPS -------------------------------+
-|  Safe Browsing | VirusTotal | WHOIS/domain age | SSL certificate           |
-|  HIBP breach/Pwned Password range | Vosk transcript model | Tesseract/QR   |
-|  Missing key/network/package -> explicit "skipped" / fallback status       |
-+--------------------------------------------------------------------------+
++-----------------------+
+|  Email / Message Input |
++-----------+-----------+
+            |
+            v
++-----------------------+
+|     NLP Processing    |
+|-----------------------|
+| lowercase             |
+| emoji removal         |
+| URL removal           |
+| punctuation removal   |
+| stopword removal      |
+| stemming              |
++-----------+-----------+
+            |
+            v
++-----------------------+
+| TF-IDF Feature Extract|
++-----------+-----------+
+            |
+            v
++-----------------------+
+| Text Model / NB Assist|
++-----------+-----------+
+            |
+            v
++-----------------------+
+| ScamShield Modules    |
+|-----------------------|
+| URL analysis          |
+| header/brand analysis |
+| reputation checks     |
+| attachment/image scan |
+| optional deep scan    |
++-----------+-----------+
+            |
+            v
++-----------------------+
+| Risk Scoring Engine   |
++-----------+-----------+
+            |
+            v
++-----------------------+
+|  Final Prediction     |
++-----------------------+
 ```
 
 ## Detection

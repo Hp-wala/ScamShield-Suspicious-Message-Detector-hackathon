@@ -16,20 +16,52 @@ The application explains risk scores, matched scam indicators, URL findings, cat
 ## 11.2 Text Architecture Diagram
 
 ```text
-Web UI -> Flask API -> Channel Adapters -> NLP/Cleaning -> Rule + URL + ML Scoring
-  |           |              |                 |                    |
-  |           |              |                 |                    +-> Explainable result
-  |           |              |                 +-> TF-IDF text model
-  |           |              +-> SMS / WhatsApp / Email / URL
-  |           +-> Validation, rate limiting, security headers
-  +-> HTML/CSS/vanilla JavaScript, offline dashboard and quiz
-
-Optional services:
-Safe Browsing -> VirusTotal -> WHOIS -> SSL -> HIBP -> Vosk/OCR/QR
-
-Privacy storage:
-SQLite -> channel, category, risk score, text hash, timestamp
-        -> state/category counts and hashed number/domain reputation
++-----------------------+
+|  Email / Message Input |
++-----------+-----------+
+            |
+            v
++-----------------------+
+|     NLP Processing    |
+|-----------------------|
+| lowercase             |
+| emoji removal         |
+| URL removal           |
+| punctuation removal   |
+| stopword removal      |
+| stemming              |
++-----------+-----------+
+            |
+            v
++-----------------------+
+| TF-IDF Feature Extract|
++-----------+-----------+
+            |
+            v
++-----------------------+
+| Text Model / NB Assist|
++-----------+-----------+
+            |
+            v
++-----------------------+
+| ScamShield Modules    |
+|-----------------------|
+| URL analysis          |
+| header/brand analysis |
+| reputation checks     |
+| attachment/image scan |
+| optional deep scan    |
++-----------+-----------+
+            |
+            v
++-----------------------+
+| Risk Scoring Engine   |
++-----------+-----------+
+            |
+            v
++-----------------------+
+|  Final Prediction     |
++-----------------------+
 ```
 
 ## 2. What Was Kept and Adapted
