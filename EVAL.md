@@ -14,61 +14,66 @@ Synthetic dataset - not real-world accuracy
 
 | Metric | Rules-only | Rules + ML |
 |---|---:|---:|
-| Accuracy | 0.909 | 1.000 |
-| Precision | 1.000 | 1.000 |
-| Recall | 0.814 | 1.000 |
-| F1 | 0.897 | 1.000 |
-| False-positive rate | 0.000 | 0.000 |
-| False-negative rate | 0.186 | 0.000 |
+| Accuracy | 0.898 | 0.932 |
+| Precision | 1.000 | 0.974 |
+| Recall | 0.791 | 0.884 |
+| F1 | 0.883 | 0.927 |
+| False-positive rate | 0.000 | 0.022 |
+| False-negative rate | 0.209 | 0.116 |
 
-Rules-only confusion: `TP=35, FP=0, TN=45, FN=8`
-Rules + ML confusion: `TP=43, FP=0, TN=45, FN=0`
+Rules-only confusion: `TP=34, FP=0, TN=45, FN=9`
+Rules + ML confusion: `TP=38, FP=1, TN=44, FN=5`
 
 ## Strict view (Likely Scam only)
 
 | Metric | Rules-only | Rules + ML |
 |---|---:|---:|
-| Accuracy | 0.852 | 0.864 |
+| Accuracy | 0.841 | 0.841 |
 | Precision | 1.000 | 1.000 |
-| Recall | 0.698 | 0.721 |
-| F1 | 0.822 | 0.838 |
+| Recall | 0.674 | 0.674 |
+| F1 | 0.806 | 0.806 |
 | False-positive rate | 0.000 | 0.000 |
-| False-negative rate | 0.302 | 0.279 |
+| False-negative rate | 0.326 | 0.326 |
 
 ## Per-category recall
 
-- Bank/KYC: 1.000
-- Delivery: 1.000
+- Bank/KYC: 0.750
+- Delivery: 0.750
 - Digital Arrest: 1.000
 - Electricity/Utility: 1.000
 - Government: 1.000
 - Impersonation: 1.000
 - Investment: 1.000
-- Job/Work-from-home: 1.000
-- Lottery/Prize: 1.000
+- Job/Work-from-home: 0.500
+- Lottery/Prize: 0.750
 - Other: 1.000
 - UPI/Payment: 1.000
 
 ## Per-language accuracy
 
-- en: 1.000
-- hinglish: 1.000
+- en: 0.953
+- hinglish: 0.911
 
 ## Per-channel accuracy
 
-- email: 1.000
-- sms: 1.000
+- email: 0.947
+- sms: 0.930
 - url: 1.000
-- whatsapp: 1.000
+- whatsapp: 0.917
 
 ## Average score
 
-- Scam: 79.581
-- Genuine: 3.000
+- Scam: 76.767
+- Genuine: 6.867
 
 ## Misclassified test messages
 
-- None
+- `Aapka courier parcel address ke bina bheja ja raha hai. turant fee transfer karein. Call fake support 0000000000.` | expected=scam | predicted=genuine | score=12 | category=Delivery
+- `Customer service role for 1000/day. Deposit for software. Call fake support 0000000000.` | expected=scam | predicted=genuine | score=0 | category=Job/Work-from-home
+- `Final chance: select one gift and pay registration. Call fake support 0000000000.` | expected=scam | predicted=genuine | score=0 | category=Lottery/Prize
+- `RBI notice aaya hai. Aadhaar aur ATM PIN bhejne se KYC activate hoga. Call fake support 0000000000.` | expected=scam | predicted=genuine | score=15 | category=Bank/KYC
+- `India Post parcel deliver hua. https://www.indiapost.gov.in par status dekhein.` | expected=genuine | predicted=scam | score=46 | category=(genuine)
+- `Video like karke daily earning. Telegram par team se payment setup. Call fake support 0000000000.` | expected=scam | predicted=genuine | score=0 | category=Job/Work-from-home
 
 ## Limitations
 

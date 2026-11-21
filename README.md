@@ -58,6 +58,27 @@ PORT=8000 python app.py
 | GET | `/api/examples` | Nine UI example messages |
 | GET | `/api/health` | Health check |
 
+## Optional integrations
+
+The core detector is offline. Optional network integrations remain skipped when keys or networks are unavailable:
+
+```text
+SAFE_BROWSING_API_KEY
+VT_API_KEY
+HIBP_API_KEY
+VOSK_MODEL_PATH
+```
+
+Optional system packages:
+
+- Tesseract OCR: install the system `tesseract` executable.
+- QR decoding: install system `zbar` libraries.
+- Audio: install a local Vosk model and set `VOSK_MODEL_PATH`.
+- WHOIS: provided by `python-whois`.
+- Image validation: provided by Pillow.
+
+Password breach lookup uses HIBP Pwned Passwords k-anonymity. Only the SHA-1 first five characters leave the device/server. Raw passwords are never stored or logged.
+
 ## Testing
 
 ```bash

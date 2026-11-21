@@ -36,6 +36,27 @@ class ReportStore:
                                    (datetime.now(timezone.utc).isoformat(),))
             if "timestamp" in columns:
                 connection.execute("DROP TABLE IF EXISTS reports_legacy")
+            connection.execute(
+                """
+                CREATE TABLE IF NOT EXISTS reputation (
+                    kind TEXT NOT NULL,
+                    indicator_hash TEXT NOT NULL,
+                    count INTEGER NOT NULL DEFAULT 1,
+                    last_reported TEXT NOT NULL,
+                    PRIMARY KEY(kind, indicator_hash)
+                )
+                """
+            )
+            connection.execute(
+                """
+                CREATE TABLE IF NOT EXISTS state_reports (
+                    state TEXT NOT NULL,
+                    category TEXT NOT NULL,
+                    count INTEGER NOT NULL DEFAULT 1,
+                    PRIMARY KEY(state, category)
+                )
+                """
+            )
 
     def add(self, result: Dict[str, Any]) -> int:
         with self._connect() as connection:
@@ -75,6 +96,64 @@ class ReportStore:
                 FROM reports ORDER BY id DESC LIMIT ?
                 """,
                 (max(1, min(limit, 100)),),
+            ).fetchall()
+            return [dict(row) for row in rows]
+
+    def add_reputation(self, kind, indicator_hash):
+        if not indicator_hash:
+            return
+        now = datetime.now(timezone.utc).isoformat()
+        with self._connect() as connection:
+            connection.execute(
+                """
+                INSERT INTO reputation(kind, indicator_hash, count, last_reported)
+                VALUES (?, ?, 1, ?)
+                ON CONFLICT(kind, indicator_hash) DO UPDATE SET
+                    count = count + 1,
+                    last_reported = excluded.last_reported
+                """,
+                (kind, indicator_hash, now),
+            )
+
+    def reputation(self, kind, indicator_hash):
+        with self._connect() as connection:
+            row = connection.execute(
+                "SELECT count, last_reported FROM reputation WHERE kind=? AND indicator_hash=?",
+                (kind, indicator_hash),
+            ).fetchone()
+            if not row:
+                return {"count": 0, "last_reported": None}
+            return dict(row)
+
+    def add_state(self, state, category):
+        state = str(state or "").strip()
+        if not state:
+            return
+        with self._connect() as connection:
+            connection.execute(
+                """
+                INSERT INTO state_reports(state, category, count)
+                VALUES (?, ?, 1)
+                ON CONFLICT(state, category) DO UPDATE SET count = count + 1
+                """,
+                (state[:50], str(category or "Other")[:80]),
+            )
+
+    def timeline(self):
+        with self._connect() as connection:
+            rows = connection.execute(
+                """
+                SELECT substr(created_at, 1, 10) AS day, category, COUNT(*) AS count
+                FROM reports GROUP BY substr(created_at, 1, 10), category
+                ORDER BY day DESC
+                """
+            ).fetchall()
+            return [dict(row) for row in rows]
+
+    def heatmap(self):
+        with self._connect() as connection:
+            rows = connection.execute(
+                "SELECT state, category, count FROM state_reports ORDER BY count DESC"
             ).fetchall()
             return [dict(row) for row in rows]
 

@@ -176,7 +176,12 @@ function renderChat(data) {
 
 async function reportResult(data) {
   const hash = await sha256(data.text);
-  const body = { channel: data.channel, category: data.category, risk_score: data.score };
+  const body = {
+    channel: data.channel,
+    category: data.category,
+    risk_score: data.score,
+    state: document.querySelector("#state-select")?.value || "",
+  };
   if (hash) body.message_hash = hash;
   else body.text = data.text;
   const response = await fetch("/api/report", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -210,6 +215,69 @@ document.querySelector("#chat-file").addEventListener("change", async event => {
   message.value = await file.text();
 });
 
+document.querySelector("#image-file").addEventListener("change", async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+  const formData = new FormData();
+  formData.append("image", file);
+  formData.append("mode", "ocr");
+  resultBox.replaceChildren(el("p", "placeholder", "Scanning image locally..."));
+  try {
+    const response = await fetch("/api/analyze-image", { method: "POST", body: formData });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "Image analysis failed");
+    if (data.ocr_analysis) renderSingle(data.ocr_analysis);
+    else if (data.qr && data.qr.status === "ok") {
+      resultBox.replaceChildren(el("h2", "", "QR scan"), el("p", "", `${data.qr.urls.length} URL(s) decoded and analysed locally.`));
+    } else {
+      resultBox.replaceChildren(el("p", "", data.ocr.reason || data.qr.reason || "No text or QR content detected."));
+    }
+  } catch (error) {
+    resultBox.replaceChildren(el("p", "", error.message));
+  } finally {
+    event.target.value = "";
+  }
+});
+
+document.querySelector("#voice-analyze").addEventListener("click", async () => {
+  const transcript = document.querySelector("#voice-text").value;
+  if (!transcript.trim()) {
+    resultBox.replaceChildren(el("p", "", "Paste a call transcript first."));
+    return;
+  }
+  try {
+    const response = await fetch("/api/voice", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ text: transcript }),
+    });
+    const data = await response.json();
+    if (data.status === "ok") renderSingle(data.analysis);
+    else resultBox.replaceChildren(el("p", "", data.reason || "Voice analysis unavailable."));
+  } catch (error) {
+    resultBox.replaceChildren(el("p", "", error.message));
+  }
+});
+
+document.querySelector("#voice-audio-analyze").addEventListener("click", async () => {
+  const file = document.querySelector("#voice-audio").files[0];
+  if (!file) {
+    resultBox.replaceChildren(el("p", "", "Choose a WAV audio file first."));
+    return;
+  }
+  const formData = new FormData();
+  formData.append("audio", file);
+  try {
+    const response = await fetch("/api/voice", { method: "POST", body: formData });
+    const data = await response.json();
+    resultBox.replaceChildren(el("p", "", data.reason || data.status || "Audio analysis unavailable."));
+  } catch (error) {
+    resultBox.replaceChildren(el("p", "", error.message));
+  } finally {
+    document.querySelector("#voice-audio").value = "";
+  }
+});
+
 document.querySelector("#clear-button").addEventListener("click", () => {
   message.value = "";
   latestResult = null;
@@ -230,7 +298,15 @@ form.addEventListener("submit", async event => {
   button.textContent = "Analyzing...";
   resultBox.replaceChildren(el("p", "placeholder", "Checking local threat indicators..."));
   try {
-    const response = await fetch("/api/analyze", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ channel, text: message.value }) });
+    const response = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        channel,
+        text: message.value,
+        deep_scan: document.querySelector("#deep-scan")?.checked || false,
+      }),
+    });
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Analysis failed");
     latestResult = data;
@@ -288,6 +364,35 @@ async function loadDashboard() {
     container.replaceChildren(el("p", "", "Statistics unavailable."));
   }
   loadModelAccuracy();
+  loadTimelineAndHeatmap();
+}
+
+async function loadTimelineAndHeatmap() {
+  const container = document.querySelector("#dashboard-content");
+  try {
+    const [timelineResponse, heatmapResponse] = await Promise.all([
+      fetch("/api/timeline"),
+      fetch("/api/heatmap"),
+    ]);
+    const timeline = await timelineResponse.json();
+    const heatmap = await heatmapResponse.json();
+    container.append(el("h3", "", "Recent scam timeline"));
+    (timeline.timeline || []).slice(0, 10).forEach(item =>
+      container.append(el("p", "", `${item.day}: ${item.category} — ${item.count} report(s)`))
+    );
+    if (!timeline.timeline || timeline.timeline.length === 0) {
+      container.append(el("p", "", "No timeline reports yet."));
+    }
+    container.append(el("h3", "", "State-level report heatmap"));
+    (heatmap.states || []).slice(0, 12).forEach(item =>
+      container.append(el("p", "", `${item.state}: ${item.count} report(s) — ${item.category}`))
+    );
+    if (!heatmap.states || heatmap.states.length === 0) {
+      container.append(el("p", "", "No state reports yet."));
+    }
+  } catch (_error) {
+    container.append(el("p", "", "Timeline and state map unavailable."));
+  }
 }
 
 async function loadModelAccuracy() {
@@ -376,6 +481,81 @@ function loadLearn() {
     flags.forEach(flag => list.append(el("li", "", flag)));
     card.append(list, el("small", "", "Verify through an official app or printed number."));
     container.append(card);
+  });
+  loadQuiz();
+}
+
+const QUIZ = [
+  ["A bank asks for your OTP on a phone call. What is safest?", ["Share only because it is a bank", "Never share it", "Share only after a PIN"], 1, "Banks never ask for OTP or PIN."],
+  ["A parcel fee arrives as a short link. What should you do?", ["Pay quickly", "Verify in the official courier app", "Forward to friends"], 1, "Verify parcel status using the official app."],
+  ["Your relative from a new number asks for urgent money. Next step?", ["Send immediately", "Verify by calling the saved number", "Share UPI PIN"], 1, "Confirm the person through a known number."],
+  ["A UPI app asks you to enter PIN to receive money. What is true?", ["Receiving needs PIN", "No PIN is required to receive", "Scan and enter PIN"], 1, "UPI PIN is used for sending money, not receiving."],
+  ["An electricity officer says disconnection tonight unless you pay now.", ["Pay the private link", "Verify on the official utility account", "Share Aadhaar"], 1, "Use official bills and utility apps."],
+  ["A caller claims to be CBI and demands secrecy and a video call.", ["Stay silent and pay", "Disconnect and report 1930", "Download AnyDesk"], 1, "Do not join secret video calls or pay."],
+  ["An unknown lucky-draw message asks for a claim fee.", ["Pay to claim", "Ignore and verify official channels", "Send bank details"], 1, "Legitimate prizes do not require advance fees."],
+  ["A job asks for registration money before work.", ["Pay immediately", "Verify the employer officially", "Share CVV"], 1, "Real employers do not require an advance job fee."],
+  ["A QR on a poster says it will give cashback.", ["Scan and enter PIN", "Only scan trusted official sources", "Share OTP"], 1, "Inspect the source and never enter PIN for cashback."],
+  ["An email display name says SBI but sender address looks unrelated.", ["Trust the display name", "Verify sender domain and Reply-To", "Download the attachment"], 1, "Verify the full address and official domain."],
+  ["A digital arrest caller asks you to stay on video and move money.", ["Follow instructions", "Disconnect and report", "Share screen"], 1, "No agency conducts this process over a private video call."],
+  ["A normal order SMS provides an official retailer tracking link.", ["It is always safe", "Still verify domain and account", "Ignore HTTPS"], 1, "Official links reduce risk but context should still be checked."],
+];
+
+function loadQuiz() {
+  const container = document.querySelector("#quiz");
+  if (!container) return;
+  let index = 0;
+  let score = 0;
+  container.replaceChildren();
+  function renderQuestion() {
+    container.replaceChildren();
+    if (index >= QUIZ.length) {
+      container.append(el("p", "", `Quiz score: ${score}/${QUIZ.length}`));
+      const reset = el("button", "", "Try again");
+      reset.addEventListener("click", () => { index = 0; score = 0; renderQuestion(); });
+      container.append(reset);
+      return;
+    }
+    const [question, options, correct, explanation] = QUIZ[index];
+    container.append(el("p", "", `${index + 1}. ${question}`));
+    options.forEach((option, optionIndex) => {
+      const button = el("button", "secondary", option);
+      button.addEventListener("click", () => {
+        if (optionIndex === correct) score++;
+        container.append(el("p", "", `${optionIndex === correct ? "Correct." : "Incorrect."} ${explanation}`));
+        const next = el("button", "", "Next");
+        next.addEventListener("click", () => { index++; renderQuestion(); });
+        container.append(next);
+      });
+      container.append(button);
+    });
+  }
+  renderQuestion();
+}
+
+const breachButton = document.querySelector("#breach-run");
+if (breachButton) {
+  breachButton.addEventListener("click", async () => {
+    const result = document.querySelector("#breach-result");
+    const payload = {
+      email: document.querySelector("#breach-email").value,
+      password: document.querySelector("#breach-password").value,
+      phone: document.querySelector("#breach-phone").value,
+    };
+    document.querySelector("#breach-password").value = "";
+    try {
+      const response = await fetch("/api/breach", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json();
+      result.replaceChildren();
+      result.append(el("p", "", `Email: ${data.email.status}${data.email.breach_names?.length ? " — " + data.email.breach_names.join(", ") : ""}`));
+      result.append(el("p", "", `Password: ${data.password.status}${data.password.pwned ? " — found in breach data" : ""}`));
+      result.append(el("p", "", `Phone: ${data.phone.status} — ${data.phone.reason}`));
+    } catch (error) {
+      result.replaceChildren(el("p", "", error.message));
+    }
   });
 }
 

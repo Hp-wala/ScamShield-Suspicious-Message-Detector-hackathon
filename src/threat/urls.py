@@ -28,17 +28,23 @@ def _levenshtein(a: str, b: str) -> int:
 
 def extract_urls(text: str) -> list[dict]:
     results = []
-    hxxp_pattern = re.compile(r"(?<![\w@])hxxps?://[^\s]+", re.I)
-    for match in hxxp_pattern.finditer(text):
+    scheme_pattern = re.compile(r"(?<![\w@])(?:https?://|hxxps?://)[^\s]+", re.I)
+    for match in scheme_pattern.finditer(text):
         url = match.group(0).strip(".,);]")
         results.append({"url": url, "span": [match.start(), match.end()]})
-    matches = list(URL_PATTERN.finditer(text))
-    for match in matches:
-        url = match.group(0).strip(".,);]")
-        if "@" in url:
-            continue
-        results.append({"url": url, "span": [match.start(), match.end()]})
-    bare_pattern = re.compile(r"(?<![@\w])(?:www\.)?[a-z0-9-]+\.[a-z]{2,}(?:/[^\s]*)?", re.I)
+    bare_patterns = (
+        re.compile(r"(?<![@\w])(?:www\.)?[a-z0-9-]+\[\.\][a-z0-9.-]+/[^\s]*", re.I),
+        re.compile(r"(?<![@\w])(?:www\.)?[a-z0-9-]+(?:\(\.\)|\.| dot )[a-z0-9.-]+\.[a-z]{2,}(?:/[^\s]*)?", re.I),
+    )
+    for bare_pattern in bare_patterns:
+        for match in bare_pattern.finditer(text):
+            span = [match.start(), match.end()]
+            if any(span[0] >= existing["span"][0] and span[1] <= existing["span"][1] for existing in results):
+                continue
+            url = match.group(0).strip(".,);]")
+            if "@" not in url:
+                results.append({"url": url, "span": span})
+    bare_pattern = re.compile(r"(?<![@\w/])(?:www\.)?[a-z0-9-]+\.[a-z]{2,}(?:/[^\s]*)?", re.I)
     for match in bare_pattern.finditer(text):
         span = [match.start(), match.end()]
         if any(span[0] >= existing["span"][0] and span[1] <= existing["span"][1] for existing in results):

@@ -4,13 +4,35 @@ from .scorer import score_message
 from .adapters import registry
 import re
 from .brands import BRANDS
+from .domain_checks import deep_scan_url
 
 
 class ThreatEngine:
-    def analyze(self, text: str, channel: str = "sms", sender: str = ""):
+    def analyze(self, text: str, channel: str = "sms", sender: str = "", deep_scan: bool = False):
         raw = Validator.normalize_text(text)
         cleaned = clean_text(raw)
         result = score_message(channel, cleaned, sender)
+        if deep_scan:
+            deep_results = []
+            for url_item in result.get("urls", []):
+                deep = deep_scan_url(url_item["url"], lookalike=any(
+                    finding["id"] in {"brand_in_domain", "lookalike_domain"}
+                    for finding in url_item.get("findings", [])
+                ))
+                deep_results.append({"url": url_item["url"], **deep})
+                fake_score = deep["fake_website"]["score"]
+                if fake_score >= 30:
+                    result["score"] = min(100, result["score"] + fake_score // 2)
+                    result["signals"].append({
+                        "id": "deep_fake_website",
+                        "label": "Deep link reputation warning",
+                        "category": "Other",
+                        "weight": fake_score // 2,
+                        "points": fake_score // 2,
+                        "explanation": "Deep scan found young-domain, brand-lookalike or invalid-certificate indicators.",
+                        "matches": [],
+                    })
+            result["deep_scan"] = deep_results
         result.pop("text_hash", None)
         return result
 

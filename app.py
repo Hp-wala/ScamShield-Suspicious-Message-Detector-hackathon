@@ -1,6 +1,7 @@
 import os
 import time
 import json
+import hashlib
 from collections import defaultdict, deque
 from pathlib import Path
 
@@ -11,6 +12,10 @@ from src.core.feedback import FeedbackStore
 from src.core.validator import Validator
 from src.report_store import ReportStore
 from src.threat.engine import ThreatEngine
+from src.threat.reputation import scammer_number_lookup, community_report_count
+from src.threat.image_scanner import process_image
+from src.threat.breach_checks import email_breach_check, password_breach_check, phone_breach_check
+from src.threat.voice import analyze_transcript, analyze_audio
 
 
 EXAMPLES = [
@@ -30,6 +35,7 @@ def create_app(config=None):
     app = Flask(__name__, template_folder="web", static_folder="web", static_url_path="/static")
     settings = config or {}
     app.config.update(settings)
+    app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 
     config_manager = ConfigManager()
     database_path = Path(app.config.get("DATABASE_PATH", config_manager.get("database_path")))
@@ -82,7 +88,12 @@ def create_app(config=None):
             bare = text.strip()
             result = engine.analyze(bare, "url")
         else:
-            result = engine.analyze(text, channel, sender=str(payload.get("sender", "")))
+            result = engine.analyze(
+                text,
+                channel,
+                sender=str(payload.get("sender", "")),
+                deep_scan=bool(payload.get("deep_scan", False)),
+            )
         return result, None, None
 
     def re_chat_marker(text):
@@ -106,6 +117,8 @@ def create_app(config=None):
                     "risk_score": analysis["score"],
                     "text_hash": Validator.message_hash(analysis["text"]),
                 })
+                analysis.pop("text", None)
+                analysis.pop("text_hash", None)
         else:
             reports.add({
                 "channel": payload.get("channel", "sms"),
@@ -113,6 +126,29 @@ def create_app(config=None):
                 "risk_score": result["score"],
                 "text_hash": Validator.message_hash(result["text"]),
             })
+        result.pop("text", None)
+        result.pop("text_hash", None)
+        return jsonify(result)
+
+    @app.post("/api/analyze-image")
+    def analyze_image():
+        file = request.files.get("image")
+        if not file:
+            return jsonify({"error": "Image file is required"}), 400
+        mode = str(request.form.get("mode", "ocr")).lower()
+        if mode not in {"ocr", "qr"}:
+            return jsonify({"error": "Invalid image mode"}), 400
+        result = process_image(file, engine)
+        if mode == "qr":
+            result["ocr_analysis"] = None
+        else:
+            result["qr_analysis"] = None
+        if result.get("ocr_analysis"):
+            result["ocr_analysis"].pop("text", None)
+            result["ocr_analysis"].pop("text_hash", None)
+        for qr_result in result.get("qr_analysis") or []:
+            qr_result.pop("text", None)
+            qr_result.pop("text_hash", None)
         return jsonify(result)
 
     @app.post("/api/report")
@@ -127,6 +163,20 @@ def create_app(config=None):
         if channel not in {"sms", "whatsapp", "email", "url"}:
             return jsonify({"error": "Invalid channel"}), 400
         risk_score = max(0, min(100, risk_score))
+        state = str(payload.get("state", "")).strip()[:50]
+        number_hash = ""
+        number = str(payload.get("number", "")).strip()
+        if number:
+            digits = "".join(ch for ch in number if ch.isdigit())
+            number_hash = hashlib.sha256(digits.encode("utf-8")).hexdigest() if len(digits) >= 6 else ""
+            if number_hash:
+                reports.add_reputation("number", number_hash)
+        domain = str(payload.get("domain", "")).strip().lower()
+        domain_hash = hashlib.sha256(domain.encode("utf-8")).hexdigest() if domain else ""
+        if domain_hash:
+            reports.add_reputation("domain", domain_hash)
+        if state:
+            reports.add_state(state, category)
         text_hash = payload.get("message_hash")
         if not text_hash:
             text = payload.get("text")
@@ -178,6 +228,46 @@ def create_app(config=None):
     @app.get("/api/reports")
     def report_list():
         return jsonify({"reports": reports.recent()})
+
+    @app.get("/api/timeline")
+    def timeline():
+        return jsonify({"timeline": reports.timeline()})
+
+    @app.get("/api/heatmap")
+    def heatmap():
+        return jsonify({"states": reports.heatmap()})
+
+    @app.post("/api/reputation")
+    def reputation_lookup():
+        payload = request.get_json(silent=True) or {}
+        number = str(payload.get("number", "")).strip()
+        domain = str(payload.get("domain", "")).strip().lower()
+        return jsonify({
+            "number": scammer_number_lookup(number, reports),
+            "domain": community_report_count(domain, "domain", reports),
+        })
+
+    @app.post("/api/breach")
+    def breach_lookup():
+        payload = request.get_json(silent=True) or {}
+        email = str(payload.get("email", "")).strip()
+        password = payload.get("password")
+        phone = str(payload.get("phone", "")).strip()
+        return jsonify({
+            "email": email_breach_check(email),
+            "password": password_breach_check(password),
+            "phone": phone_breach_check(phone),
+        })
+
+    @app.post("/api/voice")
+    def voice_lookup():
+        transcript = request.form.get("text")
+        audio = request.files.get("audio")
+        if transcript:
+            return jsonify(analyze_transcript(transcript, engine))
+        if audio:
+            return jsonify(analyze_audio(audio, engine))
+        return jsonify({"status": "error", "reason": "Transcript or audio is required"}), 400
 
     @app.errorhandler(404)
     def not_found(_error):

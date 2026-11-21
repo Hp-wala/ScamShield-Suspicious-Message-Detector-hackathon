@@ -15,7 +15,8 @@ def test_analyze_api_and_privacy(tmp_path):
     assert response.status_code == 200
     payload = response.get_json()
     assert "text_hash" not in payload
-    assert set(payload) >= {"channel", "text", "score", "verdict", "category", "confidence", "signals", "urls", "advice"}
+    assert "text" not in payload
+    assert set(payload) >= {"channel", "score", "verdict", "category", "confidence", "signals", "urls", "advice"}
 
     with sqlite3.connect(database) as connection:
         row = connection.execute(

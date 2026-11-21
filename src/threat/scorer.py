@@ -5,13 +5,24 @@ from .rules import RULES, NEGATIVE_RULES, find_rule_matches
 from .urls import extract_urls, analyze_url
 from .brands import BRANDS
 from .ml_signal import ml_signal, MODEL
+from .extras import (
+    expand_shortforms,
+    remove_repeated_chars,
+    detect_obfuscation,
+    detect_mixed_script,
+    extract_money,
+    digit_ratio,
+    message_length,
+    spelling_grammar_anomaly,
+)
+from .known_scams import known_scam_check
 
 HOOKS = {"prize", "account_threat", "delivery", "utility", "digital_arrest", "job", "investment", "upi", "relative", "government"}
 ASKS = {"credential_request", "advance_fee", "kyc_update", "call_number", "apk", "money_request", "move_to_chat"}
 
 
 def score_message(channel: str, text: str, sender: str = "", use_ml: bool = True) -> dict:
-    cleaned = text
+    cleaned = remove_repeated_chars(expand_shortforms(text))
     lowercase = cleaned.lower()
     url_items = extract_urls(cleaned)
     suspicious_url = any(analyze_url(item["url"])["score"] >= 20 for item in url_items)
@@ -19,6 +30,17 @@ def score_message(channel: str, text: str, sender: str = "", use_ml: bool = True
     signals = []
     category_points = {}
     positive_ids = set()
+    known = known_scam_check(text=cleaned)
+    if known["matched"]:
+        signals.append({
+            "id": "known_scam",
+            "label": "Matches known scam patterns",
+            "category": known["categories"][0] if known["categories"] else "Other",
+            "weight": 12,
+            "points": 12,
+            "explanation": "The message matches a known scam pattern or tactic.",
+            "matches": [],
+        })
     for rule in RULES:
         matches = find_rule_matches(cleaned, rule)
         if not matches:
@@ -68,6 +90,42 @@ def score_message(channel: str, text: str, sender: str = "", use_ml: bool = True
     if "urgency" in positive_ids and (positive_ids & HOOKS or positive_ids & ASKS):
         signals.append({"id": "urgency_combo", "label": "Urgency plus action", "category": "General", "weight": 10,
                         "points": 10, "explanation": "Urgency is combined with a scam hook or request.", "matches": []})
+
+    obfuscation = detect_obfuscation(cleaned)
+    if obfuscation["detected"]:
+        signals.append({"id": "obfuscation", "label": "Obfuscated scam wording", "category": "Other",
+                        "weight": 15, "points": 15,
+                        "explanation": "Suspicious words replace letters or numbers to evade simple checks.",
+                        "matches": []})
+    mixed = detect_mixed_script(cleaned)
+    if mixed["mixed_script"] or mixed["homoglyph"]:
+        signals.append({"id": "homoglyph", "label": "Mixed-script or homoglyph text", "category": "Other",
+                        "weight": 20, "points": 20,
+                        "explanation": "The message mixes scripts or visually similar characters.",
+                        "matches": []})
+    money = extract_money(cleaned)
+    if money and "urgency" in positive_ids:
+        signals.append({"id": "money_urgency", "label": "Large-money urgency", "category": "General",
+                        "weight": 10, "points": 10,
+                        "explanation": "An amount is combined with an urgent action request.",
+                        "matches": []})
+    ratio = digit_ratio(cleaned)
+    if ratio > 0.4:
+        signals.append({"id": "digit_ratio", "label": "High digit density", "category": "Other",
+                        "weight": 5, "points": 5,
+                        "explanation": "The message contains an unusually high proportion of digits.",
+                        "matches": []})
+    anomaly = spelling_grammar_anomaly(cleaned)
+    if anomaly >= 4:
+        signals.append({"id": "grammar_anomaly", "label": "Unusual spelling or grammar", "category": "General",
+                        "weight": 4, "points": 4,
+                        "explanation": "The wording has unusual spacing or character patterns.",
+                        "matches": []})
+    if message_length(cleaned) > 1000:
+        signals.append({"id": "long_message", "label": "Unusually long message", "category": "General",
+                        "weight": 3, "points": 3,
+                        "explanation": "The message is unusually long and may contain pressure or layered instructions.",
+                        "matches": []})
 
     probability = MODEL.predict_proba(text) if use_ml else 0.5
     ml_result = ml_signal(text)

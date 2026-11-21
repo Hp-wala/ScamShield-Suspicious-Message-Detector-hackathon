@@ -37,6 +37,29 @@
             <label for="chat-file" class="file-label">Upload .txt chat export</label>
             <input id="chat-file" type="file" accept=".txt,text/plain">
           </div>
+          <div class="upload-row">
+            <label for="image-file" class="file-label">Analyze screenshot or QR image</label>
+            <input id="image-file" type="file" accept="image/png,image/jpeg,image/webp">
+          </div>
+          <div class="upload-row">
+            <label for="state-select" class="file-label">Report state (optional, for state-level heatmap)</label>
+            <select id="state-select">
+              <option value="">Not specified</option>
+              <option>Delhi</option><option>Maharashtra</option><option>Karnataka</option>
+              <option>Tamil Nadu</option><option>Telangana</option><option>West Bengal</option>
+              <option>Rajasthan</option><option>Gujarat</option><option>Uttar Pradesh</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <label><input type="checkbox" id="deep-scan"> Deep link scan (optional network checks)</label>
+          <div class="upload-row">
+              <label for="voice-text" class="file-label">Voice call transcript</label>
+              <textarea id="voice-text" maxlength="5000" placeholder="Paste a call transcript..."></textarea>
+              <button type="button" id="voice-analyze" class="secondary">Analyze transcript</button>
+              <label for="voice-audio" class="file-label">Optional WAV audio</label>
+              <input id="voice-audio" type="file" accept="audio/wav">
+              <button type="button" id="voice-audio-analyze" class="secondary">Analyze audio</button>
+          </div>
           <label for="message" id="message-label">Suspicious message</label>
           <textarea id="message" maxlength="300000" placeholder="Paste the message here..." required></textarea>
           <p class="privacy-note">Privacy: raw message text is not stored or logged.</p>
@@ -58,6 +81,20 @@
       <div id="dashboard-content"><p>Loading statistics...</p></div>
       <h3>Model Accuracy</h3>
       <div id="model-accuracy"><p>Loading evaluation...</p></div>
+      <h3>Optional breach checks</h3>
+      <div class="panel" id="breach-checks">
+        <label>Email
+          <input id="breach-email" type="email" autocomplete="email">
+        </label>
+        <label>Password (never stored)
+          <input id="breach-password" type="password" autocomplete="off">
+        </label>
+        <label>Phone
+          <input id="breach-phone" type="tel">
+        </label>
+        <button type="button" id="breach-run">Check</button>
+        <div id="breach-result" aria-live="polite"></div>
+      </div>
     </section>
 
     <section id="learn" class="route-section panel" hidden>
@@ -82,6 +119,8 @@
         <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>
         <span>Forward spam SMS to 1909</span>
       </div>
+      <h3>Scam awareness quiz</h3>
+      <div id="quiz"></div>
     </section>
   </main>
 

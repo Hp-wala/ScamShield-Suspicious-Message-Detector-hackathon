@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T06:19:04.098430+00:00",
+  "generated_at": "2026-11-21T06:56:03.178133+00:00",
   "train_size": 212,
   "test_size": 88,
   "class_counts": {
@@ -9,90 +9,90 @@
   "dataset_notice": "Synthetic dataset - not real-world accuracy",
   "rules_only": {
     "flexible": {
-      "accuracy": 0.909091,
+      "accuracy": 0.897727,
       "precision": 1.0,
-      "recall": 0.813953,
-      "f1": 0.897436,
+      "recall": 0.790698,
+      "f1": 0.883117,
       "false_positive_rate": 0.0,
-      "false_negative_rate": 0.186047,
+      "false_negative_rate": 0.209302,
       "confusion_matrix": {
-        "tp": 35,
+        "tp": 34,
         "fp": 0,
         "tn": 45,
-        "fn": 8
+        "fn": 9
       }
     },
     "strict": {
-      "accuracy": 0.852273,
+      "accuracy": 0.840909,
       "precision": 1.0,
-      "recall": 0.697674,
-      "f1": 0.821918,
+      "recall": 0.674419,
+      "f1": 0.805556,
       "false_positive_rate": 0.0,
-      "false_negative_rate": 0.302326,
+      "false_negative_rate": 0.325581,
       "confusion_matrix": {
-        "tp": 30,
+        "tp": 29,
         "fp": 0,
         "tn": 45,
-        "fn": 13
+        "fn": 14
       }
     }
   },
   "rules_plus_ml": {
     "flexible": {
-      "accuracy": 1.0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "false_positive_rate": 0.0,
-      "false_negative_rate": 0.0,
+      "accuracy": 0.931818,
+      "precision": 0.974359,
+      "recall": 0.883721,
+      "f1": 0.926829,
+      "false_positive_rate": 0.022222,
+      "false_negative_rate": 0.116279,
       "confusion_matrix": {
-        "tp": 43,
-        "fp": 0,
-        "tn": 45,
-        "fn": 0
+        "tp": 38,
+        "fp": 1,
+        "tn": 44,
+        "fn": 5
       },
       "per_category_recall": {
-        "Bank/KYC": 1.0,
-        "Delivery": 1.0,
+        "Bank/KYC": 0.75,
+        "Delivery": 0.75,
         "Digital Arrest": 1.0,
         "Electricity/Utility": 1.0,
         "Government": 1.0,
         "Impersonation": 1.0,
         "Investment": 1.0,
-        "Job/Work-from-home": 1.0,
-        "Lottery/Prize": 1.0,
+        "Job/Work-from-home": 0.5,
+        "Lottery/Prize": 0.75,
         "Other": 1.0,
         "UPI/Payment": 1.0
       },
       "per_language_accuracy": {
-        "en": 1.0,
-        "hinglish": 1.0
+        "en": 0.953488,
+        "hinglish": 0.911111
       },
       "per_channel_accuracy": {
-        "email": 1.0,
-        "sms": 1.0,
+        "email": 0.947368,
+        "sms": 0.930233,
         "url": 1.0,
-        "whatsapp": 1.0
+        "whatsapp": 0.916667
       },
       "average_score": {
-        "scam": 79.581395,
-        "genuine": 3.0
+        "scam": 76.767442,
+        "genuine": 6.866667
       }
     },
     "strict": {
-      "accuracy": 0.863636,
+      "accuracy": 0.840909,
       "precision": 1.0,
-      "recall": 0.72093,
-      "f1": 0.837838,
+      "recall": 0.674419,
+      "f1": 0.805556,
       "false_positive_rate": 0.0,
-      "false_negative_rate": 0.27907,
+      "false_negative_rate": 0.325581,
       "confusion_matrix": {
-        "tp": 31,
+        "tp": 29,
         "fp": 0,
         "tn": 45,
-        "fn": 12
+        "fn": 14
       }
     }
   },
-  "misclassified_count": 0
+  "misclassified_count": 6
 }
