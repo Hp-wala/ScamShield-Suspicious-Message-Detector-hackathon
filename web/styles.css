@@ -81,24 +81,36 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
 .scanner-panel {
   min-height: 64px;
   display: grid;
-  grid-template-columns: 300px minmax(180px, 1fr) 132px;
+  grid-template-columns: minmax(180px, 1fr) 132px;
+  grid-template-areas:
+    "input button"
+    "tabs tabs"
+    "tools tools";
   align-items: center;
   gap: 8px;
   padding: 6px;
-  background: var(--white);
-  border: 1.5px solid #77a2ff;
-  border-radius: 999px;
-  box-shadow: 0 16px 36px rgba(37,99,235,.16);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   text-align: left;
 }
-.channel-tabs { display: flex; align-items: center; gap: 2px; border: 0; margin: 0; padding: 0; }
+.channel-tabs {
+  grid-area: tabs;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  margin: 8px 0 0;
+  padding: 0;
+}
 .channel-tabs legend { position: absolute; width: 1px; height: 1px; overflow: hidden; }
 .channel-tabs label {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  height: 48px;
-  padding: 0 9px;
+  height: 36px;
+  padding: 0 12px;
   color: #64748b;
   border-radius: 999px;
   cursor: pointer;
@@ -112,27 +124,30 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
   box-shadow: inset 0 0 0 1px rgba(37,99,235,.06);
 }
 .scanner-panel textarea {
+  grid-area: input;
   width: 100%;
-  height: 48px;
-  min-height: 48px;
-  max-height: 48px;
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
   margin: 0;
-  padding: 13px 12px;
+  padding: 16px 18px;
   resize: none;
   overflow: hidden;
-  border: 0;
-  border-left: 1px solid #edf1f6;
-  border-radius: 0;
-  background: transparent;
+  border: 1.5px solid #77a2ff;
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+  background: var(--white);
+  box-shadow: 0 16px 36px rgba(37,99,235,.16);
   color: var(--ink);
   font: 14px Arial, Helvetica, sans-serif;
 }
 .scanner-panel textarea::placeholder { color: #94a3b8; }
 #analyze-button {
-  height: 48px;
+  grid-area: button;
+  height: 64px;
   padding: 0 18px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 0 999px 999px 0;
   background: var(--blue);
   color: var(--white);
   font-size: 13px;
@@ -140,12 +155,35 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
   text-transform: uppercase;
   letter-spacing: .08em;
   cursor: pointer;
+  white-space: nowrap;
 }
-.advanced-tools { grid-column: 1 / -1; }
+.advanced-tools { grid-area: tools; justify-self: center; margin-top: 8px; }
 .advanced-tools summary { color: var(--muted); font-size: 12px; cursor: pointer; text-align: center; }
 .advanced-tools summary::marker { color: var(--blue); }
+.advanced-tools summary {
+  display: inline-block;
+  min-width: 112px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  list-style: none;
+}
+.advanced-tools summary::-webkit-details-marker { display: none; }
 .advanced-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 14px 4px 4px; text-align: left; }
 .advanced-grid textarea { height: 70px; max-height: 70px; border: 1px solid var(--line); border-radius: 8px; }
+.advanced-grid select,
+#state-select,
+#breach-checks input {
+  min-height: 40px;
+  padding: 8px 36px 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font: 600 14px "Figtree", Arial, Helvetica, sans-serif;
+  accent-color: var(--blue);
+}
 .upload-row { margin: 0; }
 .file-label { display: block; margin-bottom: 5px; color: var(--navy); font-size: 12px; font-weight: 800; }
 .deep-toggle { align-self: end; font-size: 12px; }
@@ -186,7 +224,14 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
 .golden-rules { columns: 2; }
 .helpline-strip { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
 .helpline-strip a { color: var(--white); background: var(--navy); border-radius: 7px; padding: 9px 12px; text-decoration: none; }
-footer { width: min(1120px, calc(100% - 32px)); margin: 30px auto; color: var(--muted); text-align: center; }
+footer {
+  width: min(1120px, calc(100% - 32px));
+  margin: 24px auto;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
 button, .helpline-link, nav a, .channel-tabs label {
   transition: color .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease, transform .16s ease;
 }
@@ -198,11 +243,25 @@ button.secondary { border-radius: 999px; }
   .helpline-link { margin-left: auto; }
   #analyze { padding: 52px 0 36px; }
   .hero-copy h1 { font-size: 42px; }
-  .scanner-panel { grid-template-columns: 1fr; gap: 6px; }
+  .scanner-panel {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "input"
+      "button"
+      "tabs"
+      "tools";
+    gap: 8px;
+  }
   .channel-tabs { justify-content: center; }
   .channel-tabs label { height: 42px; padding: 0 7px; }
-  .scanner-panel textarea { border-left: 0; border-top: 1px solid #edf1f6; border-radius: 8px; }
-  #analyze-button { width: 100%; }
+  .scanner-panel textarea {
+    border: 1.5px solid #77a2ff;
+    border-radius: 999px;
+  }
+  #analyze-button {
+    width: 100%;
+    border-radius: 999px;
+  }
   .advanced-grid, .stat-row, .cards { grid-template-columns: 1fr; }
   .golden-rules { columns: 1; }
   .bar-row { grid-template-columns: 90px 1fr 32px; }
