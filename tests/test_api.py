@@ -65,3 +65,16 @@ def test_whatsapp_chat_alias_and_bad_input(tmp_path):
     assert response.status_code == 200
     assert response.get_json()["type"] == "chat"
     assert client.post("/api/analyze", json={"channel": "sms", "text": ""}).status_code == 400
+
+
+def test_security_headers_and_rate_limit(tmp_path):
+    app = create_app({"TESTING": True, "DATABASE_PATH": tmp_path / "test.db"})
+    client = app.test_client()
+    response = client.get("/api/health")
+    assert response.headers["X-Content-Type-Options"] == "nosniff"
+    assert response.headers["X-Frame-Options"] == "DENY"
+    assert response.headers["Referrer-Policy"] == "no-referrer"
+    assert "default-src 'self'" in response.headers["Content-Security-Policy"]
+    for _ in range(61):
+        limited = client.post("/api/analyze", json={"channel": "sms", "text": "normal meeting"})
+    assert limited.status_code == 429
