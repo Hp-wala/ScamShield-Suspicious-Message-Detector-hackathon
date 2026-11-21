@@ -3,42 +3,87 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ScamShield</title>
+  <meta name="theme-color" content="#102d4f">
+  <title>ScamShield | Threat Intelligence</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <main class="shell">
-    <header>
-      <div class="brand-mark">S</div>
-      <div>
-        <p class="eyebrow">INDIA MULTI-CHANNEL DEFENCE</p>
-        <h1>ScamShield</h1>
+  <header class="topbar">
+    <a class="brand" href="#analyze" aria-label="ScamShield home"><span class="brand-mark">S</span><span>ScamShield</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#analyze">Analyze</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#learn">Learn</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="analyze" class="route-section">
+      <div class="hero-copy">
+        <p class="eyebrow">India multi-channel defence</p>
+        <h1>Spot the scam before it spots you.</h1>
+        <p>Paste a suspicious message or link. Analysis stays on this server.</p>
       </div>
-    </header>
-
-    <section class="grid">
-      <form id="analyzer" class="panel">
-        <div class="tabs" aria-label="Message channel">
-          <label><input type="radio" name="channel" value="sms" checked> SMS</label>
-          <label><input type="radio" name="channel" value="whatsapp"> WhatsApp</label>
-          <label><input type="radio" name="channel" value="email"> Email</label>
-          <label><input type="radio" name="channel" value="url"> URL</label>
-        </div>
-        <label for="message">Paste the suspicious message</label>
-        <textarea id="message" maxlength="10000" placeholder="Example: Aapka account blocked hai. Abhi KYC verify karein: http://..."></textarea>
-        <button type="submit" id="analyze-button">Analyze threat</button>
-      </form>
-
-      <aside class="panel result" id="result" aria-live="polite">
-        <p class="placeholder">Risk analysis will appear here.</p>
-      </aside>
+      <div class="analyzer-grid">
+        <form id="analyzer" class="panel" novalidate>
+          <fieldset class="channel-tabs">
+            <legend>Channel</legend>
+            <label><input type="radio" name="channel" value="sms" checked> SMS</label>
+            <label><input type="radio" name="channel" value="whatsapp"> WhatsApp</label>
+            <label><input type="radio" name="channel" value="email"> Email</label>
+            <label><input type="radio" name="channel" value="url"> Link</label>
+          </fieldset>
+          <div class="upload-row" id="chat-upload" hidden>
+            <label for="chat-file" class="file-label">Upload .txt chat export</label>
+            <input id="chat-file" type="file" accept=".txt,text/plain">
+          </div>
+          <label for="message" id="message-label">Suspicious message</label>
+          <textarea id="message" maxlength="300000" placeholder="Paste the message here..." required></textarea>
+          <p class="privacy-note">Privacy: raw message text is not stored or logged.</p>
+          <div class="action-row">
+            <button type="submit" id="analyze-button">Analyze threat</button>
+            <button type="button" id="clear-button" class="secondary">Clear</button>
+          </div>
+          <div id="examples" class="examples" aria-label="Example messages"></div>
+        </form>
+        <aside id="result" class="panel result" aria-live="polite">
+          <p class="placeholder">Risk analysis will appear here.</p>
+        </aside>
+      </div>
     </section>
 
-    <section class="stats panel">
-      <h2>Local intelligence</h2>
-      <div id="stats">Loading statistics...</div>
+    <section id="dashboard" class="route-section panel" hidden>
+      <p class="eyebrow">Local intelligence</p>
+      <h2>Threat dashboard</h2>
+      <div id="dashboard-content"><p>Loading statistics...</p></div>
+    </section>
+
+    <section id="learn" class="route-section panel" hidden>
+      <p class="eyebrow">Stay scam-aware</p>
+      <h2>Learn the red flags</h2>
+      <div id="scam-cards" class="cards"></div>
+      <h3>10 golden rules</h3>
+      <ol class="golden-rules">
+        <li>Banks never ask for OTP, PIN or CVV.</li>
+        <li>Never pay to receive a prize or refund.</li>
+        <li>Verify parcel fees on the official courier app.</li>
+        <li>Type government and bank domains yourself.</li>
+        <li>Do not scan a QR code to “receive” money.</li>
+        <li>Never install an APK or remote-control app on request.</li>
+        <li>Do not stay on a police or CBI video call.</li>
+        <li>Ignore urgent threats that demand secrecy.</li>
+        <li>Check the sender domain, not just the display name.</li>
+        <li>Call 1930 or report at cybercrime.gov.in.</li>
+      </ol>
+      <div class="helpline-strip">
+        <a href="tel:1930">Call 1930</a>
+        <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>
+        <span>Forward spam SMS to 1909</span>
+      </div>
     </section>
   </main>
+
+  <footer>Results are heuristic guidance, not a guarantee. When in doubt, call <a href="tel:1930">1930</a>.</footer>
   <script src="/static/app.js"></script>
 </body>
 </html>
