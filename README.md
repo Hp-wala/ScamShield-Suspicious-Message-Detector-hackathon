@@ -129,6 +129,8 @@ python -m compileall -q app.py src tests
 3. Render reads `render.yaml` or use Build `pip install -r requirements.txt` and Start `gunicorn app:app`.
 4. Set `PORT` automatically; optionally set `FLASK_DEBUG=false`.
 
+Live app: [ScamShield](https://scamshield-suspicious-message-detector.onrender.com)
+
 SQLite is local to the service. Render's free tier sleeps and ephemeral filesystem can reset `data/reports.db`; use a persistent disk or external database for production retention.
 
 ## Dataset & Evaluation

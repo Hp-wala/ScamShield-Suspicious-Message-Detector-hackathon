@@ -74,9 +74,3 @@ Rules + ML confusion: `TP=38, FP=1, TN=44, FN=5`
 - `RBI notice aaya hai. Aadhaar aur ATM PIN bhejne se KYC activate hoga. Call fake support 0000000000.` | expected=scam | predicted=genuine | score=15 | category=Bank/KYC
 - `India Post parcel deliver hua. https://www.indiapost.gov.in par status dekhein.` | expected=genuine | predicted=scam | score=46 | category=(genuine)
 - `Video like karke daily earning. Telegram par team se payment setup. Call fake support 0000000000.` | expected=scam | predicted=genuine | score=0 | category=Job/Work-from-home
-
-## Limitations
-
-- Synthetic data does not represent real-world scam prevalence.
-- The test set is small and Hinglish coverage is limited.
-- Rules and the lightweight text model can both be evaded.
