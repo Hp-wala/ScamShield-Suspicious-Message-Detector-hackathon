@@ -1,0 +1,1002 @@
+[
+    {
+        "time": "10-07-2026 14:46:49",
+        "user": "thankyou",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 14:46:49",
+        "user": "thankyou",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 14:46:52",
+        "user": "thank you",
+        "jarvis": "Always happy to help."
+    },
+    {
+        "time": "10-07-2026 14:46:52",
+        "user": "thank you",
+        "jarvis": "Always happy to help."
+    },
+    {
+        "time": "10-07-2026 14:48:34",
+        "user": "good",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 14:48:34",
+        "user": "good",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:04",
+        "user": "write a python code",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:04",
+        "user": "write a python code",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:16",
+        "user": "write hello world",
+        "jarvis": "Here's print hello in python:\n\nprint(\"Hello, World!\")"
+    },
+    {
+        "time": "10-07-2026 15:12:16",
+        "user": "write hello world",
+        "jarvis": "Here's print hello in python:\n\nprint(\"Hello, World!\")"
+    },
+    {
+        "time": "10-07-2026 15:12:29",
+        "user": "write a bash script",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:29",
+        "user": "write a bash script",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:35",
+        "user": "bash script",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:35",
+        "user": "bash script",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:38",
+        "user": "bash code",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:38",
+        "user": "bash code",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 15:12:51",
+        "user": "write a function in python",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 15:12:51",
+        "user": "write a function in python",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 16:39:56",
+        "user": "explain dns",
+        "jarvis": "DNS\n\nPurpose:\nTranslates human-readable domain names (example.com) into IP addresses computers use to route traffic.\n\nArchitecture:\nHierarchical, distributed database: Root servers -> TLD servers (.com, .org) -> Authoritative name servers for the specific domain. Resolvers (often your ISP's or a public one like 8.8.8.8) cache results and query on your behalf.\n\nWorkflow:\n1. App asks OS resolver for example.com.\n2. Resolver checks its cache; if empty, asks a root server, which points to the .com TLD server.\n3. TLD server points to example.com's authoritative server.\n4. Authoritative server returns the IP (A/AAAA record).\n5. Resolver caches it and returns it to the app.\n\nPacket structure:\nDNS messages are typically single UDP packets (port 53) containing a header plus question/answer/authority/additional sections.\n\nHeader fields:\nTransaction ID, flags (query/response, recursion desired), question count, answer count, followed by the actual question and resource records.\n\nAdvantages:\nDecouples human-friendly names from IPs that can change; caching makes it fast; hierarchical design scales globally.\n\nLimitations:\nCache poisoning risk; propagation delay when records change (TTL-bound); plaintext by default (mitigated by DNSSEC/DoH/DoT).\n\nUse cases:\nEvery domain name lookup - visiting a website, connecting to an API, sending email (via MX records), CDN routing (via geo-aware DNS).\n\nPerformance:\nLow latency due to caching at multiple levels (browser, OS, resolver); TTL tuning trades off freshness vs. lookup speed.\n\nSecurity:\nDNSSEC adds cryptographic signing to prevent record tampering; DoH/DoT (DNS over HTTPS/TLS) encrypt queries to prevent eavesdropping.\n\nVulnerabilities:\nCache poisoning, DNS spoofing, DDoS against resolvers/authoritative servers, DNS tunneling (used for data exfiltration).\n\nTroubleshooting:\n`nslookup`/`dig`/`Resolve-DnsName` to query records directly; check TTLs; verify authoritative server delegation with `dig NS domain`.\n\nBest practices:\nSet sensible TTLs (short during migrations, longer once stable); enable DNSSEC where supported; use reputable/monitored resolvers.\n\nExamples:\nAn A record maps example.com -> 93.184.216.34; an MX record tells mail servers where to deliver mail for a domain."
+    },
+    {
+        "time": "10-07-2026 16:39:56",
+        "user": "explain dns",
+        "jarvis": "DNS\n\nPurpose:\nTranslates human-readable domain names (example.com) into IP addresses computers use to route traffic.\n\nArchitecture:\nHierarchical, distributed database: Root servers -> TLD servers (.com, .org) -> Authoritative name servers for the specific domain. Resolvers (often your ISP's or a public one like 8.8.8.8) cache results and query on your behalf.\n\nWorkflow:\n1. App asks OS resolver for example.com.\n2. Resolver checks its cache; if empty, asks a root server, which points to the .com TLD server.\n3. TLD server points to example.com's authoritative server.\n4. Authoritative server returns the IP (A/AAAA record).\n5. Resolver caches it and returns it to the app.\n\nPacket structure:\nDNS messages are typically single UDP packets (port 53) containing a header plus question/answer/authority/additional sections.\n\nHeader fields:\nTransaction ID, flags (query/response, recursion desired), question count, answer count, followed by the actual question and resource records.\n\nAdvantages:\nDecouples human-friendly names from IPs that can change; caching makes it fast; hierarchical design scales globally.\n\nLimitations:\nCache poisoning risk; propagation delay when records change (TTL-bound); plaintext by default (mitigated by DNSSEC/DoH/DoT).\n\nUse cases:\nEvery domain name lookup - visiting a website, connecting to an API, sending email (via MX records), CDN routing (via geo-aware DNS).\n\nPerformance:\nLow latency due to caching at multiple levels (browser, OS, resolver); TTL tuning trades off freshness vs. lookup speed.\n\nSecurity:\nDNSSEC adds cryptographic signing to prevent record tampering; DoH/DoT (DNS over HTTPS/TLS) encrypt queries to prevent eavesdropping.\n\nVulnerabilities:\nCache poisoning, DNS spoofing, DDoS against resolvers/authoritative servers, DNS tunneling (used for data exfiltration).\n\nTroubleshooting:\n`nslookup`/`dig`/`Resolve-DnsName` to query records directly; check TTLs; verify authoritative server delegation with `dig NS domain`.\n\nBest practices:\nSet sensible TTLs (short during migrations, longer once stable); enable DNSSEC where supported; use reputable/monitored resolvers.\n\nExamples:\nAn A record maps example.com -> 93.184.216.34; an MX record tells mail servers where to deliver mail for a domain."
+    },
+    {
+        "time": "10-07-2026 16:40:06",
+        "user": "explain tls",
+        "jarvis": "TLS SSL\n\nPurpose:\nProvides encryption, data integrity, and authentication for data in transit (SSL is the legacy predecessor to TLS, now considered insecure/deprecated).\n\nArchitecture:\nUses asymmetric cryptography (public/private key pairs, certificates) to establish a session, then switches to fast symmetric encryption for the actual data transfer. Certificates are issued/verified via a Public Key Infrastructure (PKI) and Certificate Authorities (CAs).\n\nWorkflow:\n1. Client Hello (supported ciphers, TLS version).\n2. Server Hello + certificate (public key).\n3. Client verifies certificate against trusted CAs.\n4. Key exchange establishes a shared symmetric session key (via Diffie-Hellman in modern TLS).\n5. Both sides switch to encrypted communication using the session key.\n\nPacket structure:\nTLS records wrap application data; each record has a type (handshake, alert, application data), version, and length.\n\nHeader fields:\nNot header-based like IP/TCP - structured as a record protocol with handshake sub-messages (ClientHello, ServerHello, Certificate, Finished).\n\nAdvantages:\nStrong confidentiality and integrity guarantees; authenticates the server (and optionally the client); widely supported and standardized.\n\nLimitations:\nAdds handshake latency (mitigated by TLS 1.3's 1-RTT handshake and session resumption); certificate management overhead.\n\nUse cases:\nHTTPS, secure email (SMTPS/IMAPS), VPNs, secure API communication, any sensitive data in transit.\n\nPerformance:\nTLS 1.3 significantly reduced handshake round trips vs 1.2; session resumption/0-RTT further reduces reconnect latency.\n\nSecurity:\nCore security building block for the internet; must disable weak ciphers/old versions (SSLv3, TLS 1.0/1.1 are deprecated).\n\nVulnerabilities:\nHistorical: Heartbleed, POODLE, BEAST - mostly tied to outdated versions/implementations; misconfigured/self-signed certs enabling MITM; expired certificates.\n\nTroubleshooting:\n`openssl s_client -connect host:443` to inspect the handshake/cert chain; browser padlock/cert details; check expiry and CA trust chain.\n\nBest practices:\nUse TLS 1.2 minimum (prefer 1.3), automate certificate renewal (e.g. Let's Encrypt/ACME), disable weak cipher suites, enforce HSTS.\n\nExamples:\nA browser padlock icon indicates a valid TLS certificate chain back to a trusted root CA for that domain."
+    },
+    {
+        "time": "10-07-2026 16:40:06",
+        "user": "explain tls",
+        "jarvis": "TLS SSL\n\nPurpose:\nProvides encryption, data integrity, and authentication for data in transit (SSL is the legacy predecessor to TLS, now considered insecure/deprecated).\n\nArchitecture:\nUses asymmetric cryptography (public/private key pairs, certificates) to establish a session, then switches to fast symmetric encryption for the actual data transfer. Certificates are issued/verified via a Public Key Infrastructure (PKI) and Certificate Authorities (CAs).\n\nWorkflow:\n1. Client Hello (supported ciphers, TLS version).\n2. Server Hello + certificate (public key).\n3. Client verifies certificate against trusted CAs.\n4. Key exchange establishes a shared symmetric session key (via Diffie-Hellman in modern TLS).\n5. Both sides switch to encrypted communication using the session key.\n\nPacket structure:\nTLS records wrap application data; each record has a type (handshake, alert, application data), version, and length.\n\nHeader fields:\nNot header-based like IP/TCP - structured as a record protocol with handshake sub-messages (ClientHello, ServerHello, Certificate, Finished).\n\nAdvantages:\nStrong confidentiality and integrity guarantees; authenticates the server (and optionally the client); widely supported and standardized.\n\nLimitations:\nAdds handshake latency (mitigated by TLS 1.3's 1-RTT handshake and session resumption); certificate management overhead.\n\nUse cases:\nHTTPS, secure email (SMTPS/IMAPS), VPNs, secure API communication, any sensitive data in transit.\n\nPerformance:\nTLS 1.3 significantly reduced handshake round trips vs 1.2; session resumption/0-RTT further reduces reconnect latency.\n\nSecurity:\nCore security building block for the internet; must disable weak ciphers/old versions (SSLv3, TLS 1.0/1.1 are deprecated).\n\nVulnerabilities:\nHistorical: Heartbleed, POODLE, BEAST - mostly tied to outdated versions/implementations; misconfigured/self-signed certs enabling MITM; expired certificates.\n\nTroubleshooting:\n`openssl s_client -connect host:443` to inspect the handshake/cert chain; browser padlock/cert details; check expiry and CA trust chain.\n\nBest practices:\nUse TLS 1.2 minimum (prefer 1.3), automate certificate renewal (e.g. Let's Encrypt/ACME), disable weak cipher suites, enforce HSTS.\n\nExamples:\nA browser padlock icon indicates a valid TLS certificate chain back to a trusted root CA for that domain."
+    },
+    {
+        "time": "10-07-2026 16:40:16",
+        "user": "explain osi model",
+        "jarvis": "OSI MODEL\n\nPurpose:\nA conceptual 7-layer framework for how network communication is organized, so each layer only needs to know about the layer directly above/below it.\n\nArchitecture:\n1. Physical - raw bits over a medium (cables, radio).\n2. Data Link - frames, MAC addressing, error detection on a local link (Ethernet, Wi-Fi).\n3. Network - logical addressing and routing (IP, ICMP).\n4. Transport - end-to-end delivery, reliability (TCP, UDP).\n5. Session - manages sessions/connections between apps.\n6. Presentation - data format/encoding, encryption, compression (TLS often modeled here).\n7. Application - the protocols apps actually talk (HTTP, DNS, SMTP).\n\nWorkflow:\nData flows down the stack on the sender (each layer adds its own header - encapsulation), across the wire at the physical layer, then up the stack on the receiver (each layer strips its header - decapsulation).\n\nPacket structure:\nNot a single format - it's the layering model other protocols' packets/frames map onto.\n\nHeader fields:\nN/A at this level; see individual protocols (Ethernet, IP, TCP).\n\nAdvantages:\nStandard vocabulary for discussing networking; clean separation of concerns; easier troubleshooting (isolate which layer is failing).\n\nLimitations:\nReal-world stacks (TCP/IP) don't map cleanly onto all 7 layers; mostly a teaching/reference model rather than an implementation spec.\n\nUse cases:\nTeaching, troubleshooting methodology ('is this a Layer 2 or Layer 3 problem'), vendor documentation.\n\nPerformance:\nN/A - conceptual model, not a runtime component.\n\nSecurity:\nSecurity controls exist at every layer (MAC filtering at L2, firewalls at L3/L4, TLS at L6, auth at L7).\n\nVulnerabilities:\nN/A directly, but attacks are often described by the layer they target (e.g. ARP spoofing = L2, SYN flood = L4).\n\nTroubleshooting:\nBottom-up approach: check physical link -> L2 connectivity (ARP/MAC) -> L3 (ping, routing) -> L4 (port reachability) -> L7 (application logs).\n\nBest practices:\nUse the model as a mental checklist when diagnosing 'why can't A reach B', not as literal code architecture.\n\nExamples:\nA browser request: HTTP (L7) -> TLS (L6) -> TCP (L4) -> IP (L3) -> Ethernet (L2) -> electrical signal (L1)."
+    },
+    {
+        "time": "10-07-2026 16:40:16",
+        "user": "explain osi model",
+        "jarvis": "OSI MODEL\n\nPurpose:\nA conceptual 7-layer framework for how network communication is organized, so each layer only needs to know about the layer directly above/below it.\n\nArchitecture:\n1. Physical - raw bits over a medium (cables, radio).\n2. Data Link - frames, MAC addressing, error detection on a local link (Ethernet, Wi-Fi).\n3. Network - logical addressing and routing (IP, ICMP).\n4. Transport - end-to-end delivery, reliability (TCP, UDP).\n5. Session - manages sessions/connections between apps.\n6. Presentation - data format/encoding, encryption, compression (TLS often modeled here).\n7. Application - the protocols apps actually talk (HTTP, DNS, SMTP).\n\nWorkflow:\nData flows down the stack on the sender (each layer adds its own header - encapsulation), across the wire at the physical layer, then up the stack on the receiver (each layer strips its header - decapsulation).\n\nPacket structure:\nNot a single format - it's the layering model other protocols' packets/frames map onto.\n\nHeader fields:\nN/A at this level; see individual protocols (Ethernet, IP, TCP).\n\nAdvantages:\nStandard vocabulary for discussing networking; clean separation of concerns; easier troubleshooting (isolate which layer is failing).\n\nLimitations:\nReal-world stacks (TCP/IP) don't map cleanly onto all 7 layers; mostly a teaching/reference model rather than an implementation spec.\n\nUse cases:\nTeaching, troubleshooting methodology ('is this a Layer 2 or Layer 3 problem'), vendor documentation.\n\nPerformance:\nN/A - conceptual model, not a runtime component.\n\nSecurity:\nSecurity controls exist at every layer (MAC filtering at L2, firewalls at L3/L4, TLS at L6, auth at L7).\n\nVulnerabilities:\nN/A directly, but attacks are often described by the layer they target (e.g. ARP spoofing = L2, SYN flood = L4).\n\nTroubleshooting:\nBottom-up approach: check physical link -> L2 connectivity (ARP/MAC) -> L3 (ping, routing) -> L4 (port reachability) -> L7 (application logs).\n\nBest practices:\nUse the model as a mental checklist when diagnosing 'why can't A reach B', not as literal code architecture.\n\nExamples:\nA browser request: HTTP (L7) -> TLS (L6) -> TCP (L4) -> IP (L3) -> Ethernet (L2) -> electrical signal (L1)."
+    },
+    {
+        "time": "10-07-2026 16:40:27",
+        "user": "prefer detailed explainations",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 16:40:27",
+        "user": "prefer detailed explainations",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 16:40:33",
+        "user": "explain tcp",
+        "jarvis": "TCP\n\nPurpose:\nConnection-oriented, reliable transport protocol that guarantees ordered, error-checked delivery of a byte stream.\n\nArchitecture:\nUses a 3-way handshake to establish a connection, sequence/acknowledgment numbers to track delivery, and windowing for flow control.\n\nWorkflow:\n1. SYN (client) -> SYN-ACK (server) -> ACK (client) establishes the connection.\n2. Data is sent in segments, each acknowledged by the receiver; lost segments are retransmitted.\n3. Connection closes via a FIN/ACK exchange (or RST for abrupt termination).\n\nPacket structure:\nTCP segment = header + data payload, carried inside an IP packet.\n\nHeader fields:\nSource/Destination port, Sequence Number, Acknowledgment Number, Flags (SYN, ACK, FIN, RST), Window Size, Checksum.\n\nAdvantages:\nReliable, ordered delivery; built-in flow control and congestion control; widely supported by every OS/network device.\n\nLimitations:\nMore overhead than UDP (handshake, acks, retransmission); head-of-line blocking can add latency for real-time use cases.\n\nUse cases:\nWeb traffic (HTTP), email, file transfer, anything requiring guaranteed delivery and order.\n\nPerformance:\nCongestion control algorithms (Cubic, BBR) adapt sending rate to network conditions; window scaling improves throughput on high-latency links.\n\nSecurity:\nTCP itself has no encryption - relies on TLS on top; vulnerable to SYN flood DoS attacks without protections like SYN cookies.\n\nVulnerabilities:\nSYN flood attacks, TCP session hijacking, sequence number prediction attacks (mostly mitigated by modern randomization).\n\nTroubleshooting:\n`netstat`/`ss` to check connection states, Wireshark to inspect handshakes/retransmissions, checking for excessive retransmits indicating packet loss.\n\nBest practices:\nTune keepalive/timeout settings for long-lived connections; use connection pooling in applications to avoid handshake overhead per request.\n\nExamples:\nEvery HTTP/1.1 and HTTP/2 connection runs over TCP; SSH and most database connections use TCP too."
+    },
+    {
+        "time": "10-07-2026 16:40:33",
+        "user": "explain tcp",
+        "jarvis": "TCP\n\nPurpose:\nConnection-oriented, reliable transport protocol that guarantees ordered, error-checked delivery of a byte stream.\n\nArchitecture:\nUses a 3-way handshake to establish a connection, sequence/acknowledgment numbers to track delivery, and windowing for flow control.\n\nWorkflow:\n1. SYN (client) -> SYN-ACK (server) -> ACK (client) establishes the connection.\n2. Data is sent in segments, each acknowledged by the receiver; lost segments are retransmitted.\n3. Connection closes via a FIN/ACK exchange (or RST for abrupt termination).\n\nPacket structure:\nTCP segment = header + data payload, carried inside an IP packet.\n\nHeader fields:\nSource/Destination port, Sequence Number, Acknowledgment Number, Flags (SYN, ACK, FIN, RST), Window Size, Checksum.\n\nAdvantages:\nReliable, ordered delivery; built-in flow control and congestion control; widely supported by every OS/network device.\n\nLimitations:\nMore overhead than UDP (handshake, acks, retransmission); head-of-line blocking can add latency for real-time use cases.\n\nUse cases:\nWeb traffic (HTTP), email, file transfer, anything requiring guaranteed delivery and order.\n\nPerformance:\nCongestion control algorithms (Cubic, BBR) adapt sending rate to network conditions; window scaling improves throughput on high-latency links.\n\nSecurity:\nTCP itself has no encryption - relies on TLS on top; vulnerable to SYN flood DoS attacks without protections like SYN cookies.\n\nVulnerabilities:\nSYN flood attacks, TCP session hijacking, sequence number prediction attacks (mostly mitigated by modern randomization).\n\nTroubleshooting:\n`netstat`/`ss` to check connection states, Wireshark to inspect handshakes/retransmissions, checking for excessive retransmits indicating packet loss.\n\nBest practices:\nTune keepalive/timeout settings for long-lived connections; use connection pooling in applications to avoid handshake overhead per request.\n\nExamples:\nEvery HTTP/1.1 and HTTP/2 connection runs over TCP; SSH and most database connections use TCP too."
+    },
+    {
+        "time": "10-07-2026 16:40:40",
+        "user": "explain firewalls",
+        "jarvis": "Firewalls is a broad topic \u2014 it has a core definition, how it works internally, common techniques, and real-world applications. Let me know which part you'd like me to go deeper on."
+    },
+    {
+        "time": "10-07-2026 16:40:40",
+        "user": "explain firewalls",
+        "jarvis": "Firewalls is a broad topic \u2014 it has a core definition, how it works internally, common techniques, and real-world applications. Let me know which part you'd like me to go deeper on."
+    },
+    {
+        "time": "10-07-2026 16:41:16",
+        "user": "explain http",
+        "jarvis": "HTTP HTTPS\n\nPurpose:\nApplication-layer protocol for transferring data on the web - the basis of virtually all browser/API traffic.\n\nArchitecture:\nRequest/response model over TCP (HTTP/1.1, HTTP/2) or UDP-based QUIC (HTTP/3). HTTPS = HTTP wrapped in TLS for encryption, integrity, and server authenticity.\n\nWorkflow:\nClient sends a request (method, path, headers, optional body) -> server processes it -> server returns a response (status code, headers, body). For HTTPS, a TLS handshake happens first to establish an encrypted channel.\n\nPacket structure:\nText-based (HTTP/1.1) or binary framed (HTTP/2, HTTP/3) messages carried inside TCP segments (or QUIC/UDP for HTTP/3).\n\nHeader fields:\nCommon headers: Host, Content-Type, Content-Length, Authorization, Cache-Control, Set-Cookie, User-Agent.\n\nAdvantages:\nSimple, human-readable (v1.1), universally supported, stateless (easy to scale horizontally), rich ecosystem of tooling.\n\nLimitations:\nHTTP/1.1 has head-of-line blocking; stateless nature means session/auth state must be managed separately (cookies, tokens).\n\nUse cases:\nWeb pages, REST APIs, webhooks, file downloads, virtually all client-server web communication.\n\nPerformance:\nHTTP/2 multiplexes multiple requests over one connection (fixes head-of-line blocking at the app layer); HTTP/3/QUIC further reduces latency by avoiding TCP handshake overhead.\n\nSecurity:\nHTTPS (TLS) provides encryption, integrity, and server identity verification via certificates; HSTS forces HTTPS-only connections.\n\nVulnerabilities:\nMan-in-the-middle attacks on plain HTTP, cross-site scripting (XSS), cross-site request forgery (CSRF), injection attacks via unvalidated input.\n\nTroubleshooting:\nBrowser DevTools Network tab, `curl -v`, checking status codes (4xx = client error, 5xx = server error), verifying TLS cert validity.\n\nBest practices:\nAlways use HTTPS in production; set proper cache headers; use meaningful status codes; validate/sanitize all input server-side.\n\nExamples:\nGET /api/users/42 returns a 200 with a JSON body; POST /login submits credentials in the request body over HTTPS."
+    },
+    {
+        "time": "10-07-2026 16:41:16",
+        "user": "explain http",
+        "jarvis": "HTTP HTTPS\n\nPurpose:\nApplication-layer protocol for transferring data on the web - the basis of virtually all browser/API traffic.\n\nArchitecture:\nRequest/response model over TCP (HTTP/1.1, HTTP/2) or UDP-based QUIC (HTTP/3). HTTPS = HTTP wrapped in TLS for encryption, integrity, and server authenticity.\n\nWorkflow:\nClient sends a request (method, path, headers, optional body) -> server processes it -> server returns a response (status code, headers, body). For HTTPS, a TLS handshake happens first to establish an encrypted channel.\n\nPacket structure:\nText-based (HTTP/1.1) or binary framed (HTTP/2, HTTP/3) messages carried inside TCP segments (or QUIC/UDP for HTTP/3).\n\nHeader fields:\nCommon headers: Host, Content-Type, Content-Length, Authorization, Cache-Control, Set-Cookie, User-Agent.\n\nAdvantages:\nSimple, human-readable (v1.1), universally supported, stateless (easy to scale horizontally), rich ecosystem of tooling.\n\nLimitations:\nHTTP/1.1 has head-of-line blocking; stateless nature means session/auth state must be managed separately (cookies, tokens).\n\nUse cases:\nWeb pages, REST APIs, webhooks, file downloads, virtually all client-server web communication.\n\nPerformance:\nHTTP/2 multiplexes multiple requests over one connection (fixes head-of-line blocking at the app layer); HTTP/3/QUIC further reduces latency by avoiding TCP handshake overhead.\n\nSecurity:\nHTTPS (TLS) provides encryption, integrity, and server identity verification via certificates; HSTS forces HTTPS-only connections.\n\nVulnerabilities:\nMan-in-the-middle attacks on plain HTTP, cross-site scripting (XSS), cross-site request forgery (CSRF), injection attacks via unvalidated input.\n\nTroubleshooting:\nBrowser DevTools Network tab, `curl -v`, checking status codes (4xx = client error, 5xx = server error), verifying TLS cert validity.\n\nBest practices:\nAlways use HTTPS in production; set proper cache headers; use meaningful status codes; validate/sanitize all input server-side.\n\nExamples:\nGET /api/users/42 returns a 200 with a JSON body; POST /login submits credentials in the request body over HTTPS."
+    },
+    {
+        "time": "10-07-2026 16:41:21",
+        "user": "explain https",
+        "jarvis": "HTTP HTTPS\n\nPurpose:\nApplication-layer protocol for transferring data on the web - the basis of virtually all browser/API traffic.\n\nArchitecture:\nRequest/response model over TCP (HTTP/1.1, HTTP/2) or UDP-based QUIC (HTTP/3). HTTPS = HTTP wrapped in TLS for encryption, integrity, and server authenticity.\n\nWorkflow:\nClient sends a request (method, path, headers, optional body) -> server processes it -> server returns a response (status code, headers, body). For HTTPS, a TLS handshake happens first to establish an encrypted channel.\n\nPacket structure:\nText-based (HTTP/1.1) or binary framed (HTTP/2, HTTP/3) messages carried inside TCP segments (or QUIC/UDP for HTTP/3).\n\nHeader fields:\nCommon headers: Host, Content-Type, Content-Length, Authorization, Cache-Control, Set-Cookie, User-Agent.\n\nAdvantages:\nSimple, human-readable (v1.1), universally supported, stateless (easy to scale horizontally), rich ecosystem of tooling.\n\nLimitations:\nHTTP/1.1 has head-of-line blocking; stateless nature means session/auth state must be managed separately (cookies, tokens).\n\nUse cases:\nWeb pages, REST APIs, webhooks, file downloads, virtually all client-server web communication.\n\nPerformance:\nHTTP/2 multiplexes multiple requests over one connection (fixes head-of-line blocking at the app layer); HTTP/3/QUIC further reduces latency by avoiding TCP handshake overhead.\n\nSecurity:\nHTTPS (TLS) provides encryption, integrity, and server identity verification via certificates; HSTS forces HTTPS-only connections.\n\nVulnerabilities:\nMan-in-the-middle attacks on plain HTTP, cross-site scripting (XSS), cross-site request forgery (CSRF), injection attacks via unvalidated input.\n\nTroubleshooting:\nBrowser DevTools Network tab, `curl -v`, checking status codes (4xx = client error, 5xx = server error), verifying TLS cert validity.\n\nBest practices:\nAlways use HTTPS in production; set proper cache headers; use meaningful status codes; validate/sanitize all input server-side.\n\nExamples:\nGET /api/users/42 returns a 200 with a JSON body; POST /login submits credentials in the request body over HTTPS."
+    },
+    {
+        "time": "10-07-2026 16:41:21",
+        "user": "explain https",
+        "jarvis": "HTTP HTTPS\n\nPurpose:\nApplication-layer protocol for transferring data on the web - the basis of virtually all browser/API traffic.\n\nArchitecture:\nRequest/response model over TCP (HTTP/1.1, HTTP/2) or UDP-based QUIC (HTTP/3). HTTPS = HTTP wrapped in TLS for encryption, integrity, and server authenticity.\n\nWorkflow:\nClient sends a request (method, path, headers, optional body) -> server processes it -> server returns a response (status code, headers, body). For HTTPS, a TLS handshake happens first to establish an encrypted channel.\n\nPacket structure:\nText-based (HTTP/1.1) or binary framed (HTTP/2, HTTP/3) messages carried inside TCP segments (or QUIC/UDP for HTTP/3).\n\nHeader fields:\nCommon headers: Host, Content-Type, Content-Length, Authorization, Cache-Control, Set-Cookie, User-Agent.\n\nAdvantages:\nSimple, human-readable (v1.1), universally supported, stateless (easy to scale horizontally), rich ecosystem of tooling.\n\nLimitations:\nHTTP/1.1 has head-of-line blocking; stateless nature means session/auth state must be managed separately (cookies, tokens).\n\nUse cases:\nWeb pages, REST APIs, webhooks, file downloads, virtually all client-server web communication.\n\nPerformance:\nHTTP/2 multiplexes multiple requests over one connection (fixes head-of-line blocking at the app layer); HTTP/3/QUIC further reduces latency by avoiding TCP handshake overhead.\n\nSecurity:\nHTTPS (TLS) provides encryption, integrity, and server identity verification via certificates; HSTS forces HTTPS-only connections.\n\nVulnerabilities:\nMan-in-the-middle attacks on plain HTTP, cross-site scripting (XSS), cross-site request forgery (CSRF), injection attacks via unvalidated input.\n\nTroubleshooting:\nBrowser DevTools Network tab, `curl -v`, checking status codes (4xx = client error, 5xx = server error), verifying TLS cert validity.\n\nBest practices:\nAlways use HTTPS in production; set proper cache headers; use meaningful status codes; validate/sanitize all input server-side.\n\nExamples:\nGET /api/users/42 returns a 200 with a JSON body; POST /login submits credentials in the request body over HTTPS."
+    },
+    {
+        "time": "10-07-2026 17:05:39",
+        "user": "write a function to calculate",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 17:05:39",
+        "user": "write a function to calculate",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 17:06:47",
+        "user": "write a function to make keylogger",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 17:06:47",
+        "user": "write a function to make keylogger",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 17:07:15",
+        "user": "write a function to calculate area",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 17:07:15",
+        "user": "write a function to calculate area",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 17:08:25",
+        "user": "make a class",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:08:25",
+        "user": "make a class",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:08:34",
+        "user": "write a class to print function",
+        "jarvis": "Here's class definition in python:\n\nclass Person:\n    def __init__(self, name):\n        self.name = name"
+    },
+    {
+        "time": "10-07-2026 17:08:34",
+        "user": "write a class to print function",
+        "jarvis": "Here's class definition in python:\n\nclass Person:\n    def __init__(self, name):\n        self.name = name"
+    },
+    {
+        "time": "10-07-2026 17:08:54",
+        "user": "write a token",
+        "jarvis": "Did you mean 'tokenize <text>'?"
+    },
+    {
+        "time": "10-07-2026 17:08:54",
+        "user": "write a token",
+        "jarvis": "Did you mean 'tokenize <text>'?"
+    },
+    {
+        "time": "10-07-2026 17:09:31",
+        "user": "define a coode to calaculate",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:09:31",
+        "user": "merge existing functiond",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:09:31",
+        "user": "define a coode to calaculate and merge existing functiond",
+        "jarvis": "Task 1 (define a coode to calaculate): Failed.\nTask 2 (merge existing functiond): Failed."
+    },
+    {
+        "time": "10-07-2026 17:09:31",
+        "user": "define a coode  to calaculate and merge existing functiond",
+        "jarvis": "Task 1 (define a coode to calaculate): Failed.\nTask 2 (merge existing functiond): Failed."
+    },
+    {
+        "time": "10-07-2026 17:35:26",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "10-07-2026 17:35:26",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "10-07-2026 17:49:16",
+        "user": "hi",
+        "jarvis": "Hello. Hope your day gets better. How can I help you today?"
+    },
+    {
+        "time": "10-07-2026 17:49:16",
+        "user": "hi",
+        "jarvis": "Hello. Hope your day gets better. How can I help you today?"
+    },
+    {
+        "time": "10-07-2026 17:49:20",
+        "user": "thanks",
+        "jarvis": "No problem at all."
+    },
+    {
+        "time": "10-07-2026 17:49:20",
+        "user": "thanks",
+        "jarvis": "No problem at all."
+    },
+    {
+        "time": "10-07-2026 17:49:25",
+        "user": "wahh",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:49:25",
+        "user": "wahh",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:49:56",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "10-07-2026 17:49:56",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:16",
+        "user": "can you write msql",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:16",
+        "user": "can you write msql",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:24",
+        "user": "write msql",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:24",
+        "user": "write msql",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:40",
+        "user": "write linux command",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:40",
+        "user": "write linux command",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:45",
+        "user": "linux",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:45",
+        "user": "linux",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:50:51",
+        "user": "explain linux",
+        "jarvis": "Linux is a broad topic \u2014 it has a core definition, how it works internally, common techniques, and real-world applications. Let me know which part you'd like me to go deeper on."
+    },
+    {
+        "time": "10-07-2026 17:50:51",
+        "user": "explain linux",
+        "jarvis": "Linux is a broad topic \u2014 it has a core definition, how it works internally, common techniques, and real-world applications. Let me know which part you'd like me to go deeper on."
+    },
+    {
+        "time": "10-07-2026 17:51:16",
+        "user": "declare a cariable",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:51:16",
+        "user": "declare a cariable",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:51:22",
+        "user": "declare a variable",
+        "jarvis": "Here's variable declaration in python:\n\nname = \"Ritul\"\nage = 21"
+    },
+    {
+        "time": "10-07-2026 17:51:22",
+        "user": "declare a variable",
+        "jarvis": "Here's variable declaration in python:\n\nname = \"Ritul\"\nage = 21"
+    },
+    {
+        "time": "10-07-2026 17:51:42",
+        "user": "write a progrma o calculate my age",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:51:42",
+        "user": "write a progrma o calculate my age",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:51:56",
+        "user": "check ping",
+        "jarvis": "Here's how to ping host on linux:\n\nping -c 4 {host}"
+    },
+    {
+        "time": "10-07-2026 17:51:56",
+        "user": "check ping",
+        "jarvis": "Here's how to ping host on linux:\n\nping -c 4 {host}"
+    },
+    {
+        "time": "10-07-2026 17:52:00",
+        "user": "ip",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:00",
+        "user": "ip",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:08",
+        "user": "what is my ip",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:08",
+        "user": "what is my ip",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:14",
+        "user": "check port",
+        "jarvis": "Here's how to check port on linux:\n\nnetstat -tuln | grep 8080"
+    },
+    {
+        "time": "10-07-2026 17:52:14",
+        "user": "check port",
+        "jarvis": "Here's how to check port on linux:\n\nnetstat -tuln | grep 8080"
+    },
+    {
+        "time": "10-07-2026 17:52:26",
+        "user": "list process",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:26",
+        "user": "list process",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:33",
+        "user": "my ip adress",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:33",
+        "user": "my ip adress",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:45",
+        "user": "check ip",
+        "jarvis": "Here's how to check ip on linux:\n\nip addr show"
+    },
+    {
+        "time": "10-07-2026 17:52:45",
+        "user": "check ip",
+        "jarvis": "Here's how to check ip on linux:\n\nip addr show"
+    },
+    {
+        "time": "10-07-2026 17:52:55",
+        "user": "ip addr show",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:52:55",
+        "user": "ip addr show",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:54:05",
+        "user": "i am bored",
+        "jarvis": "We could pick up one of your side projects right now."
+    },
+    {
+        "time": "10-07-2026 17:54:05",
+        "user": "i am bored",
+        "jarvis": "We could pick up one of your side projects right now."
+    },
+    {
+        "time": "10-07-2026 17:54:09",
+        "user": "i am bored",
+        "jarvis": "Want me to suggest something to work on?"
+    },
+    {
+        "time": "10-07-2026 17:54:09",
+        "user": "i am bored",
+        "jarvis": "Want me to suggest something to work on?"
+    },
+    {
+        "time": "10-07-2026 17:58:02",
+        "user": "how to convert functions into lowertext",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:58:03",
+        "user": "how to convert functions into lowertext",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:58:22",
+        "user": "write a function",
+        "jarvis": "Here's function definition in python:\n\ndef add(a, b):\n    return a + b"
+    },
+    {
+        "time": "10-07-2026 17:58:22",
+        "user": "convert it into lowercase",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "10-07-2026 17:58:22",
+        "user": "write a function and convert it into lowercase",
+        "jarvis": "Task 1 (write a function): Completed.\nTask 2 (convert it into lowercase): Failed."
+    },
+    {
+        "time": "10-07-2026 17:58:23",
+        "user": "write a function and convert it into lowercase",
+        "jarvis": "Task 1 (write a function): Completed.\nTask 2 (convert it into lowercase): Failed."
+    },
+    {
+        "time": "11-07-2026 00:31:32",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 00:31:32",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:07",
+        "user": "what can you do",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:07",
+        "user": "what can you do",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:28",
+        "user": "what can you do",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:28",
+        "user": "what can you do",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:31",
+        "user": "hi",
+        "jarvis": "Hello. Hope your day gets better. How can I help you today?"
+    },
+    {
+        "time": "11-07-2026 00:32:31",
+        "user": "hi",
+        "jarvis": "Hello. Hope your day gets better. How can I help you today?"
+    },
+    {
+        "time": "11-07-2026 00:32:39",
+        "user": "what is you ability",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:39",
+        "user": "what is you ability",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:47",
+        "user": "what is your skill",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:47",
+        "user": "what is your skill",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 00:32:53",
+        "user": "tell me your name",
+        "jarvis": "I am Jarvis, your personal artificial intelligence assistant."
+    },
+    {
+        "time": "11-07-2026 00:32:53",
+        "user": "tell me your name",
+        "jarvis": "I am Jarvis, your personal artificial intelligence assistant."
+    },
+    {
+        "time": "11-07-2026 00:33:08",
+        "user": "search spam mail",
+        "jarvis": "I found 1 matching tweets."
+    },
+    {
+        "time": "11-07-2026 00:33:08",
+        "user": "search spam mail",
+        "jarvis": "I found 1 matching tweets."
+    },
+    {
+        "time": "11-07-2026 00:33:29",
+        "user": "search emergengy mail",
+        "jarvis": "No results found for 'emergengy mail'."
+    },
+    {
+        "time": "11-07-2026 00:33:29",
+        "user": "search emergengy mail",
+        "jarvis": "No results found for 'emergengy mail'."
+    },
+    {
+        "time": "11-07-2026 00:33:36",
+        "user": "search google",
+        "jarvis": "I found 2041 matching tweets."
+    },
+    {
+        "time": "11-07-2026 00:33:36",
+        "user": "search google",
+        "jarvis": "I found 2041 matching tweets."
+    },
+    {
+        "time": "11-07-2026 07:55:04",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 07:55:04",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 07:55:29",
+        "user": "open notepad",
+        "jarvis": "Opening notepad."
+    },
+    {
+        "time": "11-07-2026 07:55:29",
+        "user": "open calculator",
+        "jarvis": "Opening calculator."
+    },
+    {
+        "time": "11-07-2026 07:55:29",
+        "user": "open notepad , open calculator",
+        "jarvis": "Task 1 (open notepad): Completed.\nTask 2 (open calculator): Completed."
+    },
+    {
+        "time": "11-07-2026 07:55:29",
+        "user": "open notepad , open calculator",
+        "jarvis": "Task 1 (open notepad): Completed.\nTask 2 (open calculator): Completed."
+    },
+    {
+        "time": "11-07-2026 07:55:56",
+        "user": "close notepad",
+        "jarvis": "Closed notepad."
+    },
+    {
+        "time": "11-07-2026 07:55:56",
+        "user": "close calculator",
+        "jarvis": "Closed calculator."
+    },
+    {
+        "time": "11-07-2026 07:55:56",
+        "user": "close notepad , close calculator",
+        "jarvis": "Task 1 (close notepad): Completed.\nTask 2 (close calculator): Completed."
+    },
+    {
+        "time": "11-07-2026 07:55:56",
+        "user": "close notepad , close calculator",
+        "jarvis": "Task 1 (close notepad): Completed.\nTask 2 (close calculator): Completed."
+    },
+    {
+        "time": "11-07-2026 08:09:34",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 08:09:34",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 08:12:43",
+        "user": "show me a for loop in python",
+        "jarvis": "Here's for loop in python:\n\nfor i in range(10):\n    print(i)"
+    },
+    {
+        "time": "11-07-2026 08:12:43",
+        "user": "show me a for loop in python",
+        "jarvis": "Here's for loop in python:\n\nfor i in range(10):\n    print(i)"
+    },
+    {
+        "time": "11-07-2026 08:12:54",
+        "user": "show me a class in java",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:12:54",
+        "user": "show me a class in java",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:13:07",
+        "user": "show me read file in c++",
+        "jarvis": "Here's read file in cpp:\n\n#include <fstream>\nstd::ifstream file(\"file.txt\");\nstd::string line;\nwhile (std::getline(file, line)) { }"
+    },
+    {
+        "time": "11-07-2026 08:13:07",
+        "user": "show me read file in c++",
+        "jarvis": "Here's read file in cpp:\n\n#include <fstream>\nstd::ifstream file(\"file.txt\");\nstd::string line;\nwhile (std::getline(file, line)) { }"
+    },
+    {
+        "time": "11-07-2026 08:13:25",
+        "user": "show me if else in javascript",
+        "jarvis": "Here's if else in java:\n\nif (age >= 18) {\n    System.out.println(\"Adult\");\n} else {\n    System.out.println(\"Minor\");\n}"
+    },
+    {
+        "time": "11-07-2026 08:13:25",
+        "user": "show me if else in javascript",
+        "jarvis": "Here's if else in java:\n\nif (age >= 18) {\n    System.out.println(\"Adult\");\n} else {\n    System.out.println(\"Minor\");\n}"
+    },
+    {
+        "time": "11-07-2026 08:13:48",
+        "user": "run ping 8.8.8.8 now",
+        "jarvis": "Ran: ping 8.8.8.8\n\nPinging 8.8.8.8 with 32 bytes of data:\nReply from 8.8.8.8: bytes=32 time=87ms TTL=113\nReply from 8.8.8.8: bytes=32 time=67ms TTL=113\nReply from 8.8.8.8: bytes=32 time=62ms TTL=113\nReply from 8.8.8.8: bytes=32 time=62ms TTL=113\n\nPing statistics for 8.8.8.8:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 62ms, Maximum = 87ms, Average = 69ms"
+    },
+    {
+        "time": "11-07-2026 08:13:48",
+        "user": "run ping 8.8.8.8 now",
+        "jarvis": "Ran: ping 8.8.8.8\n\nPinging 8.8.8.8 with 32 bytes of data:\nReply from 8.8.8.8: bytes=32 time=87ms TTL=113\nReply from 8.8.8.8: bytes=32 time=67ms TTL=113\nReply from 8.8.8.8: bytes=32 time=62ms TTL=113\nReply from 8.8.8.8: bytes=32 time=62ms TTL=113\n\nPing statistics for 8.8.8.8:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 62ms, Maximum = 87ms, Average = 69ms"
+    },
+    {
+        "time": "11-07-2026 08:14:10",
+        "user": "traceroute google.com",
+        "jarvis": "Here's how to traceroute on linux:\n\ntraceroute {host}"
+    },
+    {
+        "time": "11-07-2026 08:14:10",
+        "user": "traceroute google.com",
+        "jarvis": "Here's how to traceroute on linux:\n\ntraceroute {host}"
+    },
+    {
+        "time": "11-07-2026 08:14:51",
+        "user": "detect spam congratulations! you have won $1000.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:14:51",
+        "user": "detect spam Congratulations! You have won $1000.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:15:11",
+        "user": "detect spam meeting has been scheduled for tomorrow.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:15:11",
+        "user": "detect spam Meeting has been scheduled for tomorrow.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:23:21",
+        "user": "remember i have a partner whos name is juhi",
+        "jarvis": "Got it. I'll remember that your i have a partner whos name is juhi."
+    },
+    {
+        "time": "11-07-2026 08:23:21",
+        "user": "we are doing internsip project based in ai.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:23:21",
+        "user": "remember i have a partner whos name is juhi and we are doing internsip project based in ai.",
+        "jarvis": "Task 1 (remember i have a partner whos name is juhi): Completed.\nTask 2 (we are doing internsip project based in ai.): Failed."
+    },
+    {
+        "time": "11-07-2026 08:23:21",
+        "user": "Remember i have a partner whos name is juhi and we are doing internsip project based in ai.",
+        "jarvis": "Task 1 (remember i have a partner whos name is juhi): Completed.\nTask 2 (we are doing internsip project based in ai.): Failed."
+    },
+    {
+        "time": "11-07-2026 08:23:42",
+        "user": "what you remember",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:23:42",
+        "user": "what you remember",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:24:22",
+        "user": "search memory partner",
+        "jarvis": "I found 3 matching memories."
+    },
+    {
+        "time": "11-07-2026 08:24:22",
+        "user": "search memory partner",
+        "jarvis": "I found 3 matching memories."
+    },
+    {
+        "time": "11-07-2026 08:26:44",
+        "user": "albert einstein developed relativity.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:26:44",
+        "user": "Albert Einstein developed relativity.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:26:55",
+        "user": "search albert einstein developed relativity..",
+        "jarvis": "No results found for 'albert einstein developed relativity..'."
+    },
+    {
+        "time": "11-07-2026 08:26:55",
+        "user": "search Albert Einstein developed relativity..",
+        "jarvis": "No results found for 'albert einstein developed relativity..'."
+    },
+    {
+        "time": "11-07-2026 08:27:01",
+        "user": "search albert einstein",
+        "jarvis": "No results found for 'albert einstein'."
+    },
+    {
+        "time": "11-07-2026 08:27:01",
+        "user": "search Albert Einstein",
+        "jarvis": "No results found for 'albert einstein'."
+    },
+    {
+        "time": "11-07-2026 08:27:23",
+        "user": "python is easy.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:27:23",
+        "user": "Python is easy.",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:27:57",
+        "user": "check ip",
+        "jarvis": "Here's how to check ip on linux:\n\nip addr show"
+    },
+    {
+        "time": "11-07-2026 08:27:57",
+        "user": "check ip",
+        "jarvis": "Here's how to check ip on linux:\n\nip addr show"
+    },
+    {
+        "time": "11-07-2026 08:28:03",
+        "user": "show ip",
+        "jarvis": "Here's how to check ip on linux:\n\nip addr show"
+    },
+    {
+        "time": "11-07-2026 08:28:03",
+        "user": "show ip",
+        "jarvis": "Here's how to check ip on linux:\n\nip addr show"
+    },
+    {
+        "time": "11-07-2026 08:28:14",
+        "user": "ping .google",
+        "jarvis": "Here's how to ping host on linux:\n\nping -c 4 {host}"
+    },
+    {
+        "time": "11-07-2026 08:28:14",
+        "user": "ping .google",
+        "jarvis": "Here's how to ping host on linux:\n\nping -c 4 {host}"
+    },
+    {
+        "time": "11-07-2026 08:28:22",
+        "user": "port",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:28:22",
+        "user": "port",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:28:28",
+        "user": "clear",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:28:28",
+        "user": "clear",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 08:28:38",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 08:28:38",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 08:28:54",
+        "user": "check port",
+        "jarvis": "Here's how to check port on linux:\n\nnetstat -tuln | grep 8080"
+    },
+    {
+        "time": "11-07-2026 08:28:54",
+        "user": "check port",
+        "jarvis": "Here's how to check port on linux:\n\nnetstat -tuln | grep 8080"
+    },
+    {
+        "time": "11-07-2026 08:29:48",
+        "user": "check wifi",
+        "jarvis": "Wi-Fi is on and connected."
+    },
+    {
+        "time": "11-07-2026 08:29:48",
+        "user": "check wifi",
+        "jarvis": "Wi-Fi is on and connected."
+    },
+    {
+        "time": "11-07-2026 11:47:09",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 11:47:09",
+        "user": "help",
+        "jarvis": "These are my available commands."
+    },
+    {
+        "time": "11-07-2026 11:47:34",
+        "user": "open notepad",
+        "jarvis": "Opening notepad."
+    },
+    {
+        "time": "11-07-2026 11:47:34",
+        "user": "open calculator",
+        "jarvis": "Opening calculator."
+    },
+    {
+        "time": "11-07-2026 11:47:34",
+        "user": "open notepad , open calculator",
+        "jarvis": "Task 1 (open notepad): Completed.\nTask 2 (open calculator): Completed."
+    },
+    {
+        "time": "11-07-2026 11:47:34",
+        "user": "open notepad , open calculator",
+        "jarvis": "Task 1 (open notepad): Completed.\nTask 2 (open calculator): Completed."
+    },
+    {
+        "time": "11-07-2026 11:47:56",
+        "user": "close notepad close calculator",
+        "jarvis": "I couldn't close notepad close calculator: ERROR: The process \"notepad close calculator.exe\" not found."
+    },
+    {
+        "time": "11-07-2026 11:47:56",
+        "user": "close notepad close calculator",
+        "jarvis": "I couldn't close notepad close calculator: ERROR: The process \"notepad close calculator.exe\" not found."
+    },
+    {
+        "time": "11-07-2026 11:48:07",
+        "user": "close notepad",
+        "jarvis": "Closed notepad."
+    },
+    {
+        "time": "11-07-2026 11:48:08",
+        "user": "close calculator",
+        "jarvis": "Closed calculator."
+    },
+    {
+        "time": "11-07-2026 11:48:08",
+        "user": "close notepad , close calculator",
+        "jarvis": "Task 1 (close notepad): Completed.\nTask 2 (close calculator): Completed."
+    },
+    {
+        "time": "11-07-2026 11:48:08",
+        "user": "close notepad , close calculator",
+        "jarvis": "Task 1 (close notepad): Completed.\nTask 2 (close calculator): Completed."
+    },
+    {
+        "time": "11-07-2026 11:48:37",
+        "user": "write function to add two numbers in python",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 11:48:37",
+        "user": "write function to add two numbers in python",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 11:48:48",
+        "user": "write python function to add two numbers in python",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 11:48:48",
+        "user": "write python function to add two numbers in python",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 11:49:01",
+        "user": "write python function",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    },
+    {
+        "time": "11-07-2026 11:49:01",
+        "user": "write python function",
+        "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+    }
+]

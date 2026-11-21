@@ -1,0 +1,74 @@
+{
+    "user": {},
+    "history": [
+        {
+            "time": "2026-07-09 13:55:25.682570",
+            "user": "search python",
+            "jarvis": "I found 6 matching tweets."
+        },
+        {
+            "time": "2026-07-09 13:55:33.748586",
+            "user": "analyse me",
+            "jarvis": "You frequently use 'analyse me'. We have interacted 1 times."
+        },
+        {
+            "time": "2026-07-09 14:04:37.705546",
+            "user": "hi",
+            "jarvis": "Hello. How can I help you today?"
+        },
+        {
+            "time": "2026-07-09 14:04:41.742414",
+            "user": "how are you",
+            "jarvis": "I am functioning perfectly and ready to help you."
+        },
+        {
+            "time": "2026-07-09 14:04:45.629915",
+            "user": "time?",
+            "jarvis": "The current time is 02:04 PM."
+        },
+        {
+            "time": "2026-07-09 14:04:47.816034",
+            "user": "ok",
+            "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+        },
+        {
+            "time": "2026-07-09 14:04:59.660330",
+            "user": "what can you do",
+            "jarvis": "These are my available commands."
+        },
+        {
+            "time": "2026-07-09 14:05:05.123754",
+            "user": "analyse me",
+            "jarvis": "You frequently use 'analyse me'. We have interacted 7 times."
+        },
+        {
+            "time": "2026-07-09 14:49:03.635680",
+            "user": "clear",
+            "jarvis": "Sorry, I don't understand that command yet. Type 'help' to see the available commands."
+        },
+        {
+            "time": "2026-07-09 14:49:07.299829",
+            "user": "exit",
+            "jarvis": "Goodbye. Have a great day."
+        }
+    ],
+    "commands": {
+        "analyse me": 5,
+        "help": 1,
+        "hellp": 1,
+        "hello": 1,
+        "time": 1,
+        "date": 1,
+        "dataset statistics": 1,
+        "shape": 1,
+        "search python": 1,
+        "hi": 1,
+        "how are you": 1,
+        "time?": 1,
+        "ok": 1,
+        "what can you do": 1,
+        "clear": 1,
+        "exit": 1
+    },
+    "behaviour": {}
+}
