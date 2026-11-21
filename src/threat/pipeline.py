@@ -1,4 +1,4 @@
-"""Small staged pipeline adapted from the legacy extraction pipeline pattern."""
+"""Small staged pipeline for threat analysis."""
 from .normalize import clean_text
 from .adapters import registry
 

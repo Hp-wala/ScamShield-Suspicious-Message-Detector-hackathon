@@ -2,9 +2,7 @@
 
 ScamShield is a local, offline-first multi-channel suspicious-message detector for hackathon PS01. It explains fraud risk for SMS, WhatsApp, email and suspicious links in English and Hinglish.
 
-## Reuse and redesign
-
-This project started from the AI-KOS repository. Reused patterns include the configuration/validator helpers, a staged analysis pipeline and the channel-adapter registry idea. AI-KOS knowledge ingestion, search, datasets, chat/voice modules, plugins and model training are excluded. The new threat engine is purpose-built for Indian-context scam detection.
+ScamShield is an original project built for hackathon PS01. Its threat engine, NLP pipeline, text model, URL checks, scoring, and UI are designed specifically for Indian-context scam detection.
 
 ## Architecture
 

@@ -202,9 +202,16 @@ document.querySelector("#chat-file").addEventListener("change", async event => {
   message.value = await file.text();
 });
 
-document.querySelector("#image-file").addEventListener("change", async event => {
-  const file = event.target.files[0];
+const imageInput = document.querySelector("#image-file");
+const imageAnalyzeButton = document.querySelector("#image-analyze");
+imageInput.addEventListener("change", () => {
+  imageAnalyzeButton.disabled = !imageInput.files.length;
+});
+
+imageAnalyzeButton.addEventListener("click", async () => {
+  const file = imageInput.files[0];
   if (!file) return;
+  imageAnalyzeButton.disabled = true;
   const formData = new FormData();
   formData.append("image", file);
   formData.append("mode", "ocr");
@@ -222,7 +229,8 @@ document.querySelector("#image-file").addEventListener("change", async event => 
   } catch (error) {
     resultBox.replaceChildren(el("p", "", error.message));
   } finally {
-    event.target.value = "";
+    imageInput.value = "";
+    imageAnalyzeButton.disabled = true;
   }
 });
 
