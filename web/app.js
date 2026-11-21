@@ -104,44 +104,31 @@ function addUrlCards(container, urls) {
 
 function renderSingle(data) {
   resultBox.replaceChildren();
-  const ring = el("div", "score-ring");
-  ring.style.setProperty("--angle", `${data.score * 3.6}deg`);
-  ring.style.setProperty("--ring-color", colorForVerdict(data.verdict));
-  ring.append(el("span", "", String(data.score)));
-  resultBox.append(ring);
-  const meta = el("div", "result-meta");
-  meta.append(el("div", "badge", data.verdict));
-  meta.append(el("p", "", `Category: ${data.category} | Confidence: ${data.confidence}`));
-  const textModelProbability = Number((data.ml && data.ml.scam_probability) || data.text_model_probability || 0);
-  meta.append(el("p", "", `Text model: ${Math.round(textModelProbability * 100)}% similar to scam messages`));
-  resultBox.append(meta);
-  const accuracyLink = el("a", "accuracy-link", "How accurate is this?");
-  accuracyLink.href = "#dashboard";
-  accuracyLink.addEventListener("click", () => {
-    setTimeout(() => document.querySelector("#model-accuracy").scrollIntoView({ block: "start" }), 50);
-  });
-  resultBox.append(accuracyLink);
-
-  const messageBlock = el("div");
-  messageBlock.append(el("h3", "", "Analysed message"));
-  const highlighted = el("p");
-  appendHighlighted(highlighted, data.text, data.signals || []);
-  messageBlock.append(highlighted);
-  resultBox.append(messageBlock);
-  addUrlCards(resultBox, data.urls);
-  addSignalRows(resultBox, data);
-  addAdvice(resultBox, data.advice);
-
-  const actions = el("div", "summary-actions");
-  const reportButton = el("button", "", "Report this scam");
-  const yesButton = el("button", "secondary", "Was this correct?");
-  const copyButton = el("button", "secondary", "Copy summary");
-  actions.append(reportButton, yesButton, copyButton);
-  resultBox.append(actions);
-
-  reportButton.addEventListener("click", () => reportResult(data));
-  yesButton.addEventListener("click", () => feedbackResult(data, true));
-  copyButton.addEventListener("click", () => copySummary(data));
+  const safe = data.score < 30 || data.verdict === "Safe";
+  const suspicious = data.verdict === "Suspicious";
+  const card = el("div", `risk-card ${safe ? "safe" : suspicious ? "suspicious" : "danger"}`);
+  const heading = el("div", "risk-heading");
+  const badgeText = safe ? "Safe" : suspicious ? "Suspicious" : "High risk";
+  heading.append(
+    el("span", `risk-badge ${safe ? "safe" : suspicious ? "suspicious" : "high"}`, badgeText),
+    el("span", "threat-score", `${data.score} / 100 Threat Score`)
+  );
+  card.append(heading);
+  const list = el("ul");
+  if (safe) {
+    list.append(el("li", "", "No strong scam indicators were detected."));
+  } else {
+    const reasons = (data.signals || []).filter(signal => signal.points > 0).slice(0, 3);
+    if (reasons.length === 0) {
+      list.append(el("li", "", "The message has elevated risk indicators."));
+    } else {
+      reasons.forEach(reason => list.append(el("li", "", reason.explanation)));
+    }
+  }
+  card.append(list);
+  const probability = Number((data.ml && data.ml.scam_probability) || data.text_model_probability || 0);
+  card.append(el("p", "text-model-line", `Text model: ${Math.round(probability * 100)}% similar to scam messages`));
+  resultBox.append(card);
 }
 
 function renderChat(data) {
@@ -206,7 +193,7 @@ async function copySummary(data) {
 
 channelInputs.forEach(input => input.addEventListener("change", () => {
   document.querySelector("#chat-upload").hidden = input.value !== "whatsapp";
-  message.placeholder = input.value === "url" ? "https://example.com/login" : "Paste the message here...";
+  message.placeholder = input.value === "url" ? "https://example.com/login" : "Email, post or paste any message...";
 }));
 
 document.querySelector("#chat-file").addEventListener("change", async event => {
@@ -278,12 +265,15 @@ document.querySelector("#voice-audio-analyze").addEventListener("click", async (
   }
 });
 
-document.querySelector("#clear-button").addEventListener("click", () => {
-  message.value = "";
-  latestResult = null;
-  resultBox.replaceChildren(el("p", "placeholder", "Risk analysis will appear here."));
-  message.focus();
-});
+const clearButton = document.querySelector("#clear-button");
+if (clearButton) {
+  clearButton.addEventListener("click", () => {
+    message.value = "";
+    latestResult = null;
+    resultBox.replaceChildren(el("p", "placeholder", "Risk analysis will appear here."));
+    message.focus();
+  });
+}
 
 form.addEventListener("submit", async event => {
   event.preventDefault();
@@ -315,7 +305,7 @@ form.addEventListener("submit", async event => {
     resultBox.replaceChildren(el("p", "", error.message));
   } finally {
     button.disabled = false;
-    button.textContent = "Analyze threat";
+    button.textContent = "Check now";
   }
 });
 

@@ -20,12 +20,11 @@
   <main>
     <section id="analyze" class="route-section">
       <div class="hero-copy">
-        <p class="eyebrow">India multi-channel defence</p>
         <h1>Spot the scam before it spots you.</h1>
-        <p>Paste a suspicious message or link. Analysis stays on this server.</p>
+        <p class="hero-subtitle">Instant Multi-Channel Scam &amp; Link Checker</p>
       </div>
       <div class="analyzer-grid">
-        <form id="analyzer" class="panel" novalidate>
+        <form id="analyzer" class="scanner-panel" novalidate>
           <fieldset class="channel-tabs">
             <legend>Channel</legend>
             <label><input type="radio" name="channel" value="sms" checked> SMS</label>
@@ -33,44 +32,47 @@
             <label><input type="radio" name="channel" value="email"> Email</label>
             <label><input type="radio" name="channel" value="url"> Link</label>
           </fieldset>
-          <div class="upload-row" id="chat-upload" hidden>
-            <label for="chat-file" class="file-label">Upload .txt chat export</label>
-            <input id="chat-file" type="file" accept=".txt,text/plain">
-          </div>
-          <div class="upload-row">
-            <label for="image-file" class="file-label">Analyze screenshot or QR image</label>
-            <input id="image-file" type="file" accept="image/png,image/jpeg,image/webp">
-          </div>
-          <div class="upload-row">
-            <label for="state-select" class="file-label">Report state (optional, for state-level heatmap)</label>
-            <select id="state-select">
-              <option value="">Not specified</option>
-              <option>Delhi</option><option>Maharashtra</option><option>Karnataka</option>
-              <option>Tamil Nadu</option><option>Telangana</option><option>West Bengal</option>
-              <option>Rajasthan</option><option>Gujarat</option><option>Uttar Pradesh</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <label><input type="checkbox" id="deep-scan"> Deep link scan (optional network checks)</label>
-          <div class="upload-row">
-              <label for="voice-text" class="file-label">Voice call transcript</label>
-              <textarea id="voice-text" maxlength="5000" placeholder="Paste a call transcript..."></textarea>
-              <button type="button" id="voice-analyze" class="secondary">Analyze transcript</button>
-              <label for="voice-audio" class="file-label">Optional WAV audio</label>
-              <input id="voice-audio" type="file" accept="audio/wav">
-              <button type="button" id="voice-audio-analyze" class="secondary">Analyze audio</button>
-          </div>
-          <label for="message" id="message-label">Suspicious message</label>
-          <textarea id="message" maxlength="300000" placeholder="Paste the message here..." required></textarea>
-          <p class="privacy-note">Privacy: raw message text is not stored or logged.</p>
-          <div class="action-row">
-            <button type="submit" id="analyze-button">Analyze threat</button>
-            <button type="button" id="clear-button" class="secondary">Clear</button>
-          </div>
-          <div id="examples" class="examples" aria-label="Example messages"></div>
+          <label class="sr-only" for="message">Suspicious message or link</label>
+          <textarea id="message" maxlength="300000" placeholder="Email, post or paste any link..." required></textarea>
+          <button type="submit" id="analyze-button">Check now</button>
+
+          <details class="advanced-tools">
+            <summary>More tools</summary>
+            <div class="advanced-grid">
+              <div class="upload-row" id="chat-upload" hidden>
+                <label for="chat-file" class="file-label">WhatsApp export</label>
+                <input id="chat-file" type="file" accept=".txt,text/plain">
+              </div>
+              <div class="upload-row">
+                <label for="image-file" class="file-label">Screenshot or QR</label>
+                <input id="image-file" type="file" accept="image/png,image/jpeg,image/webp">
+              </div>
+              <div class="upload-row">
+                <label for="state-select" class="file-label">Report state</label>
+                <select id="state-select">
+                  <option value="">Not specified</option>
+                  <option>Delhi</option><option>Maharashtra</option><option>Karnataka</option>
+                  <option>Tamil Nadu</option><option>Telangana</option><option>West Bengal</option>
+                  <option>Rajasthan</option><option>Gujarat</option><option>Uttar Pradesh</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <label class="deep-toggle"><input type="checkbox" id="deep-scan"> Deep link scan</label>
+              <div class="upload-row">
+                <label for="voice-text" class="file-label">Call transcript</label>
+                <textarea id="voice-text" maxlength="5000" placeholder="Paste call transcript..."></textarea>
+                <button type="button" id="voice-analyze" class="secondary">Analyze transcript</button>
+              </div>
+              <div class="upload-row">
+                <label for="voice-audio" class="file-label">Optional WAV audio</label>
+                <input id="voice-audio" type="file" accept="audio/wav">
+                <button type="button" id="voice-audio-analyze" class="secondary">Analyze audio</button>
+              </div>
+            </div>
+          </details>
         </form>
-        <aside id="result" class="panel result" aria-live="polite">
-          <p class="placeholder">Risk analysis will appear here.</p>
+        <aside id="result" class="result" aria-live="polite">
+          <p class="placeholder" hidden>Analysis will appear here.</p>
         </aside>
       </div>
     </section>
