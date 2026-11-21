@@ -89,6 +89,25 @@ def test_official_urls_safe(url):
     assert result["score"] < 20
 
 
+def test_live_electricity_and_digital_arrest_thresholds():
+    electricity = engine.analyze(
+        "Bijli bill unpaid hai. Electricity disconnect tonight. Pay immediately."
+    )
+    digital_arrest = engine.analyze(
+        "You are under digital arrest. Stay on video call and do not tell anyone. Pay security fine."
+    )
+    assert electricity["score"] >= 60
+    assert digital_arrest["score"] >= 60
+
+
+def test_live_official_and_obfuscated_urls():
+    official = urls.analyze_url("https://www.sbi.co.in")
+    obfuscated = urls.extract_urls("hxxp://amaz0n-india[.]top/login")
+    assert official["verdict"] == "safe"
+    assert obfuscated
+    assert urls.analyze_url(obfuscated[0]["url"])["score"] >= 50
+
+
 def test_phase_two_importable_modules():
     assert callable(clean_text)
     assert len(message_hash("test")) == 64

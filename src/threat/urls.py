@@ -9,7 +9,7 @@ RISKY_TLD = {".xyz", ".top", ".click", ".live", ".icu", ".buzz", ".cfd", ".sbs",
 PATH_WORDS = {"login", "verify", "update", "kyc", "secure", "claim", "refund", "otp", "bonus", "reward", "account", "suspend", "unlock", "confirm"}
 TLD_PATTERN = r"(com|in|org|net|gov\.in|nic\.in|co\.in|bank\.in|sbi|edu|app)"
 URL_PATTERN = re.compile(
-    r"(?<![\w@])(?:hxxps?|https?|www\.)?"
+    r"(?<![\w@])(?:(?:hxxps?|https?):\/\/|www\.)?"
     r"[a-z0-9-]+(?:\[\.\]|\(\.\)|\.|\s+dot\s+)[a-z0-9.-]*"
     r"[a-z0-9-]+\.[a-z]{2,}(?:/[^\s]*)?",
     re.I,
@@ -28,6 +28,10 @@ def _levenshtein(a: str, b: str) -> int:
 
 def extract_urls(text: str) -> list[dict]:
     results = []
+    hxxp_pattern = re.compile(r"(?<![\w@])hxxps?://[^\s]+", re.I)
+    for match in hxxp_pattern.finditer(text):
+        url = match.group(0).strip(".,);]")
+        results.append({"url": url, "span": [match.start(), match.end()]})
     matches = list(URL_PATTERN.finditer(text))
     for match in matches:
         url = match.group(0).strip(".,);]")
@@ -60,6 +64,7 @@ def analyze_url(url: str) -> dict:
     obfuscated = obfuscated.replace("[.]", ".").replace("(.)", ".").replace(" dot ", ".")
     parsed = urlparse(obfuscated if "://" in obfuscated else "http://" + obfuscated)
     host = (parsed.hostname or "").lower()
+    host = host[4:] if host.startswith("www.") else host
     registered = registered_domain(host)
     score = 0
     findings = []

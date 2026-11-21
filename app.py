@@ -47,7 +47,7 @@ def create_app(config=None):
 
     @app.before_request
     def rate_limit():
-        if not request.path.startswith("/api/"):
+        if not request.path.startswith("/api/") or request.path in {"/api/health", "/api/examples"}:
             return None
         ip = request.remote_addr or "unknown"
         now = time.monotonic()

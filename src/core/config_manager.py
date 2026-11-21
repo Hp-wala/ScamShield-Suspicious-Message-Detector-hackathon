@@ -15,7 +15,7 @@ class ConfigManager:
         root = Path(__file__).resolve().parents[2]
         self.config = Config(
             root_path=root,
-            database_path=root / "data" / "scamshield.db",
+            database_path=root / "data" / "reports.db",
             debug=os.getenv("FLASK_DEBUG", "").lower() in {"1", "true", "yes"},
         )
 
