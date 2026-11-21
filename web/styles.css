@@ -198,6 +198,88 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
   font: 600 14px "Figtree", Arial, Helvetica, sans-serif;
   accent-color: var(--blue);
 }
+.advanced-grid {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 24px;
+  align-items: start;
+  padding: 16px 0 0;
+}
+.advanced-grid .upload-row {
+  min-width: 0;
+}
+.advanced-grid .file-label {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+}
+.advanced-grid input[type="file"] {
+  width: 100%;
+  min-height: 42px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--muted);
+  font: 600 13px "Figtree", Arial, Helvetica, sans-serif;
+}
+.advanced-grid input[type="file"]::file-selector-button,
+.advanced-grid input[type="file"]::-webkit-file-upload-button {
+  min-height: 40px;
+  margin: 0 8px 0 0;
+  padding: 0 14px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-radius: 999px 0 0 999px;
+  background: #f4f7ff;
+  color: var(--ink);
+  font: 800 13px "Figtree", Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+.advanced-grid select {
+  width: 100%;
+  border-radius: 999px;
+  appearance: auto;
+}
+.advanced-grid .deep-toggle {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: end;
+  padding: 0 12px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+.advanced-grid .deep-toggle input {
+  width: 16px;
+  height: 16px;
+  margin: 0 8px 0 0;
+  accent-color: var(--blue);
+}
+.advanced-grid textarea {
+  width: 100%;
+  height: 96px;
+  max-height: 96px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--white);
+  color: var(--ink);
+  font: 14px "Figtree", Arial, Helvetica, sans-serif;
+  box-shadow: 0 6px 16px rgba(16,45,79,.05);
+}
+.advanced-grid textarea::placeholder { color: #9aa5b5; }
+.advanced-grid button {
+  min-height: 40px;
+  margin-top: 8px;
+  border-radius: 999px;
+  padding: 0 16px;
+  font-size: 13px;
+}
 .upload-row { margin: 0; }
 .file-label { display: block; margin-bottom: 5px; color: var(--navy); font-size: 12px; font-weight: 800; }
 .deep-toggle { align-self: end; font-size: 12px; }
