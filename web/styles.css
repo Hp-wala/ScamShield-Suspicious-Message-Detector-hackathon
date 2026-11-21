@@ -171,6 +171,10 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
   margin-top: 8px;
   text-align: center;
 }
+.advanced-tools[open] {
+  width: min(760px, calc(100vw - 32px));
+  max-width: 760px;
+}
 .advanced-tools summary { color: var(--muted); font-size: 12px; cursor: pointer; text-align: center; }
 .advanced-tools summary::marker { color: var(--blue); }
 .advanced-tools summary {
@@ -199,47 +203,80 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
   accent-color: var(--blue);
 }
 .advanced-grid {
-  width: min(760px, 100%);
-  margin: 0 auto;
+  width: 100%;
+  max-width: 760px;
+  margin: 16px auto 0;
+  padding: 24px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px 24px;
+  gap: 24px;
   align-items: start;
-  padding: 16px 0 0;
+  background: var(--white);
+  border: 1px solid #d6e0f2;
+  border-radius: 24px;
+  box-shadow: 0 16px 36px rgba(16,45,79,.10);
+  text-align: left;
 }
 .advanced-grid .upload-row {
   min-width: 0;
 }
+.advanced-grid > #chat-upload {
+  display: none;
+}
+.advanced-grid > .upload-row:nth-child(2) {
+  grid-column: 1;
+  grid-row: 1;
+}
+.advanced-grid > .upload-row:nth-child(3) {
+  grid-column: 2;
+  grid-row: 1;
+}
+.advanced-grid > .deep-toggle {
+  grid-column: 2;
+  grid-row: 3;
+}
+.advanced-grid > .upload-row:nth-child(5) {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.advanced-grid > .upload-row:nth-child(6) {
+  grid-column: 1;
+  grid-row: 3;
+}
 .advanced-grid .file-label {
   margin: 0 0 8px;
   color: var(--ink);
-  font-size: 14px;
-  font-weight: 800;
+  font-family: "Figtree", Arial, Helvetica, sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: normal;
 }
 .advanced-grid input[type="file"] {
   width: 100%;
-  min-height: 42px;
+  min-height: 74px;
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--white);
+  border: 2px dashed #d6e0f2;
+  border-radius: 14px;
+  background: #f9fbff;
   color: var(--muted);
   font: 600 13px "Figtree", Arial, Helvetica, sans-serif;
+  padding: 16px;
 }
 .advanced-grid input[type="file"]::file-selector-button,
 .advanced-grid input[type="file"]::-webkit-file-upload-button {
   min-height: 40px;
-  margin: 0 8px 0 0;
-  padding: 0 14px;
-  border: 0;
-  border-right: 1px solid var(--line);
-  border-radius: 999px 0 0 999px;
-  background: #f4f7ff;
-  color: var(--ink);
+  margin: 0 10px 0 0;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--blue);
   font: 800 13px "Figtree", Arial, Helvetica, sans-serif;
   cursor: pointer;
 }
 .advanced-grid select {
   width: 100%;
+  height: 44px;
+  border: 1.5px solid #d6e0f2;
   border-radius: 999px;
   appearance: auto;
 }
@@ -248,8 +285,8 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  align-self: end;
-  padding: 0 12px;
+  align-self: start;
+  padding: 8px 0 0;
   color: var(--ink);
   font-size: 14px;
   font-weight: 600;
@@ -262,11 +299,12 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
 }
 .advanced-grid textarea {
   width: 100%;
-  height: 96px;
-  max-height: 96px;
+  min-height: 110px;
+  height: 110px;
+  max-height: none;
   padding: 14px 16px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  border: 1.5px solid #d6e0f2;
+  border-radius: 14px;
   background: var(--white);
   color: var(--ink);
   font: 14px "Figtree", Arial, Helvetica, sans-serif;
@@ -276,9 +314,11 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
 .advanced-grid button {
   min-height: 40px;
   margin-top: 8px;
+  height: 44px;
+  padding: 0 20px;
   border-radius: 999px;
-  padding: 0 16px;
   font-size: 13px;
+  white-space: nowrap;
 }
 .upload-row { margin: 0; }
 .file-label { display: block; margin-bottom: 5px; color: var(--navy); font-size: 12px; font-weight: 800; }
@@ -359,6 +399,16 @@ button.secondary { border-radius: 999px; }
     border-radius: 999px;
   }
   .advanced-grid, .stat-row, .cards { grid-template-columns: 1fr; }
+  .advanced-tools[open] { width: calc(100vw - 32px); }
+  .advanced-grid {
+    width: 100%;
+    padding: 16px;
+  }
+  .advanced-grid > * {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  .advanced-grid > #chat-upload { display: none; }
   .golden-rules { columns: 1; }
   .bar-row { grid-template-columns: 90px 1fr 32px; }
 }
