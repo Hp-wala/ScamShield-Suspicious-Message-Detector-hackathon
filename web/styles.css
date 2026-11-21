@@ -64,6 +64,7 @@ button:disabled { opacity: .65; cursor: wait; }
 .helpline-strip a { color: var(--white); background: var(--navy); border-radius: 7px; padding: 9px 12px; text-decoration: none; }
 footer { width: min(1120px, calc(100% - 32px)); margin: 30px auto; color: var(--muted); text-align: center; }
 footer a { color: var(--navy); }
+.accuracy-link { display: inline-block; margin-top: 10px; color: var(--blue); font-weight: 700; }
 @media (max-width: 760px) {
   .topbar { align-items: flex-start; }
   nav { gap: 9px; font-size: 13px; }

@@ -1,201 +1,307 @@
 text,label,category,channel,lang
-"Aapke account blocked, update KYC immediately and share OTP.",scam,Bank/KYC,sms,hinglish
-"Aapka account band ho jayega, turant KYC verify karein.",scam,Bank/KYC,sms,hinglish
-Aapke parcel on hold. Confirm address and pay the redelivery fee.,scam,Delivery,sms,hinglish
-Courier package stuck. Aapka address update karo aur fee pay karo.,scam,Delivery,whatsapp,hinglish
-Aapke income tax refund pending. Verify PAN and Aadhaar immediately.,scam,Government,sms,hinglish
-Aapke income tax notice mila hai. Turant PAN link karein.,scam,Government,whatsapp,hinglish
-"Aapke congratulations, you won a lucky draw prize. Pay a claim fee.",scam,Lottery/Prize,sms,hinglish
-Aapke inaam jeete hain. Claim reward ke liye security fee bhejein.,scam,Lottery/Prize,sms,hinglish
-Aapke work from home and earn Rs 2096 daily. Join Telegram.,scam,Job/Work-from-home,whatsapp,hinglish
-Ghar baithe videos like karke paise kamaayein. Registration fee pay karein.,scam,Job/Work-from-home,whatsapp,hinglish
-Aapke uPI collect request received. Accept to receive money.,scam,UPI/Payment,sms,hinglish
-Aapke galti se paise aa gaye. QR scan karke return karein aur PIN mat banaayein.,scam,UPI/Payment,whatsapp,hinglish
-Aapke electricity bill pending. Connection will disconnect tonight.,scam,Electricity/Utility,sms,hinglish
-Bijli bill unpaid hai. Aaj raat connection cut ho jayega.,scam,Electricity/Utility,sms,hinglish
-"Aapke guaranteed returns, double money in 30 days. Join VIP group.",scam,Investment,whatsapp,hinglish
-Aapke stock tips aur crypto profit ke liye VIP group join karein.,scam,Investment,whatsapp,hinglish
-Aapke you are under digital arrest. Stay on video call and do not tell anyone.,scam,Digital Arrest,whatsapp,hinglish
-Aapke cBI notice mila hai. Digital arrest se bachne ke liye turant call karein.,scam,Digital Arrest,whatsapp,hinglish
-"Aapke hi Mum, new number. Please send me money urgently.",scam,Impersonation,sms,hinglish
-"Aapke hi, this is my new number. Mujhe Rs 3603 bhejo.",scam,Impersonation,whatsapp,hinglish
-"Aapke account blocked, update KYC immediately and share OTP.",scam,Bank/KYC,sms,hinglish
-"Aapka account band ho jayega, turant KYC verify karein.",scam,Bank/KYC,sms,hinglish
-Aapke parcel on hold. Confirm address and pay the redelivery fee.,scam,Delivery,sms,hinglish
-Courier package stuck. Aapka address update karo aur fee pay karo.,scam,Delivery,whatsapp,hinglish
-Aapke income tax refund pending. Verify PAN and Aadhaar immediately.,scam,Government,sms,hinglish
-Aapke income tax notice mila hai. Turant PAN link karein.,scam,Government,whatsapp,hinglish
-"Aapke congratulations, you won a lucky draw prize. Pay a claim fee.",scam,Lottery/Prize,sms,hinglish
-Aapke inaam jeete hain. Claim reward ke liye security fee bhejein.,scam,Lottery/Prize,sms,hinglish
-Aapke work from home and earn Rs 4836 daily. Join Telegram.,scam,Job/Work-from-home,whatsapp,hinglish
-Ghar baithe videos like karke paise kamaayein. Registration fee pay karein.,scam,Job/Work-from-home,whatsapp,hinglish
-Aapke uPI collect request received. Accept to receive money.,scam,UPI/Payment,sms,hinglish
-Aapke galti se paise aa gaye. QR scan karke return karein aur PIN mat banaayein.,scam,UPI/Payment,whatsapp,hinglish
-Aapke electricity bill pending. Connection will disconnect tonight.,scam,Electricity/Utility,sms,hinglish
-Bijli bill unpaid hai. Aaj raat connection cut ho jayega.,scam,Electricity/Utility,sms,hinglish
-"Aapke guaranteed returns, double money in 30 days. Join VIP group.",scam,Investment,whatsapp,hinglish
-Aapke stock tips aur crypto profit ke liye VIP group join karein.,scam,Investment,whatsapp,hinglish
-Aapke you are under digital arrest. Stay on video call and do not tell anyone.,scam,Digital Arrest,whatsapp,hinglish
-Aapke cBI notice mila hai. Digital arrest se bachne ke liye turant call karein.,scam,Digital Arrest,whatsapp,hinglish
-"Aapke hi Mum, new number. Please send me money urgently.",scam,Impersonation,sms,hinglish
-"Aapke hi, this is my new number. Mujhe Rs 6343 bhejo.",scam,Impersonation,whatsapp,hinglish
-"Account blocked, update KYC immediately and share OTP.",scam,Bank/KYC,sms,en
-"Aapka account band ho jayega, turant KYC verify karein.",scam,Bank/KYC,sms,en
-Parcel on hold. Confirm address and pay the redelivery fee.,scam,Delivery,sms,en
-Courier package stuck. Aapka address update karo aur fee pay karo.,scam,Delivery,whatsapp,en
-Income tax refund pending. Verify PAN and Aadhaar immediately.,scam,Government,sms,en
-Income tax notice mila hai. Turant PAN link karein.,scam,Government,whatsapp,en
-"Congratulations, you won a lucky draw prize. Pay a claim fee.",scam,Lottery/Prize,sms,en
-Inaam jeete hain. Claim reward ke liye security fee bhejein.,scam,Lottery/Prize,sms,en
-Work from home and earn Rs 7576 daily. Join Telegram.,scam,Job/Work-from-home,whatsapp,en
-Ghar baithe videos like karke paise kamaayein. Registration fee pay karein.,scam,Job/Work-from-home,whatsapp,en
-UPI collect request received. Accept to receive money.,scam,UPI/Payment,sms,en
-Galti se paise aa gaye. QR scan karke return karein aur PIN mat banaayein.,scam,UPI/Payment,whatsapp,en
-Electricity bill pending. Connection will disconnect tonight.,scam,Electricity/Utility,sms,en
-Bijli bill unpaid hai. Aaj raat connection cut ho jayega.,scam,Electricity/Utility,sms,en
-"Guaranteed returns, double money in 30 days. Join VIP group.",scam,Investment,whatsapp,en
-Stock tips aur crypto profit ke liye VIP group join karein.,scam,Investment,whatsapp,en
-You are under digital arrest. Stay on video call and do not tell anyone.,scam,Digital Arrest,whatsapp,en
-CBI notice mila hai. Digital arrest se bachne ke liye turant call karein.,scam,Digital Arrest,whatsapp,en
-"Hi Mum, new number. Please send me money urgently.",scam,Impersonation,sms,en
-"Hi, this is my new number. Mujhe Rs 9083 bhejo.",scam,Impersonation,whatsapp,en
-"Account blocked, update KYC immediately and share OTP.",scam,Bank/KYC,sms,en
-"Aapka account band ho jayega, turant KYC verify karein.",scam,Bank/KYC,sms,en
-Parcel on hold. Confirm address and pay the redelivery fee.,scam,Delivery,sms,en
-Courier package stuck. Aapka address update karo aur fee pay karo.,scam,Delivery,whatsapp,en
-Income tax refund pending. Verify PAN and Aadhaar immediately.,scam,Government,sms,en
-Income tax notice mila hai. Turant PAN link karein.,scam,Government,whatsapp,en
-"Congratulations, you won a lucky draw prize. Pay a claim fee.",scam,Lottery/Prize,sms,en
-Inaam jeete hain. Claim reward ke liye security fee bhejein.,scam,Lottery/Prize,sms,en
-Work from home and earn Rs 1316 daily. Join Telegram.,scam,Job/Work-from-home,whatsapp,en
-Ghar baithe videos like karke paise kamaayein. Registration fee pay karein.,scam,Job/Work-from-home,whatsapp,en
-UPI collect request received. Accept to receive money.,scam,UPI/Payment,sms,en
-Galti se paise aa gaye. QR scan karke return karein aur PIN mat banaayein.,scam,UPI/Payment,whatsapp,en
-Electricity bill pending. Connection will disconnect tonight.,scam,Electricity/Utility,sms,en
-Bijli bill unpaid hai. Aaj raat connection cut ho jayega.,scam,Electricity/Utility,sms,en
-"Guaranteed returns, double money in 30 days. Join VIP group.",scam,Investment,whatsapp,en
-Stock tips aur crypto profit ke liye VIP group join karein.,scam,Investment,whatsapp,en
-You are under digital arrest. Stay on video call and do not tell anyone.,scam,Digital Arrest,whatsapp,en
-CBI notice mila hai. Digital arrest se bachne ke liye turant call karein.,scam,Digital Arrest,whatsapp,en
-"Hi Mum, new number. Please send me money urgently.",scam,Impersonation,sms,en
-"Hi, this is my new number. Mujhe Rs 2823 bhejo.",scam,Impersonation,whatsapp,en
-"Account blocked, update KYC immediately and share OTP.",scam,Bank/KYC,sms,en
-"Aapka account band ho jayega, turant KYC verify karein.",scam,Bank/KYC,sms,en
-Parcel on hold. Confirm address and pay the redelivery fee.,scam,Delivery,sms,en
-Courier package stuck. Aapka address update karo aur fee pay karo.,scam,Delivery,whatsapp,en
-Income tax refund pending. Verify PAN and Aadhaar immediately.,scam,Government,sms,en
-Income tax notice mila hai. Turant PAN link karein.,scam,Government,whatsapp,en
-"Congratulations, you won a lucky draw prize. Pay a claim fee.",scam,Lottery/Prize,sms,en
-Inaam jeete hain. Claim reward ke liye security fee bhejein.,scam,Lottery/Prize,sms,en
-Work from home and earn Rs 4056 daily. Join Telegram.,scam,Job/Work-from-home,whatsapp,en
-Ghar baithe videos like karke paise kamaayein. Registration fee pay karein.,scam,Job/Work-from-home,whatsapp,en
-UPI collect request received. Accept to receive money.,scam,UPI/Payment,sms,en
-Galti se paise aa gaye. QR scan karke return karein aur PIN mat banaayein.,scam,UPI/Payment,whatsapp,en
-Electricity bill pending. Connection will disconnect tonight.,scam,Electricity/Utility,sms,en
-Bijli bill unpaid hai. Aaj raat connection cut ho jayega.,scam,Electricity/Utility,sms,en
-"Guaranteed returns, double money in 30 days. Join VIP group.",scam,Investment,whatsapp,en
-Stock tips aur crypto profit ke liye VIP group join karein.,scam,Investment,whatsapp,en
-You are under digital arrest. Stay on video call and do not tell anyone.,scam,Digital Arrest,whatsapp,en
-CBI notice mila hai. Digital arrest se bachne ke liye turant call karein.,scam,Digital Arrest,whatsapp,en
-"Hi Mum, new number. Please send me money urgently.",scam,Impersonation,sms,en
-"Hi, this is my new number. Mujhe Rs 5563 bhejo.",scam,Impersonation,whatsapp,en
-"Account blocked, update KYC immediately and share OTP.",scam,Bank/KYC,sms,en
-"Aapka account band ho jayega, turant KYC verify karein.",scam,Bank/KYC,sms,en
-Parcel on hold. Confirm address and pay the redelivery fee.,scam,Delivery,sms,en
-Courier package stuck. Aapka address update karo aur fee pay karo.,scam,Delivery,whatsapp,en
-Income tax refund pending. Verify PAN and Aadhaar immediately.,scam,Government,sms,en
-Income tax notice mila hai. Turant PAN link karein.,scam,Government,whatsapp,en
-"Congratulations, you won a lucky draw prize. Pay a claim fee.",scam,Lottery/Prize,sms,en
-Inaam jeete hain. Claim reward ke liye security fee bhejein.,scam,Lottery/Prize,sms,en
-Work from home and earn Rs 6796 daily. Join Telegram.,scam,Job/Work-from-home,whatsapp,en
-Ghar baithe videos like karke paise kamaayein. Registration fee pay karein.,scam,Job/Work-from-home,whatsapp,en
-Yaad rahe: Do not share this OTP. Your bank never asks for it.,genuine,Bank/KYC,sms,hinglish
-Rs 153 debited from account. Available balance is Rs 153.,genuine,Bank/KYC,sms,en
-Your order has been shipped and will arrive tomorrow.,genuine,Delivery,sms,en
-Package delivered successfully. Track the update in the official app.,genuine,Delivery,whatsapp,en
-Income tax acknowledgement received. No payment is required.,genuine,Government,sms,en
-Traffic challan can be checked on the official government portal.,genuine,Government,sms,en
-This is not a prize message. No fee or reward claim is pending.,genuine,Lottery/Prize,sms,en
-Normal family chat: did you receive the anniversary gift?,genuine,Lottery/Prize,whatsapp,en
-Interview confirmed for Tuesday. The employer will not ask for a fee.,genuine,Job/Work-from-home,whatsapp,en
-Interview location and time are confirmed. Bring your resume.,genuine,Job/Work-from-home,sms,en
-UPI payment successful. You do not need to share your PIN.,genuine,UPI/Payment,sms,en
-Money received in bank account. No action is required.,genuine,UPI/Payment,whatsapp,hinglish
-Your electricity bill is due on the printed due date.,genuine,Electricity/Utility,sms,en
-Bijli bill payment reminder. Pay through the official electricity app.,genuine,Electricity/Utility,sms,en
-Investment account update. Review returns in the official app.,genuine,Investment,sms,en
-Please discuss investments with a registered adviser.,genuine,Investment,whatsapp,en
-No official agency asks for payment or secrecy during a video call.,genuine,Digital Arrest,sms,en
-Lunch tomorrow? I have a normal meeting after office.,genuine,Digital Arrest,whatsapp,en
-Call me tomorrow from the number saved in your contacts.,genuine,Impersonation,sms,en
-"Hi, are we meeting at 6 pm? Please reply here.",genuine,Impersonation,whatsapp,en
-Do not share this OTP. Your bank never asks for it.,genuine,Bank/KYC,sms,en
-Rs 1213 debited from account. Available balance is Rs 1213.,genuine,Bank/KYC,sms,en
-Your order has been shipped and will arrive tomorrow.,genuine,Delivery,sms,hinglish
-Package delivered successfully. Track the update in the official app.,genuine,Delivery,whatsapp,en
-Income tax acknowledgement received. No payment is required.,genuine,Government,sms,en
-Traffic challan can be checked on the official government portal.,genuine,Government,sms,en
-This is not a prize message. No fee or reward claim is pending.,genuine,Lottery/Prize,sms,en
-Normal family chat: did you receive the anniversary gift?,genuine,Lottery/Prize,whatsapp,en
-Interview confirmed for Tuesday. The employer will not ask for a fee.,genuine,Job/Work-from-home,whatsapp,en
-Interview location and time are confirmed. Bring your resume.,genuine,Job/Work-from-home,sms,en
-UPI payment successful. You do not need to share your PIN.,genuine,UPI/Payment,sms,en
-Money received in bank account. No action is required.,genuine,UPI/Payment,whatsapp,en
-Your electricity bill is due on the printed due date.,genuine,Electricity/Utility,sms,en
-Yaad rahe: Bijli bill payment reminder. Pay through the official electricity app.,genuine,Electricity/Utility,sms,hinglish
-Investment account update. Review returns in the official app.,genuine,Investment,sms,en
-Please discuss investments with a registered adviser.,genuine,Investment,whatsapp,en
-No official agency asks for payment or secrecy during a video call.,genuine,Digital Arrest,sms,en
-Lunch tomorrow? I have a normal meeting after office.,genuine,Digital Arrest,whatsapp,en
-Call me tomorrow from the number saved in your contacts.,genuine,Impersonation,sms,en
-"Hi, are we meeting at 6 pm? Please reply here.",genuine,Impersonation,whatsapp,en
-Do not share this OTP. Your bank never asks for it.,genuine,Bank/KYC,sms,en
-Rs 273 debited from account. Available balance is Rs 273.,genuine,Bank/KYC,sms,en
-Your order has been shipped and will arrive tomorrow.,genuine,Delivery,sms,en
-Package delivered successfully. Track the update in the official app.,genuine,Delivery,whatsapp,en
-Income tax acknowledgement received. No payment is required.,genuine,Government,sms,hinglish
-Traffic challan can be checked on the official government portal.,genuine,Government,sms,en
-This is not a prize message. No fee or reward claim is pending.,genuine,Lottery/Prize,sms,en
-Normal family chat: did you receive the anniversary gift?,genuine,Lottery/Prize,whatsapp,en
-Interview confirmed for Tuesday. The employer will not ask for a fee.,genuine,Job/Work-from-home,whatsapp,en
-Interview location and time are confirmed. Bring your resume.,genuine,Job/Work-from-home,sms,en
-UPI payment successful. You do not need to share your PIN.,genuine,UPI/Payment,sms,en
-Money received in bank account. No action is required.,genuine,UPI/Payment,whatsapp,en
-Your electricity bill is due on the printed due date.,genuine,Electricity/Utility,sms,en
-Bijli bill payment reminder. Pay through the official electricity app.,genuine,Electricity/Utility,sms,en
-Investment account update. Review returns in the official app.,genuine,Investment,sms,en
-Please discuss investments with a registered adviser.,genuine,Investment,whatsapp,hinglish
-No official agency asks for payment or secrecy during a video call.,genuine,Digital Arrest,sms,en
-Lunch tomorrow? I have a normal meeting after office.,genuine,Digital Arrest,whatsapp,en
-Call me tomorrow from the number saved in your contacts.,genuine,Impersonation,sms,en
-"Hi, are we meeting at 6 pm? Please reply here.",genuine,Impersonation,whatsapp,en
-Do not share this OTP. Your bank never asks for it.,genuine,Bank/KYC,sms,en
-Rs 1333 debited from account. Available balance is Rs 1333.,genuine,Bank/KYC,sms,en
-Your order has been shipped and will arrive tomorrow.,genuine,Delivery,sms,en
-Package delivered successfully. Track the update in the official app.,genuine,Delivery,whatsapp,en
-Income tax acknowledgement received. No payment is required.,genuine,Government,sms,en
-Traffic challan can be checked on the official government portal.,genuine,Government,sms,en
-This is not a prize message. No fee or reward claim is pending.,genuine,Lottery/Prize,sms,hinglish
-Normal family chat: did you receive the anniversary gift?,genuine,Lottery/Prize,whatsapp,en
-Interview confirmed for Tuesday. The employer will not ask for a fee.,genuine,Job/Work-from-home,whatsapp,en
-Interview location and time are confirmed. Bring your resume.,genuine,Job/Work-from-home,sms,en
-UPI payment successful. You do not need to share your PIN.,genuine,UPI/Payment,sms,en
-Money received in bank account. No action is required.,genuine,UPI/Payment,whatsapp,en
-Your electricity bill is due on the printed due date.,genuine,Electricity/Utility,sms,en
-Bijli bill payment reminder. Pay through the official electricity app.,genuine,Electricity/Utility,sms,en
-Investment account update. Review returns in the official app.,genuine,Investment,sms,en
-Please discuss investments with a registered adviser.,genuine,Investment,whatsapp,en
-No official agency asks for payment or secrecy during a video call.,genuine,Digital Arrest,sms,en
-Lunch tomorrow? I have a normal meeting after office.,genuine,Digital Arrest,whatsapp,hinglish
-Call me tomorrow from the number saved in your contacts.,genuine,Impersonation,sms,en
-"Hi, are we meeting at 6 pm? Please reply here.",genuine,Impersonation,whatsapp,en
-Do not share this OTP. Your bank never asks for it.,genuine,Bank/KYC,sms,en
-Rs 393 debited from account. Available balance is Rs 393.,genuine,Bank/KYC,sms,en
-Your order has been shipped and will arrive tomorrow.,genuine,Delivery,sms,en
-Package delivered successfully. Track the update in the official app.,genuine,Delivery,whatsapp,en
-Income tax acknowledgement received. No payment is required.,genuine,Government,sms,en
-Traffic challan can be checked on the official government portal.,genuine,Government,sms,en
-This is not a prize message. No fee or reward claim is pending.,genuine,Lottery/Prize,sms,en
-Normal family chat: did you receive the anniversary gift?,genuine,Lottery/Prize,whatsapp,en
-Interview confirmed for Tuesday. The employer will not ask for a fee.,genuine,Job/Work-from-home,whatsapp,hinglish
-Interview location and time are confirmed. Bring your resume.,genuine,Job/Work-from-home,sms,en
+Your SBI account is at risk of suspension. Open sbi-kyc-update.xyz/login and verify KYC immediately.,scam,Bank/KYC,sms,en
+Sarkari bank alert: HDFC account aaj block ho sakta hai. OTP aur PAN turant bhejo. Call fake support 0000000000.,scam,Bank/KYC,whatsapp,hinglish
+"From: ""HDFC Bank"" <alert@hdfc-secure-login.top>
+Reply-To: refund@hdfc-help.xyz
+Subject: KYC blocked
+Please update PAN and send OTP before midnight.",scam,Bank/KYC,email,en
+ICICI KYC expired dikh raha hai. 0000000000 par OTP call karke confirm karein.,scam,Bank/KYC,sms,hinglish
+"Dear customer, account verification failed. Pay Rs 299 fee at bit.ly/3xYzAb.",scam,Bank/KYC,sms,en
+Axis account freeze notification. KYC link kholkar PIN aur Aadhaar number share karein. Try epfo-claim.vip/refund.,scam,Bank/KYC,email,hinglish
+PNB: ATM card suspended. Reply with card number and CVV to restore. Open fake URL sbi-kyc-update.xyz/check.,scam,Bank/KYC,sms,en
+Kotak card band hone wala hai. Is fake link par CVV dalke verify karo: kotak-card-verify.top,scam,Bank/KYC,whatsapp,hinglish
+UPI ID verification is pending. Scan this QR and enter UPI PIN to receive the refund. Use hxxp://amaz0n-india[.]top/claim.,scam,Bank/KYC,email,en
+Aapke UPI ka daily limit band. Turbo KYC ke liye hdfc-secure-login.top par jaayein.,scam,Bank/KYC,sms,hinglish
+Bank security: account frozen for unusual activity. Call 00000-00000 now.,scam,Bank/KYC,sms,en
+SBI reward update. OTP mat bhoolna: reward claim karne ke liye sbi-kyc-update.xyz,scam,Bank/KYC,email,hinglish
+hxxp://sbi-kyc-update[.]xyz/account/verify,scam,Bank/KYC,url,en
+RBI notice aaya hai. Aadhaar aur ATM PIN bhejne se KYC activate hoga. Call fake support 0000000000.,scam,Bank/KYC,sms,hinglish
+Your India Post parcel is held. Pay 149 processing fee at indiapost-redelivery.click.,scam,Delivery,sms,en
+DHL jaisa package customs me atka hai. Aapka address aur fee bhejo. Visit hdfc-secure-login.top/verify.,scam,Delivery,whatsapp,hinglish
+"Subject: Amazon package address incomplete
+Pay Rs 99 redelivery charge at amaz0n-refund.cfd.",scam,Delivery,email,en
+Delhivery parcel return hua hai. Abhi fee na bhare to lost ho jayega. Try epfo-claim.vip/refund.,scam,Delivery,sms,hinglish
+Your BlueDart shipment failed twice. Confirm address through bit.ly/3xYzAb.,scam,Delivery,whatsapp,en
+DTDC: customs clearance pending. Click indiapost-redelivery.click and pay.,scam,Delivery,sms,en
+FedEx package address galat hai. Delivery charge aur card details submit karein. Use hxxp://amaz0n-india[.]top/claim.,scam,Delivery,email,hinglish
+Parcel 7 hours from dispatch. Small rescheduling fee: amaz0n-refund.cfd.,scam,Delivery,sms,en
+Amazon COD package ruk gaya. Confirm address aur OTP share karein. Tap indiapost-redelivery.click/status.,scam,Delivery,whatsapp,hinglish
+India Post: shipment stuck at border. Pay duty by 23:59. Try epfo-claim.vip/refund.,scam,Delivery,sms,en
+Flipkart order cancelled. Refund will be released after a processing fee. Open fake URL sbi-kyc-update.xyz/check.,scam,Delivery,email,en
+Aapka courier parcel address ke bina bheja ja raha hai. turant fee transfer karein. Call fake support 0000000000.,scam,Delivery,sms,hinglish
+http://indiapost-redelivery.click/parcel-update,scam,Delivery,url,en
+"BlueDart fee due hai, aaj payment na ho to 00000-00000 par package lost.",scam,Delivery,sms,hinglish
+Income Tax refund approved. Pay verification charge at incometax-refund.top.,scam,Government,sms,en
+Aapka PM Kisan subsidy ruk gaya. Aadhaar link karein. Try epfo-claim.vip/refund.,scam,Government,whatsapp,hinglish
+"From: Income Tax Office <notice@incometax-refund.top>
+Subject: ITR refund
+Pay the GST notice fee to claim funds.",scam,Government,email,en
+EPFO refund mila hai. Claim karne ke liye epfo-claim.vip par PAN dalein.,scam,Government,sms,hinglish
+Your e-challan is unpaid. Fine doubles tonight. Pay at epfo-claim.vip.,scam,Government,sms,en
+DigiLocker KYC pending. Sarkari refund paane ke liye OTP aur Aadhaar bhejein. Visit hdfc-secure-login.top/verify.,scam,Government,email,hinglish
+Traffic police: arrest warrant attached. Stay on video call and pay bond. Tap indiapost-redelivery.click/status.,scam,Government,whatsapp,en
+UIDAI se Aadhaar suspension notice. Aaj hi data verify karein. Try epfo-claim.vip/refund.,scam,Government,sms,hinglish
+GST audit penalty due immediately. Open incometax-refund.top/payment.,scam,Government,email,en
+Court summons: a narcotics parcel is linked to you. Do not contact police. Call fake support 0000000000.,scam,Government,sms,en
+CBI NCB digital arrest: video call par rahein aur transfer fee na batayein. Use hxxp://amaz0n-india[.]top/claim.,scam,Government,whatsapp,hinglish
+PM Kisan: beneficiary status blocked. SMS your Aadhaar and bank OTP. Visit hdfc-secure-login.top/verify.,scam,Government,sms,en
+hxxp://uidai-verification[.]top/kyc,scam,Government,url,en
+IRCTC refund pending hai. Railway service charge pehle pay karein. Try epfo-claim.vip/refund.,scam,Government,email,hinglish
+"Congratulations, you won a car in a lucky draw. Send a 499 claim fee. Open fake URL sbi-kyc-update.xyz/check.",scam,Lottery/Prize,sms,en
+Aapne crore ka inaam jeeta hai. Processing charge bhejkar reward lein. Call fake support 0000000000.,scam,Lottery/Prize,whatsapp,hinglish
+Claim Department: Your prize is awaiting customs clearance. Pay first. Use hxxp://amaz0n-india[.]top/claim.,scam,Lottery/Prize,email,en
+Bonus cashback 25 lakh. Turant lucky link par OTP verify karein. Visit hdfc-secure-login.top/verify.,scam,Lottery/Prize,sms,hinglish
+You are the millionth customer. Share bank PIN to unlock gift. Tap indiapost-redelivery.click/status.,scam,Lottery/Prize,whatsapp,en
+"Amazon lucky reward: Rs 50,000 credited. Pay tax at amaz0n-refund.cfd.",scam,Lottery/Prize,sms,en
+Lottery winner certificate attached. Claim fee aur Aadhaar number chahiye. Open fake URL sbi-kyc-update.xyz/check.,scam,Lottery/Prize,email,hinglish
+Final chance: select one gift and pay registration. Call fake support 0000000000.,scam,Lottery/Prize,sms,en
+Kismat khuli: aapko <fake> prize mila. Advance tax bhejiye. Use hxxp://amaz0n-india[.]top/claim.,scam,Lottery/Prize,whatsapp,hinglish
+Cashback jackpot for 0000000000. Tap bit.ly/3xYzAb.,scam,Lottery/Prize,sms,en
+You have won 2 crore rupees. The claim desk needs a refundable fee. Tap indiapost-redelivery.click/status.,scam,Lottery/Prize,email,en
+Jeet ka certificate mila. Claim reward ke liye CVV bhejo. Try epfo-claim.vip/refund.,scam,Lottery/Prize,sms,hinglish
+http://prize-claim.xyz/reward,scam,Lottery/Prize,url,en
+Lucky draw se inaam mila. 00000-00000 par call karein.,scam,Lottery/Prize,whatsapp,hinglish
+Work from home for 5000 rupees daily. Pay registration then start. Use hxxp://amaz0n-india[.]top/claim.,scam,Job/Work-from-home,whatsapp,en
+"Ghar baithe likes aur tasks karo, roj 3000 kamao. Telegram join karein. Visit hdfc-secure-login.top/verify.",scam,Job/Work-from-home,sms,hinglish
+Telegram job: no experience. First buy a gift card for training. Tap indiapost-redelivery.click/status.,scam,Job/Work-from-home,whatsapp,en
+"Remote part-time offer. Salary 50000, security deposit pehle bhejo.",scam,Job/Work-from-home,email,hinglish
+Earn 2000 by rating hotels. Advance fee unlocks account. Open fake URL sbi-kyc-update.xyz/check.,scam,Job/Work-from-home,sms,en
+Video like karke daily earning. Telegram par team se payment setup. Call fake support 0000000000.,scam,Job/Work-from-home,whatsapp,hinglish
+Hiring now. Training requires a refundable APK download. Use hxxp://amaz0n-india[.]top/claim.,scam,Job/Work-from-home,email,en
+Ad review job me har task ke liye deposit badhta hai. Abhi pay karein. Visit hdfc-secure-login.top/verify.,scam,Job/Work-from-home,sms,hinglish
+HR: WhatsApp interview now. Pay for offer letter. Tap indiapost-redelivery.click/status.,scam,Job/Work-from-home,whatsapp,en
+Simple task work pays 1500/day. Join bit.ly/3xYzAb.,scam,Job/Work-from-home,sms,en
+"Telegram se hiring. Aadhaar, OTP aur processing fee mangi ja rahi hai. Open fake URL sbi-kyc-update.xyz/check.",scam,Job/Work-from-home,email,hinglish
+Customer service role for 1000/day. Deposit for software. Call fake support 0000000000.,scam,Job/Work-from-home,whatsapp,en
+hxxp://daily-task-job[.]top/register,scam,Job/Work-from-home,url,en
+Ghar baithe 20 minute kaam aur daily cash. 00000-00000 par HR se baat karein.,scam,Job/Work-from-home,sms,hinglish
+UPI collect request for 5000. Accept it to receive the mistaken payment. Tap indiapost-redelivery.click/status.,scam,UPI/Payment,sms,en
+QR scan karo lekin paisa receive karne ke liye OTP aur PIN mat batana. Try epfo-claim.vip/refund.,scam,UPI/Payment,whatsapp,hinglish
+Wrong transfer by mistake. Return via UPI PIN at 0000000000.,scam,UPI/Payment,sms,en
+Refund mil raha hai. Collect request accept karke PIN verify karein. Call fake support 0000000000.,scam,UPI/Payment,email,hinglish
+"Scan QR to receive prize. Never mind, UPI PIN is needed. Use hxxp://amaz0n-india[.]top/claim.",scam,UPI/Payment,whatsapp,en
+Mera payment sent by mistake. Turant collect request accept karo. Visit hdfc-secure-login.top/verify.,scam,UPI/Payment,sms,hinglish
+Do not receive; just accept and enter PIN for cashback. Tap indiapost-redelivery.click/status.,scam,UPI/Payment,whatsapp,en
+Your cashback is waiting. Accept collect request in UPI app. Try epfo-claim.vip/refund.,scam,UPI/Payment,sms,en
+Wrong transfer complaint. Paisa wapas karne ke liye QR scan karein. Open fake URL sbi-kyc-update.xyz/check.,scam,UPI/Payment,email,hinglish
+"Merchant refund stuck. Approve request, then enter UPI PIN. Call fake support 0000000000.",scam,UPI/Payment,sms,en
+Double cashback offer. Sirf scan QR and PIN confirm. Use hxxp://amaz0n-india[.]top/claim.,scam,UPI/Payment,whatsapp,hinglish
+Collect request: 1 rupee. Complete by entering OTP. Visit hdfc-secure-login.top/verify.,scam,UPI/Payment,sms,en
+hxxp://upi-refund[.]top/collect,scam,UPI/Payment,url,en
+Galti se 8000 bheje. 00000-00000 par PIN aur OTP bhejo.,scam,UPI/Payment,whatsapp,hinglish
+Electricity bill unpaid. Meter disconnect at 9 PM tonight. Open fake URL sbi-kyc-update.xyz/check.,scam,Electricity/Utility,sms,en
+Bijli bill pending hai. Aaj raat 9:30 connection kat jayega. Call fake support 0000000000.,scam,Electricity/Utility,whatsapp,hinglish
+Immediate electricity disconnection notice. Pay officer via bit.ly/3xYzAb.,scam,Electricity/Utility,email,en
+Bijli ka final notice. Payment na hua to 00000-00000 par fine lagega.,scam,Electricity/Utility,sms,hinglish
+Gas cylinder subsidy is blocked. Send card PIN to restore. Tap indiapost-redelivery.click/status.,scam,Electricity/Utility,sms,en
+"Paani bill overdue. Aaj shaam supply band, officer ko fee bhejo. Try epfo-claim.vip/refund.",scam,Electricity/Utility,whatsapp,hinglish
+Broadband disconnection in 2 hours. Download invoice and pay. Open fake URL sbi-kyc-update.xyz/check.,scam,Electricity/Utility,email,en
+Meter verification pending. Aaj raat se light kat jayegi. Call fake support 0000000000.,scam,Electricity/Utility,sms,hinglish
+Water connection: unpaid bill. Pay via unofficial payment link. Use hxxp://amaz0n-india[.]top/claim.,scam,Electricity/Utility,sms,en
+Utility bill refund mila hai. Bank OTP dekar claim karein. Visit hdfc-secure-login.top/verify.,scam,Electricity/Utility,whatsapp,hinglish
+Final disconnection warning. Your electricity officer will call. Tap indiapost-redelivery.click/status.,scam,Electricity/Utility,email,en
+Bijli office se urgent message. 00000-00000 par turant call.,scam,Electricity/Utility,sms,hinglish
+http://bijli-bill-pending.xyz/pay,scam,Electricity/Utility,url,en
+Gas subsidy suspended. 4 digit PIN aur Aadhaar bhejein. Call fake support 0000000000.,scam,Electricity/Utility,email,hinglish
+Guaranteed 3 percent daily returns. Join VIP crypto group. Use hxxp://amaz0n-india[.]top/claim.,scam,Investment,whatsapp,en
+Stock tips VIP. Double paise aur crypto profit ke liye deposit. Visit hdfc-secure-login.top/verify.,scam,Investment,email,hinglish
+Invest 1000 today and receive 100000 tomorrow.,scam,Investment,sms,en
+Naye scheme me double money. Telegram VIP link join karein. Try epfo-claim.vip/refund.,scam,Investment,whatsapp,hinglish
+Secret trading bot. Send funds to unlock guaranteed returns. Open fake URL sbi-kyc-update.xyz/check.,scam,Investment,email,en
+Market tips for sure profit. 00000-00000 par membership fee.,scam,Investment,sms,hinglish
+Crypto expert group: 5x profit. Pay for withdrawal. Use hxxp://amaz0n-india[.]top/claim.,scam,Investment,whatsapp,en
+SBI investor reward. High return ke liye OTP aur investment transfer. Visit hdfc-secure-login.top/verify.,scam,Investment,email,hinglish
+Ponzi-style VIP fund: use 1 rupee and earn 100. Tap indiapost-redelivery.click/status.,scam,Investment,sms,en
+Gold investment guaranteed. Registration fee turant bhejo. Try epfo-claim.vip/refund.,scam,Investment,whatsapp,hinglish
+An advisor claims no risk. Send advance fee for portfolio. Open fake URL sbi-kyc-update.xyz/check.,scam,Investment,email,en
+Daily 2 percent stock tip. Telegram join aur amount bhejein. Call fake support 0000000000.,scam,Investment,sms,hinglish
+hxxp://vip-investment[.]top/profit,scam,Investment,url,en
+Crypto withdrawal blocked. Tax deposit bina real app ke mat karein. Visit hdfc-secure-login.top/verify.,scam,Investment,whatsapp,hinglish
+"Hi Mum, this is my new number. Please send me money urgently. Tap indiapost-redelivery.click/status.",scam,Impersonation,sms,en
+Maine phone kho diya. Mujhe Rs 2823 bhejo. Try epfo-claim.vip/refund.,scam,Impersonation,whatsapp,hinglish
+"Hi Papa, lost phone. Buy gift cards and send codes. Open fake URL sbi-kyc-update.xyz/check.",scam,Impersonation,sms,en
+Didi ka naya number hai. UPI se 500 bhej do. Call fake support 0000000000.,scam,Impersonation,whatsapp,hinglish
+"From your son: new email, need emergency cash. Use hxxp://amaz0n-india[.]top/claim.",scam,Impersonation,email,en
+Boss bol raha hoon. Salary advance 00000-00000 par bhejo.,scam,Impersonation,sms,hinglish
+"New number, don't call the old one. Send a private reply. Tap indiapost-redelivery.click/status.",scam,Impersonation,whatsapp,en
+I am stranded. Pay hotel at 0000000000.,scam,Impersonation,sms,en
+Mera phone lost hai. HDFC PIN mat poochna but cash bhejo. Open fake URL sbi-kyc-update.xyz/check.,scam,Impersonation,whatsapp,hinglish
+CEO request: purchase vouchers and share codes. Call fake support 0000000000.,scam,Impersonation,email,en
+Bhai ka naya number. Emergency me Rs 3000 bhej do. Use hxxp://amaz0n-india[.]top/claim.,scam,Impersonation,sms,hinglish
+A relative is requesting gift cards instead of a call. Visit hdfc-secure-login.top/verify.,scam,Impersonation,whatsapp,en
+Your doctor: pay consultation fee to 0000000000.,scam,Impersonation,sms,en
+Office manager ka message. Salary advance abhi bhejein. Try epfo-claim.vip/refund.,scam,Impersonation,email,hinglish
+Digital arrest warrant. Stay on video call and do not tell anyone. Open fake URL sbi-kyc-update.xyz/check.,scam,Digital Arrest,whatsapp,en
+CBI ne digital arrest notice bheja. Turant Skype video par raho. Call fake support 0000000000.,scam,Digital Arrest,sms,hinglish
+NCB seizure notice. Narcotics parcel found. Pay investigation bond. Use hxxp://amaz0n-india[.]top/claim.,scam,Digital Arrest,email,en
+"Police se CBI number par call. Koi ko mat batana, paisa transfer karo. Visit hdfc-secure-login.top/verify.",scam,Digital Arrest,whatsapp,hinglish
+Money laundering case. Remain on WhatsApp video until clearance. Tap indiapost-redelivery.click/status.,scam,Digital Arrest,sms,en
+Arrest warrant PDF: signature aur bank OTP ke bina release nahi. Try epfo-claim.vip/refund.,scam,Digital Arrest,email,hinglish
+Virtual arrest: show Aadhaar and move money to safety account. Open fake URL sbi-kyc-update.xyz/check.,scam,Digital Arrest,whatsapp,en
+CBI officer bol rahe hain. 00000-00000 par security fee bhejo.,scam,Digital Arrest,sms,hinglish
+ED inquiry. Turn off phone and send crypto bond. Use hxxp://amaz0n-india[.]top/claim.,scam,Digital Arrest,email,en
+National crime bureau case hai. Family ko mat batana. Visit hdfc-secure-login.top/verify.,scam,Digital Arrest,whatsapp,hinglish
+Supreme Court case: 30-minute video verification or arrest. Tap indiapost-redelivery.click/status.,scam,Digital Arrest,sms,en
+Narcotics parcel aapke naam pe mila. Bail fee aur OTP chahiye. Try epfo-claim.vip/refund.,scam,Digital Arrest,email,hinglish
+hxxp://digital-arrest-cbi[.]top/case,scam,Digital Arrest,url,en
+Police call par video bandh mat karo. Safety account me paise bhejo. Call fake support 0000000000.,scam,Digital Arrest,whatsapp,hinglish
+Install AnyDesk APK and share screen code for account verification. Use hxxp://amaz0n-india[.]top/claim.,scam,Other,sms,en
+"QuickSupport app download karo, OTP screen par dikhao. Visit hdfc-secure-login.top/verify.",scam,Other,whatsapp,hinglish
+Download attached setup.exe to receive your refund. Tap indiapost-redelivery.click/status.,scam,Other,email,en
+TeamViewer install karke support ID 00000 bhejo.,scam,Other,sms,hinglish
+Forward this message many times to activate cashback. Open fake URL sbi-kyc-update.xyz/check.,scam,Other,whatsapp,en
+Jo link open karega uska SIM reward milega. APK attach hai. Call fake support 0000000000.,scam,Other,email,hinglish
+Verify your SIM KYC by calling 0000000000.,scam,Other,sms,en
+New mobile number par 5000 reward. UPI PIN nahi chahiye. Visit hdfc-secure-login.top/verify.,scam,Other,whatsapp,hinglish
+Response required: remote access to protect your bank account. Tap indiapost-redelivery.click/status.,scam,Other,email,en
+Gift card code bhejo aur 2 crore inaam claim karo. Try epfo-claim.vip/refund.,scam,Other,sms,hinglish
+Do not share this OTP. Your bank never asks for it.,genuine,,sms,en
+The OTP for your login expires in five minutes. Enter it only inside the official app.,genuine,,sms,en
+Rs 499 debited from account <fake>. Available balance Rs 5600.,genuine,,sms,en
+Bank se Rs 499 debited hua. OTP koi bhi maangta hai to mat dena.,genuine,,sms,hinglish
+Credit of Rs 1250 received. No action or PIN is required.,genuine,,sms,en
+"Aapka account credit hua. KYC already verified hai, koi action nahi.",genuine,,sms,hinglish
+Your debit card KYC is complete. We will never call for your PIN.,genuine,,sms,en
+UPI payment was successful. Entering PIN is only for sending money.,genuine,,sms,en
+UPI payment successful. Paisa receive karne ke liye PIN nahi chahiye.,genuine,,sms,hinglish
+Security alert: your password was changed. Review it in the official app.,genuine,,sms,en
+Kal lunch chala? Main 1 baje aaunga.,genuine,,whatsapp,hinglish
+Your electricity bill is due on 30 June. Pay through the official utility app.,genuine,,sms,en
+Bijli bill Rs 1200 ka hai. Dues printed date tak dena.,genuine,,sms,hinglish
+Gas booking confirmed. Please keep the OTP private.,genuine,,sms,en
+LPG delivery kal subah. Cash ya UPI se payment available.,genuine,,sms,hinglish
+Water bill notice is ready. No payment link or fee is included.,genuine,,sms,en
+Broadband plan renews tomorrow. Review the official invoice.,genuine,,sms,en
+Internet recharge 28 din ke liye hua. Customer care ko PIN mat batayein.,genuine,,sms,hinglish
+The appointment is at 10:30 am. Please arrive ten minutes early.,genuine,,whatsapp,en
+Doctor appointment confirmed for Monday. Reply only to reschedule.,genuine,,sms,en
+Class tomorrow 8 baje hai. Meeting link calendar me hai.,genuine,,sms,hinglish
+"Flight ticket mila, official airline app se seat check karo.",genuine,,whatsapp,hinglish
+Train PNR update available. No fee or OTP is required.,genuine,,sms,en
+Aaj bus late hai. Driver se official helpline par baat hui.,genuine,,sms,hinglish
+Your Amazon order was shipped. Track it on https://www.amazon.in.,genuine,,sms,en
+Flipkart parcel dispatched hai. Official app flipkart.com se track karein.,genuine,,sms,hinglish
+Order delivered by BlueDart. No redelivery fee is due.,genuine,,email,en
+India Post parcel deliver hua. https://www.indiapost.gov.in par status dekhein.,genuine,,email,hinglish
+Delhivery package delivery updated. The courier will not ask for OTP.,genuine,,sms,en
+Courier address confirm karna hai? Sirf official app me update karein.,genuine,,sms,hinglish
+Parcel fees are included in the order total. No extra payment is needed.,genuine,,sms,en
+Income tax acknowledgement is available at https://www.incometax.gov.in.,genuine,,email,en
+Your PAN and Aadhaar KYC is already verified. No action needed.,genuine,,sms,en
+e-Challan ka status official portal par check karein. Payment short link mat kholna.,genuine,,sms,hinglish
+PM Kisan status is available only at pmkisan.gov.in.,genuine,,sms,en
+EPFO statement taiyar hai. Official portal epfindia.gov.in se download karein.,genuine,,email,hinglish
+UIDAI appointment confirmed. You will not be asked to pay a fee.,genuine,,sms,en
+DigiLocker document safe hai. OTP kisi se share mat karein.,genuine,,sms,hinglish
+IRCTC booking confirmed. No penalty or urgent transfer is needed.,genuine,,sms,en
+School fee reminder: pay only through the school portal.,genuine,,email,en
+Fees ekdum normal hai; reminder dekhkar school app se pay karna.,genuine,,whatsapp,hinglish
+Exam registration date is confirmed. The portal does not accept gift cards.,genuine,,sms,en
+Library book due kal hai. Fee official desk par lagegi.,genuine,,sms,hinglish
+Movie tickets are confirmed. Entry is by QR at the venue.,genuine,,whatsapp,en
+Mobile recharge successful for 28 days. No PIN was sent.,genuine,,sms,en
+Jio plan recharge ho gaya. Koi OTP verify nahi karna.,genuine,,sms,hinglish
+Airtel data plan renews after the date shown in the app.,genuine,,whatsapp,en
+Bank statement is ready for download in internet banking.,genuine,,sms,en
+Credit card statement aa gayi. PIN ya CVV link par mat dalein.,genuine,,sms,hinglish
+Your account statement is enclosed. It does not request payment.,genuine,,email,en
+Lunch tomorrow? 1 baje office ke paas milte hain.,genuine,,whatsapp,hinglish
+Are we still meeting at the coffee shop? Reply when free.,genuine,,whatsapp,en
+"Class cancel ho gayi, next week ka schedule mil jayega.",genuine,,sms,hinglish
+Your petrol cashback was posted as a reward. It requires no claim fee.,genuine,,sms,en
+Cashback already account me credit hua. Koi prize link mat kholna.,genuine,,email,hinglish
+Insurance premium receipt generated. Verify through the insurer app.,genuine,,sms,en
+"Policy reminder hai, payment official website par hi karein.",genuine,,sms,hinglish
+Happy birthday! Hope you have a relaxed day.,genuine,,whatsapp,en
+Family group: dinner at 7 pm. Please confirm attendance.,genuine,,sms,en
+Shaadi ka card mil gaya. 14 tareekh ko milenge.,genuine,,whatsapp,hinglish
+Gym session starts at 6 pm. Bring the booking confirmation.,genuine,,sms,en
+Car service ho gaya. Bill garage receipt me attached hai.,genuine,,sms,hinglish
+The repair is complete. Pick up tomorrow using the receipt.,genuine,,whatsapp,en
+Library card renewal approved. No online fee is due.,genuine,,sms,en
+Post office passbook update ho gaya. Branch me collect karein.,genuine,,sms,hinglish
+Government pension statement available at https://www.epfindia.gov.in.,genuine,,email,en
+Your Voter ID appointment is confirmed for Wednesday.,genuine,,sms,en
+Aadhaar card update already done. No urgent action.,genuine,,sms,hinglish
+DigiLocker shares a notice that no OTP or PIN is ever required.,genuine,,sms,en
+Sarkari scholarship status approved hai. Official portal par dekhein.,genuine,,email,hinglish
+Scholarship disbursement is expected after document verification.,genuine,,sms,en
+"Birthday gift Amazon se aaya, official tracking link me status hai.",genuine,,whatsapp,hinglish
+Your order is shipped from the official store. No customs fee.,genuine,,sms,en
+Parcel aaj delivered hua. Delivery boy ko OTP mat batana.,genuine,,sms,hinglish
+Food order delivered. Please rate the service in the app.,genuine,,sms,en
+Dinner aa gaya aur khana accha tha.,genuine,,whatsapp,hinglish
+Flight check-in opens at 10 am. Use only the airline app.,genuine,,sms,en
+Metro card recharge successful. Gate par PIN nahi dena.,genuine,,sms,hinglish
+Bus seat is confirmed. Ticket is stored in the official app.,genuine,,sms,en
+Hotel booking confirmed for two nights. No advance payment now.,genuine,,sms,en
+Hotel 3 pm check-in karega. Booking detail calendar me hai.,genuine,,whatsapp,hinglish
+Parking payment is complete. Keep the receipt.,genuine,,sms,en
+Toll recharge hua. FASTag alert sirf official account se aaega.,genuine,,sms,hinglish
+Your KYC review is complete. No further documents are needed.,genuine,,sms,en
+Bank ne urgent KYC verification ka message bheja? Ignore: KYC already verified.,genuine,,sms,hinglish
+A genuine OTP was sent for sign-in. Never share it with anyone.,genuine,,sms,en
+"This prize notification is a family reminder, not a cash claim.",genuine,,email,en
+Prize koi nahi mila hai. Koi fee ya reward link mat kholna.,genuine,,sms,hinglish
+A suspicious parcel text arrived. We checked: no package is held.,genuine,,sms,en
+Electricity bill message fake laga. Official app se status verify hua.,genuine,,sms,hinglish
+Friend: I sent a wrong-looking refund link. Please do not open it.,genuine,,whatsapp,en
+UPI collect request aayi thi. Maine reject karke PIN share nahi kiya.,genuine,,sms,hinglish
+"This bank notice contains urgent words, but it is only a document reminder.",genuine,,email,en
+Refund is already in your account. No bank OTP is needed.,genuine,,sms,en
+Income tax refund update genuine hai aur koi fee nahi.,genuine,,sms,hinglish
+"This fee notice is from school, not a courier or bank.",genuine,,sms,en
+OTP aur KYC update ki warning: official app se verify.,genuine,,sms,hinglish
+The parcel address is correct. Delivery updates come from the store.,genuine,,whatsapp,en
+No phone call or link is needed to receive this recharge.,genuine,,sms,en
+"Telegram ka job message suspicious tha, isliye apply nahi kiya.",genuine,,sms,hinglish
+You are not under arrest. This is a family reminder to attend court only if summoned.,genuine,,sms,en
+Investment se koi guaranteed profit nahi hua. Update official account me hai.,genuine,,email,hinglish
+A normal bank transfer was completed. Customer support never asks for OTP.,genuine,,sms,en
+"UPI se paisa aaya, lekin collect request ya QR se kuch nahi hona.",genuine,,sms,hinglish
+The card will not be blocked. The bank link asks for no PIN.,genuine,,sms,en
+"Normal credit card statement: no prize, fee or urgent action.",genuine,,email,en
+Parcel delivered; ek extra fee maangne wala link fake hai.,genuine,,sms,hinglish
+Can you call me after lunch? This is my regular number.,genuine,,whatsapp,en
+Appointment reminder: 4 pm at the clinic. No deposit is required.,genuine,,sms,en
+"Vaccination slot confirm hai, koi KYC OTP nahi chahiye.",genuine,,sms,hinglish
+Bank statement is attached. The sender does not request remote access.,genuine,,email,en
+Your subscription renews at the listed price. No gift card needed.,genuine,,sms,en
+Recharge plan valid hai. 0-day expiry ka koi urgent message nahi.,genuine,,sms,hinglish
+Normal school chat: bring the notebook and water bottle.,genuine,,whatsapp,en
+Salary credited. The monthly payslip is in the employee portal.,genuine,,sms,en
+Salary account me aa gayi. Bank ko CVV bhejne ki zarurat nahi.,genuine,,sms,hinglish
+Meeting invitation: discuss quarterly reports on Tuesday.,genuine,,email,en
+No claim or prize: this is a scheduled medication reminder.,genuine,,sms,en
+Medicine 8 baje leni hai. Reminder save kar liya.,genuine,,whatsapp,hinglish
+Insurance claim status is processing. No fee or OTP is due.,genuine,,sms,en
+Utility bill normal hai. Official meter number se verify kiya.,genuine,,email,hinglish
+Customer survey received. No account details are required.,genuine,,sms,en
+Bank account me cashback credit hua. Fake prize link ignore karein.,genuine,,sms,hinglish
+Your friend says the parcel is at home. Confirm when convenient.,genuine,,whatsapp,en
+The parking reservation is confirmed. No extra customs or duty fee.,genuine,,sms,en
+Office lunch order confirm hai. Address official app me sahi hai.,genuine,,email,hinglish
+The electricity meter reading was submitted successfully.,genuine,,sms,en
+Bijli meter photo upload hua. Bill later official app me milega.,genuine,,sms,hinglish
+The real school portal sent a fee reminder. It never asks for OTP.,genuine,,whatsapp,en
+Calendar invitation: team stand-up at 9 am.,genuine,,email,en
+Aaj ka office meeting cancel hua. Naya time kal milega.,genuine,,sms,hinglish
+"Bank OTP warning: never share the code, even if the caller sounds urgent.",genuine,,sms,en
+Papa se baat hui. Sirf regular number se call aaega.,genuine,,whatsapp,hinglish
+Your KYC status is already verified. The bank asked for no documents today.,genuine,,sms,en
+OTP kal ke sign-in ke liye tha. Koi OTP abhi share mat karo.,genuine,,whatsapp,hinglish
+Debit card is active. No fee is required to unblock it.,genuine,,sms,en
+Delivery reminder normal hai. Parcel ka extra customs fee nahi hai.,genuine,,email,hinglish
+Prize message was checked. There is no cash reward or claim fee.,genuine,,sms,en
+Bijli ka bill time se pay ho jayega. Link official app ka hai.,genuine,,whatsapp,hinglish
+Refund credited to the account. No UPI PIN or QR action is needed.,genuine,,sms,en
+Income tax notice ka status dekha. No penalty or payment link.,genuine,,email,hinglish
+A genuine school fee notice arrived. It does not request gift cards.,genuine,,sms,en
+Telegram job offer fake laga. Maine apply ya deposit nahi kiya.,genuine,,whatsapp,hinglish
+The court summons is official only through the published government portal.,genuine,,sms,en
+Investment update regular hai. Guaranteed profit ka koi claim nahi.,genuine,,email,hinglish
+Courier called for a real address check. No OTP was requested.,genuine,,sms,en
+UPI collect request reject kiya. PAN ya PIN nahi bheja.,genuine,,whatsapp,hinglish
+Cashback was posted by the card app; no prize claim is pending.,genuine,,sms,en
+Sarkari Aadhaar update ka reminder normal hai. Koi remote app required nahi.,genuine,,email,hinglish
+Normal bank statement is ready. Support will never call to collect the OTP.,genuine,,sms,en

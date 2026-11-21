@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-11-21T06:19:04.098430+00:00",
+  "train_size": 212,
+  "test_size": 88,
+  "class_counts": {
+    "scam": 43,
+    "genuine": 45
+  },
+  "dataset_notice": "Synthetic dataset - not real-world accuracy",
+  "rules_only": {
+    "flexible": {
+      "accuracy": 0.909091,
+      "precision": 1.0,
+      "recall": 0.813953,
+      "f1": 0.897436,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.186047,
+      "confusion_matrix": {
+        "tp": 35,
+        "fp": 0,
+        "tn": 45,
+        "fn": 8
+      }
+    },
+    "strict": {
+      "accuracy": 0.852273,
+      "precision": 1.0,
+      "recall": 0.697674,
+      "f1": 0.821918,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.302326,
+      "confusion_matrix": {
+        "tp": 30,
+        "fp": 0,
+        "tn": 45,
+        "fn": 13
+      }
+    }
+  },
+  "rules_plus_ml": {
+    "flexible": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "confusion_matrix": {
+        "tp": 43,
+        "fp": 0,
+        "tn": 45,
+        "fn": 0
+      },
+      "per_category_recall": {
+        "Bank/KYC": 1.0,
+        "Delivery": 1.0,
+        "Digital Arrest": 1.0,
+        "Electricity/Utility": 1.0,
+        "Government": 1.0,
+        "Impersonation": 1.0,
+        "Investment": 1.0,
+        "Job/Work-from-home": 1.0,
+        "Lottery/Prize": 1.0,
+        "Other": 1.0,
+        "UPI/Payment": 1.0
+      },
+      "per_language_accuracy": {
+        "en": 1.0,
+        "hinglish": 1.0
+      },
+      "per_channel_accuracy": {
+        "email": 1.0,
+        "sms": 1.0,
+        "url": 1.0,
+        "whatsapp": 1.0
+      },
+      "average_score": {
+        "scam": 79.581395,
+        "genuine": 3.0
+      }
+    },
+    "strict": {
+      "accuracy": 0.863636,
+      "precision": 1.0,
+      "recall": 0.72093,
+      "f1": 0.837838,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.27907,
+      "confusion_matrix": {
+        "tp": 31,
+        "fp": 0,
+        "tn": 45,
+        "fn": 12
+      }
+    }
+  },
+  "misclassified_count": 0
+}

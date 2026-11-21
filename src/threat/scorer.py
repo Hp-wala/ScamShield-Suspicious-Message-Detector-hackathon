@@ -120,6 +120,10 @@ def score_message(channel: str, text: str, sender: str = "", use_ml: bool = True
         "advice": get_advice(category),
         "text_hash": message_hash(cleaned),
         "text_model_probability": round(probability, 4),
+        "ml": {
+            "available": MODEL.model is not None,
+            "scam_probability": round(probability, 4),
+        },
     }
 
 

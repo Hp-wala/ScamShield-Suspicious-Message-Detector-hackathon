@@ -57,6 +57,10 @@ def tokenize(text: str) -> list[str]:
     return features
 
 
+def tokenise(text: str) -> list[str]:
+    return tokenize(text)
+
+
 class TextModel:
     def __init__(self, model_path: Path = MODEL_PATH) -> None:
         self.model_path = Path(model_path)
@@ -79,22 +83,24 @@ class TextModel:
         counts = Counter(features)
         vocab = set(self.model["idf"])
         score = float(self.model["log_priors"].get("scam", math.log(0.5)))
-        token_counts = self.model["token_counts"].get("scam", {})
-        total_tokens = sum(token_counts.values()) or 1
+        weighted = self.model.get("weighted_token_counts", {}).get("scam", {})
+        total_weight = sum(weighted.values()) or 1.0
         for feature, count in counts.items():
             if feature not in vocab:
                 continue
-            token_log_prob = (token_counts.get(feature, 0) + 1.0) / (total_tokens + len(vocab))
-            score += count * math.log(token_log_prob)
+            tfidf = (1.0 + math.log(count)) * float(self.model["idf"].get(feature, 1.0))
+            token_log_prob = (float(weighted.get(feature, 0.0)) + 1.0) / (total_weight + len(vocab))
+            score += tfidf * math.log(token_log_prob)
         other = "genuine"
-        other_counts = self.model["token_counts"].get(other, {})
-        other_total = sum(other_counts.values()) or 1
+        other_weighted = self.model.get("weighted_token_counts", {}).get(other, {})
+        other_total = sum(other_weighted.values()) or 1.0
         other_score = float(self.model["log_priors"].get(other, math.log(0.5)))
         for feature, count in counts.items():
             if feature not in vocab:
                 continue
-            token_log_prob = (other_counts.get(feature, 0) + 1.0) / (other_total + len(vocab))
-            other_score += count * math.log(token_log_prob)
+            tfidf = (1.0 + math.log(count)) * float(self.model["idf"].get(feature, 1.0))
+            token_log_prob = (float(other_weighted.get(feature, 0.0)) + 1.0) / (other_total + len(vocab))
+            other_score += tfidf * math.log(token_log_prob)
         maximum = max(score, other_score)
         scam_prob = math.exp(score - maximum) / (math.exp(score - maximum) + math.exp(other_score - maximum))
         return max(0.0, min(1.0, scam_prob))
@@ -110,11 +116,9 @@ def train(rows: Iterable[dict], model_path: Path = MODEL_PATH) -> dict:
         raise ValueError("Both scam and genuine training rows are required")
 
     document_frequency = Counter()
-    token_counts = {"scam": Counter(), "genuine": Counter()}
-    for label, document_features in documents.items():
-        for features in document_features:
+    for label_features in documents.values():
+        for features in label_features:
             document_frequency.update(set(features))
-            token_counts[label].update(features)
     document_count = sum(len(values) for values in documents.values())
     idf = {
         feature: round(math.log((document_count + 1.0) / (document_frequency[feature] + 1.0)) + 1.0, 6)
@@ -124,10 +128,20 @@ def train(rows: Iterable[dict], model_path: Path = MODEL_PATH) -> dict:
         label: len(values) / document_count
         for label, values in documents.items()
     }
+    weighted_token_counts = {"scam": Counter(), "genuine": Counter()}
+    for label, label_documents in documents.items():
+        for features in label_documents:
+            counts = Counter(features)
+            for feature, count in counts.items():
+                if feature in idf:
+                    weighted_token_counts[label][feature] += (1.0 + math.log(count)) * idf[feature]
     model = {
         "version": 1,
         "idf": idf,
-        "token_counts": {label: dict(counts) for label, counts in token_counts.items()},
+        "weighted_token_counts": {
+            label: {feature: round(weight, 6) for feature, weight in counts.items()}
+            for label, counts in weighted_token_counts.items()
+        },
         "log_priors": {label: round(math.log(prior), 6) for label, prior in priors.items()},
     }
     model_path.parent.mkdir(parents=True, exist_ok=True)

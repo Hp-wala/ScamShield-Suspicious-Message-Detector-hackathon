@@ -1,6 +1,9 @@
 import csv
+import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
+from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -23,104 +26,195 @@ def metrics(y_true, y_pred):
     precision = tp / (tp + fp) if tp + fp else 0.0
     recall = tp / (tp + fn) if tp + fn else 0.0
     f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+    false_positive_rate = fp / (fp + tn) if fp + tn else 0.0
+    false_negative_rate = fn / (fn + tp) if fn + tp else 0.0
     return {
-        "accuracy": accuracy,
-        "precision": precision,
-        "recall": recall,
-        "f1": f1,
-        "tp": tp,
-        "tn": tn,
-        "fp": fp,
-        "fn": fn,
+        "accuracy": round(accuracy, 6),
+        "precision": round(precision, 6),
+        "recall": round(recall, 6),
+        "f1": round(f1, 6),
+        "false_positive_rate": round(false_positive_rate, 6),
+        "false_negative_rate": round(false_negative_rate, 6),
+        "confusion_matrix": {"tp": tp, "fp": fp, "tn": tn, "fn": fn},
     }
 
 
-def predicted_label(result):
-    return "scam" if result["verdict"] in {"Likely Scam", "Suspicious"} else "genuine"
+def predicted_label(result, strict=False):
+    if result["verdict"] == "Likely Scam":
+        return "scam"
+    if not strict and result["verdict"] == "Suspicious":
+        return "scam"
+    return "genuine"
+
+
+def grouped_accuracy(rows, key_name, predictions):
+    grouped = defaultdict(list)
+    for row, prediction in zip(rows, predictions):
+        grouped[row[key_name] or "(genuine)"].append(prediction == row["label"])
+    return {key: round(sum(values) / len(values), 6) for key, values in sorted(grouped.items())}
+
+
+def per_category_recall(rows, predictions):
+    grouped = defaultdict(lambda: {"tp": 0, "fn": 0})
+    for row, prediction in zip(rows, predictions):
+        if row["label"] != "scam":
+            continue
+        category = row["category"] or "Other"
+        if prediction == "scam":
+            grouped[category]["tp"] += 1
+        else:
+            grouped[category]["fn"] += 1
+    return {
+        category: round(values["tp"] / (values["tp"] + values["fn"]), 6)
+        if values["tp"] + values["fn"] else 0.0
+        for category, values in sorted(grouped.items())
+    }
+
+
+def average_scores(rows, scores):
+    scam = [score for row, score in zip(rows, scores) if row["label"] == "scam"]
+    genuine = [score for row, score in zip(rows, scores) if row["label"] == "genuine"]
+    return {
+        "scam": round(sum(scam) / len(scam), 6) if scam else 0.0,
+        "genuine": round(sum(genuine) / len(genuine), 6) if genuine else 0.0,
+    }
 
 
 def main():
+    train_rows = load_rows(ROOT / "data" / "dataset_train.csv")
     test_rows = load_rows(ROOT / "data" / "dataset_test.csv")
     engine = ThreatEngine()
-    rules_true, rules_pred = [], []
-    full_true, full_pred = [], []
-    misclassified = []
+
+    rules_flexible = []
+    rules_strict = []
+    full_flexible = []
+    full_strict = []
+    full_results = []
 
     for row in test_rows:
-        true = row["label"]
         rules_result = score_message(row["channel"], row["text"], use_ml=False)
         full_result = engine.analyze(row["text"], row["channel"])
-        rules_label = predicted_label(rules_result)
-        full_label = predicted_label(full_result)
-        rules_true.append(true)
-        rules_pred.append(rules_label)
-        full_true.append(true)
-        full_pred.append(full_label)
-        if full_label != true:
-            misclassified.append({
-                "text": row["text"],
-                "label": true,
-                "predicted": full_label,
-                "score": full_result["score"],
-                "category": full_result["category"],
-            })
+        full_results.append(full_result)
+        rules_flexible.append(predicted_label(rules_result, strict=False))
+        rules_strict.append(predicted_label(rules_result, strict=True))
+        full_flexible.append(predicted_label(full_result, strict=False))
+        full_strict.append(predicted_label(full_result, strict=True))
 
-    rules_metrics = metrics(rules_true, rules_pred)
-    full_metrics = metrics(full_true, full_pred)
+    true_labels = [row["label"] for row in test_rows]
+    rules_flex_metrics = metrics(true_labels, rules_flexible)
+    rules_strict_metrics = metrics(true_labels, rules_strict)
+    full_flex_metrics = metrics(true_labels, full_flexible)
+    full_strict_metrics = metrics(true_labels, full_strict)
+
+    full_flex_metrics["per_category_recall"] = per_category_recall(test_rows, full_flexible)
+    full_flex_metrics["per_language_accuracy"] = grouped_accuracy(test_rows, "lang", full_flexible)
+    full_flex_metrics["per_channel_accuracy"] = grouped_accuracy(test_rows, "channel", full_flexible)
+    full_flex_metrics["average_score"] = average_scores(test_rows, [item["score"] for item in full_results])
+
+    class_counts = {
+        "scam": sum(row["label"] == "scam" for row in test_rows),
+        "genuine": sum(row["label"] == "genuine" for row in test_rows),
+    }
+    output = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "train_size": len(train_rows),
+        "test_size": len(test_rows),
+        "class_counts": class_counts,
+        "dataset_notice": "Synthetic dataset - not real-world accuracy",
+        "rules_only": {
+            "flexible": rules_flex_metrics,
+            "strict": rules_strict_metrics,
+        },
+        "rules_plus_ml": {
+            "flexible": full_flex_metrics,
+            "strict": full_strict_metrics,
+        },
+        "misclassified_count": sum(prediction != row["label"] for row, prediction in zip(test_rows, full_flexible)),
+    }
+    (ROOT / "data" / "eval_results.json").write_text(
+        json.dumps(output, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    misclassified = []
+    for row, prediction, result in zip(test_rows, full_flexible, full_results):
+        if prediction != row["label"]:
+            misclassified.append(
+                f"- `{row['text']}` | expected={row['label']} | predicted={prediction} "
+                f"| score={result['score']} | category={row['category'] or '(genuine)'}"
+            )
 
     lines = [
         "# Dataset and Evaluation",
         "",
-        "Synthetic, fully local Phase 8 evaluation.",
+        "Synthetic dataset - not real-world accuracy",
         "",
-        "## Dataset",
+        "## Dataset and split",
         "",
-        f"- Full dataset: {len(load_rows(ROOT / 'data' / 'dataset.csv'))} rows",
-        f"- Train: {len(load_rows(ROOT / 'data' / 'dataset_train.csv'))} rows",
-        f"- Test: {len(test_rows)} rows",
-        "- Split: deterministic 70/30 stratified by label, fixed seed 20260314.",
-        "- The test split was not used to tune rule weights.",
+        f"- Full: {len(load_rows(ROOT / 'data' / 'dataset.csv'))}",
+        f"- Train: {len(train_rows)}",
+        f"- Test: {len(test_rows)}",
+        "- Seed: 42",
+        "- Stratified by label and category with near-duplicate groups kept together.",
         "",
-        "## Rules-only",
+        "## Flexible view",
         "",
-        f"- Accuracy: {rules_metrics['accuracy']:.3f}",
-        f"- Precision: {rules_metrics['precision']:.3f}",
-        f"- Recall: {rules_metrics['recall']:.3f}",
-        f"- F1: {rules_metrics['f1']:.3f}",
-        f"- Confusion matrix: TP={rules_metrics['tp']} TN={rules_metrics['tn']} FP={rules_metrics['fp']} FN={rules_metrics['fn']}",
+        "| Metric | Rules-only | Rules + ML |",
+        "|---|---:|---:|",
+        "| Accuracy | %.3f | %.3f |" % (rules_flex_metrics["accuracy"], full_flex_metrics["accuracy"]),
+        "| Precision | %.3f | %.3f |" % (rules_flex_metrics["precision"], full_flex_metrics["precision"]),
+        "| Recall | %.3f | %.3f |" % (rules_flex_metrics["recall"], full_flex_metrics["recall"]),
+        "| F1 | %.3f | %.3f |" % (rules_flex_metrics["f1"], full_flex_metrics["f1"]),
+        "| False-positive rate | %.3f | %.3f |" % (rules_flex_metrics["false_positive_rate"], full_flex_metrics["false_positive_rate"]),
+        "| False-negative rate | %.3f | %.3f |" % (rules_flex_metrics["false_negative_rate"], full_flex_metrics["false_negative_rate"]),
         "",
-        "## Rules + lightweight text model",
+        "Rules-only confusion: `TP={tp}, FP={fp}, TN={tn}, FN={fn}`".format(**rules_flex_metrics["confusion_matrix"]),
+        "Rules + ML confusion: `TP={tp}, FP={fp}, TN={tn}, FN={fn}`".format(**full_flex_metrics["confusion_matrix"]),
         "",
-        f"- Accuracy: {full_metrics['accuracy']:.3f}",
-        f"- Precision: {full_metrics['precision']:.3f}",
-        f"- Recall: {full_metrics['recall']:.3f}",
-        f"- F1: {full_metrics['f1']:.3f}",
-        f"- Confusion matrix: TP={full_metrics['tp']} TN={full_metrics['tn']} FP={full_metrics['fp']} FN={full_metrics['fn']}",
+        "## Strict view (Likely Scam only)",
         "",
-        "## Misclassified messages",
+        "| Metric | Rules-only | Rules + ML |",
+        "|---|---:|---:|",
+        "| Accuracy | %.3f | %.3f |" % (rules_strict_metrics["accuracy"], full_strict_metrics["accuracy"]),
+        "| Precision | %.3f | %.3f |" % (rules_strict_metrics["precision"], full_strict_metrics["precision"]),
+        "| Recall | %.3f | %.3f |" % (rules_strict_metrics["recall"], full_strict_metrics["recall"]),
+        "| F1 | %.3f | %.3f |" % (rules_strict_metrics["f1"], full_strict_metrics["f1"]),
+        "| False-positive rate | %.3f | %.3f |" % (rules_strict_metrics["false_positive_rate"], full_strict_metrics["false_positive_rate"]),
+        "| False-negative rate | %.3f | %.3f |" % (rules_strict_metrics["false_negative_rate"], full_strict_metrics["false_negative_rate"]),
+        "",
+        "## Per-category recall",
         "",
     ]
-    if misclassified:
-        for item in misclassified:
-            lines.append(
-                f"- `{item['text']}` | expected={item['label']} | predicted={item['predicted']} "
-                f"| score={item['score']} | category={item['category']}"
-            )
-    else:
-        lines.append("- None")
-
+    for category, recall in full_flex_metrics["per_category_recall"].items():
+        lines.append(f"- {category}: {recall:.3f}")
+    lines.extend(["", "## Per-language accuracy", ""])
+    for lang, accuracy in full_flex_metrics["per_language_accuracy"].items():
+        lines.append(f"- {lang}: {accuracy:.3f}")
+    lines.extend(["", "## Per-channel accuracy", ""])
+    for channel, accuracy in full_flex_metrics["per_channel_accuracy"].items():
+        lines.append(f"- {channel}: {accuracy:.3f}")
+    lines.extend([
+        "",
+        "## Average score",
+        "",
+        f"- Scam: {full_flex_metrics['average_score']['scam']:.3f}",
+        f"- Genuine: {full_flex_metrics['average_score']['genuine']:.3f}",
+        "",
+        "## Misclassified test messages",
+        "",
+    ])
+    lines.extend(misclassified or ["- None"])
     lines.extend([
         "",
         "## Limitations",
         "",
-        "- This dataset is synthetic and should not be treated as real-world prevalence evidence.",
-        "- The text model is a lightweight unigram/bigram multinomial Naive Bayes model; it is not a transformer.",
-        "- Rule signals remain primary, and the ML signal cannot promote a message to Likely Scam by itself.",
+        "- Synthetic data does not represent real-world scam prevalence.",
+        "- The test set is small and Hinglish coverage is limited.",
+        "- Rules and the lightweight text model can both be evaded.",
     ])
 
-    output = "\n".join(lines) + "\n"
-    print(output)
-    (ROOT / "EVAL.md").write_text(output, encoding="utf-8")
+    (ROOT / "EVAL.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(json.dumps(output, indent=2))
 
 
 if __name__ == "__main__":

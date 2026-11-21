@@ -1,5 +1,6 @@
 import os
 import time
+import json
 from collections import defaultdict, deque
 from pathlib import Path
 
@@ -164,6 +165,15 @@ def create_app(config=None):
     @app.get("/api/health")
     def health():
         return jsonify({"status": "ok", "service": "ScamShield"})
+
+    @app.get("/api/metrics")
+    def metrics():
+        metrics_path = Path(app.root_path) / "data" / "eval_results.json"
+        try:
+            with metrics_path.open("r", encoding="utf-8") as handle:
+                return jsonify(json.load(handle))
+        except (FileNotFoundError, json.JSONDecodeError, OSError):
+            return jsonify({"available": False})
 
     @app.get("/api/reports")
     def report_list():

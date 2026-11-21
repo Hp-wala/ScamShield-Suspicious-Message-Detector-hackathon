@@ -112,9 +112,15 @@ function renderSingle(data) {
   const meta = el("div", "result-meta");
   meta.append(el("div", "badge", data.verdict));
   meta.append(el("p", "", `Category: ${data.category} | Confidence: ${data.confidence}`));
-  const textModelProbability = Number(data.text_model_probability || 0);
+  const textModelProbability = Number((data.ml && data.ml.scam_probability) || data.text_model_probability || 0);
   meta.append(el("p", "", `Text model: ${Math.round(textModelProbability * 100)}% similar to scam messages`));
   resultBox.append(meta);
+  const accuracyLink = el("a", "accuracy-link", "How accurate is this?");
+  accuracyLink.href = "#dashboard";
+  accuracyLink.addEventListener("click", () => {
+    setTimeout(() => document.querySelector("#model-accuracy").scrollIntoView({ block: "start" }), 50);
+  });
+  resultBox.append(accuracyLink);
 
   const messageBlock = el("div");
   messageBlock.append(el("h3", "", "Analysed message"));
@@ -280,6 +286,63 @@ async function loadDashboard() {
     data.channels.forEach(item => appendBar(container, item.channel, item.count, data.total_reports));
   } catch (_error) {
     container.replaceChildren(el("p", "", "Statistics unavailable."));
+  }
+  loadModelAccuracy();
+}
+
+async function loadModelAccuracy() {
+  const container = document.querySelector("#model-accuracy");
+  if (!container) return;
+  try {
+    const response = await fetch("/api/metrics");
+    const data = await response.json();
+    container.replaceChildren();
+    if (!response.ok || data.available === false || !data.rules_plus_ml) {
+      container.append(el("p", "", "Not evaluated yet"));
+      return;
+    }
+    const metrics = data.rules_plus_ml.flexible;
+    const cards = el("div", "stat-row");
+    [
+      ["Accuracy", metrics.accuracy],
+      ["Precision", metrics.precision],
+      ["Recall", metrics.recall],
+    ].forEach(([label, value]) => {
+      const card = el("div", "stat");
+      card.append(el("strong", "", `${Math.round(value * 100)}%`), el("span", "", label));
+      cards.append(card);
+    });
+    container.append(cards);
+    const extra = el("div", "stat-row");
+    [
+      ["F1", metrics.f1],
+      ["False-positive rate", metrics.false_positive_rate],
+    ].forEach(([label, value]) => {
+      const card = el("div", "stat");
+      card.append(el("strong", "", `${(value * 100).toFixed(1)}%`), el("span", "", label));
+      extra.append(card);
+    });
+    container.append(extra);
+    const matrix = metrics.confusion_matrix;
+    container.append(el("h4", "", "Confusion matrix"));
+    const table = el("table", "chat-table");
+    table.append(el("tr"));
+    const header = el("tr");
+    header.append(el("th", "", "Actual / Predicted"), el("th", "", "Scam"), el("th", "", "Genuine"));
+    table.append(header);
+    const scamRow = el("tr");
+    scamRow.append(el("th", "", "Scam"), el("td", "", String(matrix.tp)), el("td", "", String(matrix.fn)));
+    const genuineRow = el("tr");
+    genuineRow.append(el("th", "", "Genuine"), el("td", "", String(matrix.fp)), el("td", "", String(matrix.tn)));
+    table.append(scamRow, genuineRow);
+    container.append(table);
+    container.append(el("h4", "", "Per-category recall"));
+    Object.entries(metrics.per_category_recall || {}).forEach(([label, value]) => appendBar(container, label, value, 1));
+    container.append(el("h4", "", "Per-language accuracy"));
+    Object.entries(metrics.per_language_accuracy || {}).forEach(([label, value]) => appendBar(container, label, value, 1));
+    container.append(el("p", "", `Evaluated on ${data.test_size} held-out messages (synthetic dataset). Not a guarantee of real-world accuracy.`));
+  } catch (_error) {
+    container.replaceChildren(el("p", "", "Not evaluated yet"));
   }
 }
 

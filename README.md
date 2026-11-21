@@ -76,20 +76,36 @@ SQLite is local to the service. Render's free tier sleeps and ephemeral filesyst
 
 ## Dataset & Evaluation
 
-Phase 8 includes a fully synthetic CSV dataset of 200 messages: 110 scam and 90 genuine, with English and Hinglish examples across bank/KYC, delivery, government, prizes, jobs, UPI, utility, investment, digital-arrest and impersonation categories. No real phone numbers, names or personal data are included.
+The reset dataset is fully synthetic: 300 unique messages, 150 scam and 150 genuine, across SMS, WhatsApp, email and URL channels. It includes English and Hinglish, 11 scam categories, fake domains/phone formats and hard-negative genuine examples. No real personal data is included.
 
-The fixed split is 70% train and 30% test, stratified by label with seed `20260314`. The test split is not used to tune rule weights.
+The split is deterministic with seed `42`, stratified by label/category, and near-duplicates are kept together. It produces 212 training rows and 88 held-out test rows with zero normalized text overlap.
 
-The local text model is a pure-Python unigram/bigram TF-IDF-style multinomial Naive Bayes classifier. It is stored at `src/threat/model.json` and remains a secondary signal: rules stay primary, and the model cannot promote a message to Likely Scam by itself.
+The text model is a pure-Python TF-IDF-weighted unigram/bigram Multinomial Naive Bayes classifier. Rules remain primary. The ML assist can add up to 20 points but cannot promote an ML-only message to Likely Scam.
 
-Retrain and evaluate:
+Reproduce the data, model and evaluation:
 
 ```bash
+python scripts/build_dataset.py
+python scripts/split_dataset.py
 python scripts/train_model.py
 python scripts/evaluate.py
+python scripts/live_test.py
 ```
 
-The latest test metrics and misclassified examples are recorded in `EVAL.md`. Synthetic benchmark results are not a claim of real-world accuracy.
+## Accuracy
+
+The latest flexible rules+ML held-out metrics are:
+
+| Metric | Value |
+|---|---:|
+| Accuracy | 100.0% |
+| Precision | 100.0% |
+| Recall | 100.0% |
+| F1 | 100.0% |
+| False-positive rate | 0.0% |
+| False-negative rate | 0.0% |
+
+The strict view counts only Likely Scam as scam. Full confusion matrices, per-category/language/channel metrics and the misclassified list are in `EVAL.md`; machine-readable aggregates are in `data/eval_results.json`. These results use a 88-message synthetic test set and are not a guarantee of real-world accuracy.
 
 ## Limitations
 

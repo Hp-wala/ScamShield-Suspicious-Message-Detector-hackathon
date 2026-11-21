@@ -1,6 +1,8 @@
 import hashlib
 import json
 import sqlite3
+import socket
+import os
 import sys
 import time
 import urllib.error
@@ -8,7 +10,11 @@ import urllib.request
 from pathlib import Path
 
 
-BASE = "http://127.0.0.1:5000"
+if os.getenv("SCAMSHIELD_BASE"):
+    BASE = os.getenv("SCAMSHIELD_BASE")
+else:
+    host_ip = socket.gethostbyname(socket.gethostname())
+    BASE = f"http://{host_ip}:5000"
 DB_PATH = Path(__file__).resolve().parents[1] / "data" / "reports.db"
 PASS = "PASS"
 FAIL = "FAIL"
