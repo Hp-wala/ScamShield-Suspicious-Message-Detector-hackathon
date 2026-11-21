@@ -118,6 +118,13 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
   white-space: nowrap;
 }
 .channel-tabs input { accent-color: var(--blue); margin: 0; }
+.channel-tabs input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
 .channel-tabs label:has(input:checked) {
   color: var(--blue);
   background: #f4f7ff;
@@ -157,11 +164,18 @@ nav a:focus-visible, a:focus-visible, button:focus-visible, textarea:focus-visib
   cursor: pointer;
   white-space: nowrap;
 }
-.advanced-tools { grid-area: tools; justify-self: center; margin-top: 8px; }
+.advanced-tools {
+  grid-area: tools;
+  justify-self: center;
+  width: 112px;
+  margin-top: 8px;
+  text-align: center;
+}
 .advanced-tools summary { color: var(--muted); font-size: 12px; cursor: pointer; text-align: center; }
 .advanced-tools summary::marker { color: var(--blue); }
 .advanced-tools summary {
-  display: inline-block;
+  display: block;
+  width: 112px;
   min-width: 112px;
   padding: 8px 14px;
   border: 1px solid var(--line);
