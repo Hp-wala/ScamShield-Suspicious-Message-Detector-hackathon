@@ -4,12 +4,13 @@ from .normalize import message_hash
 from .rules import RULES, NEGATIVE_RULES, find_rule_matches
 from .urls import extract_urls, analyze_url
 from .brands import BRANDS
+from .ml_signal import ml_signal, MODEL
 
 HOOKS = {"prize", "account_threat", "delivery", "utility", "digital_arrest", "job", "investment", "upi", "relative", "government"}
 ASKS = {"credential_request", "advance_fee", "kyc_update", "call_number", "apk", "money_request", "move_to_chat"}
 
 
-def score_message(channel: str, text: str, sender: str = "") -> dict:
+def score_message(channel: str, text: str, sender: str = "", use_ml: bool = True) -> dict:
     cleaned = text
     lowercase = cleaned.lower()
     url_items = extract_urls(cleaned)
@@ -68,6 +69,20 @@ def score_message(channel: str, text: str, sender: str = "") -> dict:
         signals.append({"id": "urgency_combo", "label": "Urgency plus action", "category": "General", "weight": 10,
                         "points": 10, "explanation": "Urgency is combined with a scam hook or request.", "matches": []})
 
+    probability = MODEL.predict_proba(text) if use_ml else 0.5
+    ml_result = ml_signal(text)
+    rule_driven = bool(positive_ids & (HOOKS | ASKS)) or bool(urls)
+    if use_ml and ml_result and rule_driven:
+        signals.append({
+            "id": ml_result["id"],
+            "label": ml_result["label"],
+            "category": ml_result["category"],
+            "weight": ml_result["weight"],
+            "points": ml_result["points"],
+            "explanation": ml_result["explanation"],
+            "matches": [],
+        })
+
     positive = [s for s in signals if s["points"] > 0]
     score = 0
     category_totals = {}
@@ -104,6 +119,7 @@ def score_message(channel: str, text: str, sender: str = "") -> dict:
         "urls": urls,
         "advice": get_advice(category),
         "text_hash": message_hash(cleaned),
+        "text_model_probability": round(probability, 4),
     }
 
 

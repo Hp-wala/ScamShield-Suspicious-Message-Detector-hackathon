@@ -74,6 +74,23 @@ python -m compileall -q app.py src tests
 
 SQLite is local to the service. Render's free tier sleeps and ephemeral filesystem can reset `data/reports.db`; use a persistent disk or external database for production retention.
 
+## Dataset & Evaluation
+
+Phase 8 includes a fully synthetic CSV dataset of 200 messages: 110 scam and 90 genuine, with English and Hinglish examples across bank/KYC, delivery, government, prizes, jobs, UPI, utility, investment, digital-arrest and impersonation categories. No real phone numbers, names or personal data are included.
+
+The fixed split is 70% train and 30% test, stratified by label with seed `20260314`. The test split is not used to tune rule weights.
+
+The local text model is a pure-Python unigram/bigram TF-IDF-style multinomial Naive Bayes classifier. It is stored at `src/threat/model.json` and remains a secondary signal: rules stay primary, and the model cannot promote a message to Likely Scam by itself.
+
+Retrain and evaluate:
+
+```bash
+python scripts/train_model.py
+python scripts/evaluate.py
+```
+
+The latest test metrics and misclassified examples are recorded in `EVAL.md`. Synthetic benchmark results are not a claim of real-world accuracy.
+
 ## Limitations
 
 ScamShield uses explainable heuristics, not a guarantee. URL and message results can have false positives or miss novel scams. For money loss or threats, call 1930 or visit `cybercrime.gov.in`.

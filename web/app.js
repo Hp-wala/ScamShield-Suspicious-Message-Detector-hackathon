@@ -112,6 +112,8 @@ function renderSingle(data) {
   const meta = el("div", "result-meta");
   meta.append(el("div", "badge", data.verdict));
   meta.append(el("p", "", `Category: ${data.category} | Confidence: ${data.confidence}`));
+  const textModelProbability = Number(data.text_model_probability || 0);
+  meta.append(el("p", "", `Text model: ${Math.round(textModelProbability * 100)}% similar to scam messages`));
   resultBox.append(meta);
 
   const messageBlock = el("div");
