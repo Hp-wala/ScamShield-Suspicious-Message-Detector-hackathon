@@ -13,6 +13,25 @@ The final project is a Flask-based web application that performs local, offline 
 
 The application explains risk scores, matched scam indicators, URL findings, category, confidence, and safety advice.
 
+## 11.2 Text Architecture Diagram
+
+```text
+Web UI -> Flask API -> Channel Adapters -> NLP/Cleaning -> Rule + URL + ML Scoring
+  |           |              |                 |                    |
+  |           |              |                 |                    +-> Explainable result
+  |           |              |                 +-> TF-IDF text model
+  |           |              +-> SMS / WhatsApp / Email / URL
+  |           +-> Validation, rate limiting, security headers
+  +-> HTML/CSS/vanilla JavaScript, offline dashboard and quiz
+
+Optional services:
+Safe Browsing -> VirusTotal -> WHOIS -> SSL -> HIBP -> Vosk/OCR/QR
+
+Privacy storage:
+SQLite -> channel, category, risk score, text hash, timestamp
+        -> state/category counts and hashed number/domain reputation
+```
+
 ## 2. What Was Kept and Adapted
 
 ### Reused/adapted
