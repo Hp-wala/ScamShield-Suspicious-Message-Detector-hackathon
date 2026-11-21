@@ -1,6 +1,11 @@
-__pycache__/
-*.pyc
-.pytest_cache/
+.env
 cache/
 logs/
-emails.csv
+datasets/
+data/*.db
+*.pkl
+*.joblib
+__pycache__/
+.pytest_cache/
+venv/
+*.pyc
