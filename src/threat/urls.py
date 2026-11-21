@@ -8,7 +8,12 @@ SHORTENERS = {"bit.ly", "tinyurl.com", "cutt.ly", "t.co", "rb.gy", "is.gd", "sho
 RISKY_TLD = {".xyz", ".top", ".click", ".live", ".icu", ".buzz", ".cfd", ".sbs", ".vip", ".rest", ".gq", ".tk", ".ml", ".cf", ".work", ".support"}
 PATH_WORDS = {"login", "verify", "update", "kyc", "secure", "claim", "refund", "otp", "bonus", "reward", "account", "suspend", "unlock", "confirm"}
 TLD_PATTERN = r"(com|in|org|net|gov\.in|nic\.in|co\.in|bank\.in|sbi|edu|app)"
-URL_PATTERN = re.compile(r"(?<![\w@])(?:hxxps?|https?|www\.)?[a-z0-9-]+(?:\[\.\]|\(\.\)|\.|\bdot\b)[a-z0-9.-]+\.[a-z]{2,}(?:/[^\s]*)?", re.I)
+URL_PATTERN = re.compile(
+    r"(?<![\w@])(?:hxxps?|https?|www\.)?"
+    r"[a-z0-9-]+(?:\[\.\]|\(\.\)|\.|\s+dot\s+)[a-z0-9.-]*"
+    r"[a-z0-9-]+\.[a-z]{2,}(?:/[^\s]*)?",
+    re.I,
+)
 
 
 def _levenshtein(a: str, b: str) -> int:
@@ -16,18 +21,27 @@ def _levenshtein(a: str, b: str) -> int:
     for i, ca in enumerate(a, 1):
         current = [i]
         for j, cb in enumerate(b, 1):
-            current.append(min(current[-1] + 1, previous[j] + 1 if False else previous[j] + (ca != cb)))
+            current.append(min(current[-1] + 1, previous[j] + 1, previous[j - 1] + (ca != cb)))
         previous = current
     return previous[-1]
 
 
 def extract_urls(text: str) -> list[dict]:
     results = []
-    for match in URL_PATTERN.finditer(text):
+    matches = list(URL_PATTERN.finditer(text))
+    for match in matches:
         url = match.group(0).strip(".,);]")
         if "@" in url:
             continue
         results.append({"url": url, "span": [match.start(), match.end()]})
+    bare_pattern = re.compile(r"(?<![@\w])(?:www\.)?[a-z0-9-]+\.[a-z]{2,}(?:/[^\s]*)?", re.I)
+    for match in bare_pattern.finditer(text):
+        span = [match.start(), match.end()]
+        if any(span[0] >= existing["span"][0] and span[1] <= existing["span"][1] for existing in results):
+            continue
+        url = match.group(0).strip(".,);]")
+        if "@" not in url:
+            results.append({"url": url, "span": span})
     return results
 
 

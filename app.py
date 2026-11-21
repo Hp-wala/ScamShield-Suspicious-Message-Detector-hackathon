@@ -32,8 +32,14 @@ def create_app(config=None):
         if len(text) > 10000:
             return jsonify({"error": "Message text is too long"}), 400
 
-        result = engine.analyze(text, channel)
-        reports.add(result)
+        result = engine.analyze(text, channel, sender=str(payload.get("sender", "")))
+        report = {
+            "channel": channel,
+            "category": result["category"],
+            "risk_score": result["score"],
+            "text_hash": Validator.message_hash(result["text"]),
+        }
+        reports.add(report)
         return jsonify(result)
 
     @app.get("/api/reports")
