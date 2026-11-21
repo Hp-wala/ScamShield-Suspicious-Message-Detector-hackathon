@@ -1,4 +1,15 @@
 from src.threat.engine import ThreatEngine
+from src.threat.normalize import clean_text, message_hash
+from src.threat import rules, brands, urls, scorer, advice, pipeline
+
+
+def test_phase_two_importable_modules():
+    assert callable(clean_text)
+    assert len(message_hash("test")) == 64
+    assert len(rules.RULES) > 0
+    assert len(brands.BRANDS) > 0
+    assert callable(urls.extract_urls)
+    assert callable(scorer.score_message)
 
 
 def test_bank_otp_message_is_high_risk():

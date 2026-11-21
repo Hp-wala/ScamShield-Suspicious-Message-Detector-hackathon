@@ -1,5 +1,16 @@
 import re
-from typing import Protocol
+from dataclasses import dataclass
+from typing import Protocol, Any
+
+
+@dataclass
+class Message:
+    id: str
+    channel: str
+    sender: str
+    timestamp: str
+    text: str
+    meta: dict[str, Any]
 
 
 class ChannelAdapter(Protocol):
@@ -7,6 +18,12 @@ class ChannelAdapter(Protocol):
 
 
 class BaseAdapter:
+    def validate(self, text: str) -> bool:
+        return isinstance(text, str) and bool(text.strip()) and len(text) <= 5000
+
+    def extract(self, text: str, sender: str | None = None) -> dict[str, Any]:
+        return {"id": "1", "channel": "sms", "sender": sender or "", "timestamp": "", "text": self.normalize(text), "meta": {}}
+
     def normalize(self, text: str) -> str:
         text = text.strip()
         text = re.sub(r"<[^>]*>", " ", text)
@@ -15,11 +32,13 @@ class BaseAdapter:
 
 
 class SmsAdapter(BaseAdapter):
-    pass
+    def extract(self, text: str, sender: str | None = None) -> dict[str, Any]:
+        return {"id": "1", "channel": "sms", "sender": sender or "", "timestamp": "", "text": self.normalize(text), "meta": {}}
 
 
 class WhatsappAdapter(BaseAdapter):
-    pass
+    def extract(self, text: str, sender: str | None = None) -> dict[str, Any]:
+        return {"id": "1", "channel": "whatsapp", "sender": sender or "", "timestamp": "", "text": text.replace("\u202f", " ").replace("\xa0", " "), "meta": {}}
 
 
 class EmailAdapter(BaseAdapter):
@@ -40,3 +59,17 @@ ADAPTERS = {
     "email": EmailAdapter(),
     "url": UrlAdapter(),
 }
+
+
+class AdapterRegistry:
+    def __init__(self) -> None:
+        self._adapters = dict(ADAPTERS)
+
+    def register(self, channel: str, adapter: BaseAdapter) -> None:
+        self._adapters[channel] = adapter
+
+    def get(self, channel: str) -> BaseAdapter:
+        return self._adapters.get(channel, SmsAdapter())
+
+
+registry = AdapterRegistry()
